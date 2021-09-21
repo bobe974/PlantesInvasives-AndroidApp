@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/MenuHome"
+        android:enabled="true"
+        android:icon="@drawable/house"
+        android:title="Home"/>
+    <item
+        android:id="@+id/MenuNew"
+        android:enabled="true"
+        android:icon="@drawable/camera"
+        android:title="New"/>
+    <item
+        android:id="@+id/MenuProfil"
+        android:enabled="true"
+        android:icon="@drawable/user"
+        android:title="Profil"/>
+    <item
+        android:id="@+id/MenuMap"
+        android:enabled="true"
+        android:icon="@drawable/map"
+        android:title="Home"/>
+</menu>

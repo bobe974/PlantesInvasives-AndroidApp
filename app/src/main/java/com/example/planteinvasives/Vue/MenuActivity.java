@@ -13,12 +13,15 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.planteinvasives.R;
+import com.google.android.material.navigation.NavigationBarMenu;
+import com.google.android.material.navigation.NavigationBarMenuView;
 
 public class MenuActivity extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 100;
     private ImageView photo;
     private Button btncreateFiche, btnFiche, btnMap;
+    private NavigationBarMenuView navbar;
 
 
     @Override
@@ -38,6 +41,10 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //demarrer l'appareil photo
                 TakePhoto();
+
+                //redirige vers la formulaire
+
+                //envoye la photo dans la fiche
             }
         });
 
@@ -62,13 +69,12 @@ public class MenuActivity extends AppCompatActivity {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         try {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-        } catch (ActivityNotFoundException e) {
+        }
+        catch (ActivityNotFoundException e) {
             // display error state to the user
             CharSequence msg = "impossible d'ouvrir l'appareil photo";
             int duration = Toast.LENGTH_SHORT;
-
             Toast toast = Toast.makeText(MenuActivity.this,msg,duration);
-
         }
     }
 
