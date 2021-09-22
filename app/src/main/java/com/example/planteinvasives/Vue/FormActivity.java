@@ -1,6 +1,8 @@
 package com.example.planteinvasives.Vue;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -14,8 +16,13 @@ import com.example.planteinvasives.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarMenuView;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 public class FormActivity extends AppCompatActivity {
 
+    private String photoPath;
     private BottomNavigationView navbar;
     private BottomNavigationView.OnNavigationItemSelectedListener eventNav;
 
@@ -45,6 +52,8 @@ public class FormActivity extends AppCompatActivity {
                         return true;
                     case R.id.MenuNew:
 
+
+
                         return true;
 
                     case R.id.MenuProfil:
@@ -56,6 +65,28 @@ public class FormActivity extends AppCompatActivity {
         };
 
         navbar.setOnNavigationItemSelectedListener(eventNav);
+
+        //recupere le chemin absolu de la photo
+        Intent intent = getIntent();
+        photoPath = intent.getStringExtra("path");
+        loadImageFromStorage(photoPath, photo);
+    }
+
+    /**
+     * charge une image depuis un dossier et l'affecte dans un Imageview
+     * @param path
+     */
+    private void loadImageFromStorage(String path, ImageView image)
+    {
+        try {
+            File f=new File(path, "plante.jpg");
+            Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
+            image.setImageBitmap(b);
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
 
     }
 
