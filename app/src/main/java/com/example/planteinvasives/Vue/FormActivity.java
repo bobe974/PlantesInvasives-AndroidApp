@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -51,7 +52,8 @@ public class FormActivity extends AppCompatActivity {
                         startActivity(intent);
                         return true;
                     case R.id.MenuNew:
-
+                        Intent intent2 = new Intent(FormActivity.this, PhotoActivity.class);
+                        startActivity(intent2);
 
 
                         return true;
@@ -69,6 +71,7 @@ public class FormActivity extends AppCompatActivity {
         //recupere le chemin absolu de la photo
         Intent intent = getIntent();
         photoPath = intent.getStringExtra("path");
+        Log.d("RECUP P PATH", photoPath);
         loadImageFromStorage(photoPath, photo);
     }
 
@@ -79,7 +82,7 @@ public class FormActivity extends AppCompatActivity {
     private void loadImageFromStorage(String path, ImageView image)
     {
         try {
-            File f=new File(path, "plante.jpg");
+            File f=new File(path);
             Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
             image.setImageBitmap(b);
         }
