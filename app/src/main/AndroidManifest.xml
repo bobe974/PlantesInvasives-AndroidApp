@@ -2,12 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.planteinvasives">
 
-
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-feature android:name="android.hardware.camera"
-        android:required="true" />
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
 
 
 
@@ -22,8 +23,6 @@
         android:theme="@style/Theme.PlanteInvasives">
         <activity
             android:name=".Vue.MainActivity">
-
-
         </activity>
         <activity android:name=".Vue.MenuActivity"
             android:parentActivityName=".Vue.MainActivity"
@@ -38,6 +37,9 @@
             android:parentActivityName=".Vue.MenuActivity">
         </activity>
         <activity android:name=".Vue.PhotoActivity"
+            android:parentActivityName=".Vue.MenuActivity">
+        </activity>
+        <activity android:name=".Vue.FicheActivity"
             android:parentActivityName=".Vue.MenuActivity">
         </activity>
 

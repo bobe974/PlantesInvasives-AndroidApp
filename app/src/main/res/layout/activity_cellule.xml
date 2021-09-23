@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <ImageView
+        android:id="@+id/photo"
+        android:layout_width="110dp"
+        android:layout_height="90sp"
+        android:layout_marginLeft="20dp" />
+
+    <TextView android:id="@+id/nomPlante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="nom: "
+
+        />
+
+    <TextView android:id="@+id/nomUtilisateur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginTop=""/>
+</LinearLayout>

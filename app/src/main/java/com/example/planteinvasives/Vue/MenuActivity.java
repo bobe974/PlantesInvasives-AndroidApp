@@ -63,7 +63,8 @@ public class MenuActivity extends AppCompatActivity {
         btnFiche.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(MenuActivity.this,FicheActivity.class);
+                startActivity(intent);
             }
         });
 

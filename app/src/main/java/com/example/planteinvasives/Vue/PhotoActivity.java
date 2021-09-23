@@ -1,6 +1,9 @@
 package com.example.planteinvasives.Vue;
 
+import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -17,11 +20,13 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class PhotoActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 100;
     private String currentPhotoPath;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +53,6 @@ public class PhotoActivity extends AppCompatActivity {
 
         // Save a file: path for use with ACTION_VIEW intents
         currentPhotoPath = image.getAbsolutePath();
-        Log.d("*************CHEMIN", currentPhotoPath);
         return image;
     }
 
@@ -60,7 +64,7 @@ public class PhotoActivity extends AppCompatActivity {
         // Ensure that there's a camera activity to handle the intent
 
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            Log.d("*********","passe if" );
+
             // Create the File where the photo should go
             File photoFile = null;
             try {
@@ -97,4 +101,5 @@ public class PhotoActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
 }
