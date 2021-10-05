@@ -9,13 +9,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.planteinvasives.R;
+import com.example.planteinvasives.roomDataBase.entity.Fiche;
 
-public class MyArrayAdapter extends ArrayAdapter<String> {
+import java.util.ArrayList;
+
+public class MyArrayAdapter extends ArrayAdapter<Fiche> {
 
     private final Context context;
 
-    public MyArrayAdapter(Context context, String[] values) {
-        super(context, R.layout.activity_cellule, values);
+    public MyArrayAdapter(Context context, ArrayList<Fiche> lesfiches) {
+        super(context, R.layout.activity_cellule, lesfiches);
         this.context = context;
     }
 
@@ -34,8 +37,8 @@ public class MyArrayAdapter extends ArrayAdapter<String> {
         TextView nomPlante =(TextView)cellView.findViewById(R.id.nomUtilisateur);
         ImageView imageView = (ImageView)cellView.findViewById(R.id.photo);
 
-        String s = getItem(position);
-        textView.setText(s);
+        Fiche f = getItem(position);
+        textView.setText(f.getNomApareil());
         nomPlante.setText("user :");
         imageView.setImageResource(R.drawable.map);
         //imageView.setImageResource(R.drawable.camera);

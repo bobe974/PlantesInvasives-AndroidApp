@@ -1,5 +1,6 @@
 package com.example.planteinvasives.Vue;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,22 +13,35 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.planteinvasives.R;
 import com.example.planteinvasives.roomDataBase.Controle;
+import com.example.planteinvasives.roomDataBase.entity.Fiche;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
 
 public class FicheActivity extends AppCompatActivity {
     private ListView mListView;
     private MyArrayAdapter mAdapter;
-    private String taches[] = {"Douche", "Sieste"};
+
+    //contient toutes les fiches qui seront récupérées depuis la bdd
+    private ArrayList<Fiche> lesfiches;
+
     private BottomNavigationView navbar;
     private BottomNavigationView.OnNavigationItemSelectedListener eventNav;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fiche);
 
+        /************************TEST************************/
+        lesfiches = new ArrayList<>();
+        lesfiches.add(new Fiche("SWIGO"));
+        lesfiches.add(new Fiche("BOULOP"));
+        /************************TEST************************/
+
         mListView = (ListView) findViewById(R.id.listeFiche);
-        mAdapter = new MyArrayAdapter(this, taches);
+        mAdapter = new MyArrayAdapter(this, lesfiches);
         mListView.setAdapter(mAdapter);
         navbar = (BottomNavigationView) findViewById(R.id.bottom_navigation_fiche);
 
@@ -58,6 +72,11 @@ public class FicheActivity extends AppCompatActivity {
         };
 
         navbar.setOnNavigationItemSelectedListener(eventNav);
+
+
     }
 
+    public void afficheFiches(ArrayList<Fiche> lesfiches, Context context){
+        MyArrayAdapter arrayAdapter = new MyArrayAdapter(context,lesfiches);
+    }
 }

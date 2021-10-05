@@ -38,6 +38,9 @@ public class FormActivity extends AppCompatActivity {
 
     //********************TEST********************
     Controle controle;
+    Plante plante = new Plante("PIEDMANG");
+    Photographie unephoto = new Photographie(photoPath,
+            "23 mai",23,322);
 
 //********************TEST********************
 
@@ -57,10 +60,9 @@ public class FormActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 controle = Controle.getInstance(FormActivity.this);
-                controle.ficheDao().insert(new Fiche("ANDROID_ETIENNE"));
-                controle.photoDao().insert( new Photographie("/local/temp",
-                        "23 mai",23,322));
-                controle.planteDao().insert(new Plante("PIEDMANG"));
+                controle.ficheDao().insert(new Fiche("ANDROID_ETIENNE",unephoto,plante));
+                controle.photoDao().insert(unephoto);
+                controle.planteDao().insert(plante);
 
                 Log.d("TAG", "onClick: ENREGISTRER");
             }

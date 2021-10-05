@@ -4,6 +4,7 @@ package com.example.planteinvasives.roomDataBase.entity;
 import androidx.room.ColumnInfo;
 import androidx.room.Embedded;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -13,15 +14,27 @@ public  class Fiche {
     private int id_fiche;
 
     @ColumnInfo(name = "nom_Appareil")
-    public String nomApareil;
+    private String nomApareil;
 
-    //@Embedded public Photographie photo;
-    //@Embedded public Plante plante;
+    @Ignore
+    private Photographie photo;
+    @Ignore
+    private  Plante plante;
+
+    /**
+     * @param nomApareil
+     * @param photo
+     * @param plante
+     */
+    public Fiche(String nomApareil, Photographie photo, Plante plante){
+        this.nomApareil = nomApareil;
+        this.photo = photo;
+        this.plante = plante;
+    }
 
     public Fiche(String nomApareil){
         this.nomApareil = nomApareil;
     }
-
     public int getId_fiche() {
         return id_fiche;
     }
