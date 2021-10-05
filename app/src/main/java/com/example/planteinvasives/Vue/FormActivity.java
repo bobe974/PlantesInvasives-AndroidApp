@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,6 +15,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.planteinvasives.R;
+import com.example.planteinvasives.roomDataBase.Controle;
+import com.example.planteinvasives.roomDataBase.entity.Fiche;
+import com.example.planteinvasives.roomDataBase.entity.Photographie;
+import com.example.planteinvasives.roomDataBase.entity.Plante;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarMenuView;
 
@@ -31,6 +36,12 @@ public class FormActivity extends AppCompatActivity {
     private TextView position, username;
     public ImageView photo;
 
+    //********************TEST********************
+    Controle controle;
+
+//********************TEST********************
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +52,19 @@ public class FormActivity extends AppCompatActivity {
         position = (TextView) findViewById(R.id.textPos);
         username = (TextView) findViewById(R.id.userName);
         photo = (ImageView) findViewById(R.id.imgPhoto);
+
+        valideFiche.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                controle = Controle.getInstance(FormActivity.this);
+                controle.ficheDao().insert(new Fiche("ANDROID_ETIENNE"));
+                controle.photoDao().insert( new Photographie("/local/temp",
+                        "23 mai",23,322));
+                controle.planteDao().insert(new Plante("PIEDMANG"));
+
+                Log.d("TAG", "onClick: ENREGISTRER");
+            }
+        });
 
         //Gestion de la navbar
         eventNav   = new BottomNavigationView.OnNavigationItemSelectedListener(){
@@ -73,6 +97,7 @@ public class FormActivity extends AppCompatActivity {
         photoPath = intent.getStringExtra("path");
         Log.d("RECUP P PATH", photoPath);
         loadImageFromStorage(photoPath, photo);
+
     }
 
     /**

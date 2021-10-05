@@ -9,21 +9,27 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import com.example.planteinvasives.BuildConfig;
 import com.example.planteinvasives.R;
+import com.example.planteinvasives.roomDataBase.Controle;
+import com.example.planteinvasives.roomDataBase.entity.Photographie;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarMenu;
 import com.google.android.material.navigation.NavigationBarMenuView;
 
@@ -38,6 +44,8 @@ public class MenuActivity extends AppCompatActivity {
 
 
     private Button btncreateFiche, btnFiche, btnMap;
+    private BottomNavigationView navbar;
+    private BottomNavigationView.OnNavigationItemSelectedListener eventNav;
 
 
 
@@ -49,6 +57,7 @@ public class MenuActivity extends AppCompatActivity {
         btncreateFiche = (Button) findViewById(R.id.btnNewFiche);
         btnFiche = (Button) findViewById(R.id.btnFiches);
         btnMap = (Button) findViewById(R.id.btnMap);
+        navbar = (BottomNavigationView) findViewById(R.id.bottom_navigation_menu);
 
         //EVENEMENTS
         btncreateFiche.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +66,7 @@ public class MenuActivity extends AppCompatActivity {
                 //demarrer l'appareil photo
                 Intent intent = new Intent(MenuActivity.this, PhotoActivity.class);
                 startActivity(intent);
+                Toast.makeText(MenuActivity.this, "lancement de l'appareil...?!", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -74,6 +84,33 @@ public class MenuActivity extends AppCompatActivity {
 
             }
         });
+
+
+        //Gestion de la navbar
+        eventNav   = new BottomNavigationView.OnNavigationItemSelectedListener(){
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.MenuHome:
+                        Intent intent = new Intent(MenuActivity.this, MenuActivity.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.MenuNew:
+                        Intent intent2 = new Intent(MenuActivity.this, PhotoActivity.class);
+                        startActivity(intent2);
+
+
+                        return true;
+
+                    case R.id.MenuProfil:
+                        System.out.println("profil");
+                        return true;
+                }
+                return false;
+            }
+        };
+
+        navbar.setOnNavigationItemSelectedListener(eventNav);
     }
 
 }
