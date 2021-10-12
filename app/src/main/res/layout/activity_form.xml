@@ -19,7 +19,7 @@
     <ImageView
         android:id="@+id/imgPhoto"
         android:layout_width="400dp"
-        android:layout_height="370dp"
+        android:layout_height="340dp"
         app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -28,49 +28,40 @@
         android:layout_marginTop="40dp"/>
 
     <EditText
-        android:id="@+id/editNom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="Nom espèce"
-        android:inputType="textPersonName"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgPhoto" />
-
-    <EditText
         android:id="@+id/editNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="description"
         android:inputType="textPersonName"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editNom" />
+        tools:layout_editor_absoluteY="437dp" />
 
     <EditText
-        android:id="@+id/editlieu"
+        android:id="@+id/nom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Lieu"
+        android:hint="nom"
         android:inputType="textPersonName"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editNote" />
 
-
-    <TextView
-        android:id="@+id/textPos"
+    <EditText
+        android:id="@+id/prenom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Position: "
+        android:layout_marginTop="60dp"
+        android:ems="10"
+        android:hint="prenom"
+        android:inputType="textPersonName"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/editlieu"
-        android:layout_marginTop="20dp"
-         />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editNote" />
 
     <Button
         android:id="@+id/btnvalideFiche"
@@ -91,6 +82,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="432dp"
+        app:layout_constraintBottom_toTopOf="@+id/editNote"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgPhoto"
+
+
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

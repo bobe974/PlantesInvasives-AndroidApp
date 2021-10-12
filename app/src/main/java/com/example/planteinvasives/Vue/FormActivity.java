@@ -1,8 +1,14 @@
 package com.example.planteinvasives.Vue;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -13,6 +19,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.planteinvasives.R;
 import com.example.planteinvasives.roomDataBase.Controle;
@@ -29,12 +36,15 @@ import java.io.FileNotFoundException;
 public class FormActivity extends AppCompatActivity {
 
     private String photoPath;
+    private String nom_appareil;
+    private final int REQUEST_LOCATION_PERMISSION = 1;
     private BottomNavigationView navbar;
     private BottomNavigationView.OnNavigationItemSelectedListener eventNav;
 
     private Button valideFiche;
     private TextView position, username;
     public ImageView photo;
+
 
     //********************TEST********************
     Controle controle;
@@ -52,15 +62,15 @@ public class FormActivity extends AppCompatActivity {
 
         valideFiche = (Button) findViewById(R.id.btnvalideFiche);
         navbar = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        position = (TextView) findViewById(R.id.textPos);
         username = (TextView) findViewById(R.id.userName);
         photo = (ImageView) findViewById(R.id.imgPhoto);
 
+        nom_appareil = android.os.Build.MODEL;
         valideFiche.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 controle = Controle.getInstance(FormActivity.this);
-                controle.ficheDao().insert(new Fiche("ANDROID_ETIENNE",unephoto,plante));
+                controle.ficheDao().insert(new Fiche(nom_appareil,unephoto,plante));
                 controle.photoDao().insert(unephoto);
                 controle.planteDao().insert(plante);
 
@@ -119,6 +129,5 @@ public class FormActivity extends AppCompatActivity {
         }
 
     }
-
 
 }

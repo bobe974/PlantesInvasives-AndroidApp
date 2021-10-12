@@ -99,6 +99,9 @@ public class PhotoActivity extends AppCompatActivity {
             Intent intent = new Intent(PhotoActivity.this,FormActivity.class);
             intent.putExtra("path",currentPhotoPath);
             startActivity(intent);
+        }else{
+            Intent intent = new Intent(PhotoActivity.this,MenuActivity.class);
+            startActivity(intent);
         }
     }
 

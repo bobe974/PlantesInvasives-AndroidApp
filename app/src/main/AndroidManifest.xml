@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.planteinvasives">
+    package="com.example.planteinvasives" >
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-feature android:name="android.hardware.camera"
+
+    <!-- Always include this permission -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- Include only if your app benefits from precise location access. -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <queries>
+
         <!-- Browser -->
         <intent>
             <action android:name="android.intent.action.VIEW" />
+
             <data android:scheme="http" />
         </intent>
 
@@ -27,49 +37,56 @@
         </intent>
     </queries>
 
-
-
-
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PlanteInvasives">
-        <activity
-            android:name=".Vue.MainActivity">
+        android:theme="@style/Theme.PlanteInvasives" >
+        <activity android:name=".Vue.MainActivity" >
         </activity>
-        <activity android:name=".Vue.MenuActivity"
-            android:parentActivityName=".Vue.MainActivity"
-            android:exported="true">
+        <activity
+            android:name=".Vue.MenuActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:parentActivityName=".Vue.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Vue.FormActivity"
-            android:parentActivityName=".Vue.MenuActivity">
+        <activity
+            android:name=".Vue.FormActivity"
+            android:launchMode="singleTask"
+            android:parentActivityName=".Vue.MenuActivity" >
         </activity>
-        <activity android:name=".Vue.PhotoActivity"
-            android:parentActivityName=".Vue.MenuActivity">
+        <activity
+            android:name=".Vue.PhotoActivity"
+            android:parentActivityName=".Vue.MenuActivity" >
         </activity>
-        <activity android:name=".Vue.FicheActivity"
-            android:parentActivityName=".Vue.MenuActivity">
+        <activity
+            android:name=".Vue.FicheActivity"
+            android:launchMode="singleTask"
+            android:parentActivityName=".Vue.MenuActivity" >
         </activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"
-            android:grantUriPermissions="true">
+            android:grantUriPermissions="true" >
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
 
+        <service
+            android:name=".Vue.MenuActivity"
+            android:foregroundServiceType="location"  >
+        <!-- Any inner elements would go here. -->
+    </service>
     </application>
 
 </manifest>

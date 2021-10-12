@@ -1,44 +1,44 @@
 package com.example.planteinvasives.Vue;
 
-import android.content.ActivityNotFoundException;
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.content.Context;
-import android.content.ContextWrapper;
+import android.Manifest;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Build;
+import android.content.pm.PackageManager;
+
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
+
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
+import androidx.core.app.ActivityCompat;
 
-import com.example.planteinvasives.BuildConfig;
+
 import com.example.planteinvasives.R;
-import com.example.planteinvasives.roomDataBase.Controle;
-import com.example.planteinvasives.roomDataBase.entity.Photographie;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarMenu;
-import com.google.android.material.navigation.NavigationBarMenuView;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Objects;
+import java.util.List;
+import java.util.Locale;
+
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -47,13 +47,35 @@ public class MenuActivity extends AppCompatActivity {
     private BottomNavigationView navbar;
     private BottomNavigationView.OnNavigationItemSelectedListener eventNav;
 
+    /****************TEST******************/
+    private GPSTracker pos;
+    private double latittude;
+    private double longitude;
+    private FusedLocationProviderClient fusedLocationClient;
 
+    /****************TEST******************/
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+
+        /****************TEST******************/
+        //verifPermission();
+        // pos = new GPSTracker(this);
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(MenuActivity.this);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            //permission accepté
+            getLocation();
+        } else {
+            //permission refusé
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE_ASK_PERMISSIONS);
+        }
+
+
         btncreateFiche = (Button) findViewById(R.id.btnNewFiche);
         btnFiche = (Button) findViewById(R.id.btnFiches);
         btnMap = (Button) findViewById(R.id.btnMap);
@@ -73,7 +95,7 @@ public class MenuActivity extends AppCompatActivity {
         btnFiche.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MenuActivity.this,FicheActivity.class);
+                Intent intent = new Intent(MenuActivity.this, FicheActivity.class);
                 startActivity(intent);
             }
         });
@@ -82,16 +104,18 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
             }
         });
 
 
         //Gestion de la navbar
-        eventNav   = new BottomNavigationView.OnNavigationItemSelectedListener(){
+        eventNav = new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.MenuHome:
+
                         Intent intent = new Intent(MenuActivity.this, MenuActivity.class);
                         startActivity(intent);
                         return true;
@@ -113,6 +137,59 @@ public class MenuActivity extends AppCompatActivity {
         navbar.setOnNavigationItemSelectedListener(eventNav);
     }
 
+
+    /****************TEST******************/
+    //get access to location permission
+    final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
+
+    public void getLocation() {
+        Log.d("getlocation", "***********************************");
+
+
+        fusedLocationClient.getLastLocation().addOnCompleteListener((new OnCompleteListener<Location>() {
+
+            @Override
+            public void onComplete(@NonNull Task<Location> task) {
+                //on recupere un objet Location dans un Task
+                Log.d("onComplete", "********************************");
+                Location location = task.getResult();
+                if (location != null) {
+                    Log.d("LOCATION NON NULL", "********************************");
+                    try {
+                        Geocoder geocoder = new Geocoder(MenuActivity.this, Locale.getDefault());
+                        //list des addresses
+                        List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+
+                        //assigne aux variable locales
+                        Log.d("ASSIGNE VARIABLE", "******************************");
+
+                        Log.d("POSSSS", "latitude" + addresses.get(0).getLatitude());
+                        latittude = addresses.get(0).getLatitude();
+                        longitude = addresses.get(0).getLongitude();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }));
+    }
+
+    protected void createLocationRequest() {
+        LocationRequest locationRequest = LocationRequest.create();
+        locationRequest.setInterval(0);
+        locationRequest.setFastestInterval(0);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                .addLocationRequest(locationRequest);
+
+        SettingsClient client = LocationServices.getSettingsClient(this);
+        Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
+       
+
+    }
+
+    /****************TEST******************/
 }
 /**
  private void TakePhoto() {
