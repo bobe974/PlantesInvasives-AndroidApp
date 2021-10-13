@@ -18,8 +18,21 @@ public class Plante {
     @ColumnInfo(name = "Nom" )
     public String nom;
 
-    public Plante(String nom){
+    @ColumnInfo(name = "état" )
+    public String etat;
+
+    @ColumnInfo(name = "stade" )
+    public String stade;
+
+    @ColumnInfo(name = "description" )
+    public String description;
+
+    public Plante(String nom, String etat, String stade, String description){
+
         this.nom = nom;
+        this.etat = etat;
+        this.stade = stade;
+        this.description = description;
     }
 
     public int getId_plante() {
@@ -36,5 +49,29 @@ public class Plante {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public String getEtat() {
+        return etat;
+    }
+
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
+
+    public String getStade() {
+        return stade;
+    }
+
+    public void setStade(String stade) {
+        this.stade = stade;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

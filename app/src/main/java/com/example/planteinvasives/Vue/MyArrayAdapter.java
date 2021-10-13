@@ -38,7 +38,6 @@ public class MyArrayAdapter extends ArrayAdapter<Fiche> {
         ImageView imageView = (ImageView)cellView.findViewById(R.id.photo);
 
         Fiche f = getItem(position);
-        textView.setText(f.getNomApareil());
         nomPlante.setText("user :");
         imageView.setImageResource(R.drawable.plante);
         //imageView.setImageResource(R.drawable.camera);

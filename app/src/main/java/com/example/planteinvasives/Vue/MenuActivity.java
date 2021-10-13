@@ -23,6 +23,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.example.planteinvasives.R;
 
+import com.example.planteinvasives.roomDataBase.Controle;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
@@ -46,6 +47,7 @@ public class MenuActivity extends AppCompatActivity {
     private Button btncreateFiche, btnFiche, btnMap;
     private BottomNavigationView navbar;
     private BottomNavigationView.OnNavigationItemSelectedListener eventNav;
+    Controle controle;
 
     /****************TEST******************/
     private GPSTracker pos;
@@ -61,6 +63,8 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+        //creation base
+        //controle = Controle.getInstance(this);
 
         /****************TEST******************/
         //verifPermission();
@@ -88,7 +92,6 @@ public class MenuActivity extends AppCompatActivity {
                 //demarrer l'appareil photo
                 Intent intent = new Intent(MenuActivity.this, PhotoActivity.class);
                 startActivity(intent);
-                Toast.makeText(MenuActivity.this, "lancement de l'appareil...?!", Toast.LENGTH_LONG).show();
             }
         });
 

@@ -11,38 +11,26 @@ import androidx.room.PrimaryKey;
         onDelete = ForeignKey.CASCADE))
 
 public class Photographie {
+
     @PrimaryKey(autoGenerate = true)
     public int id_photo;
 
     @ColumnInfo(name ="chemin_fichier" )
     private String chemin;
-    @ColumnInfo(name = "Date")
+
+    @ColumnInfo(name = "DatePhoto")
     private String date;
-    @ColumnInfo(name ="Latitude")
-    private int latitude;
-    @ColumnInfo(name ="Longitude")
-    private int longitude;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    private int id;
 
 
-    public Photographie( String chemin, String date, int longitude, int latitude){
+
+
+    public Photographie( String chemin, String date){
 
         this.chemin = chemin;
         this.date = date;
-        this.longitude = longitude;
-        this.latitude = latitude;
     }
 
-        public String getChemin() {
+         public String getChemin() {
             return chemin;
         }
 
@@ -58,19 +46,9 @@ public class Photographie {
             this.date = date;
         }
 
-        public int getLatitude() {
-            return latitude;
-        }
+        public int getId_photo() { return id_photo;}
 
-        public void setLatitude(int latitude) {
-            this.latitude = latitude;
-        }
+        public void setId_photo(int id_photo) { this.id_photo = id_photo; }
 
-        public int getLongitude() {
-            return longitude;
-        }
 
-        public void setLongitude(int longitude) {
-            this.longitude = longitude;
-        }
 }

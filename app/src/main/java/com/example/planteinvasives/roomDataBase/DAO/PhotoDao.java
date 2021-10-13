@@ -9,7 +9,6 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.planteinvasives.roomDataBase.entity.Fiche;
 import com.example.planteinvasives.roomDataBase.entity.Photographie;
 
 import java.util.List;

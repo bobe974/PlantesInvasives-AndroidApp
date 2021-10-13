@@ -13,27 +13,26 @@ public  class Fiche {
     @PrimaryKey(autoGenerate = true)
     private int id_fiche;
 
-    @ColumnInfo(name = "nom_Appareil")
-    private String nomApareil;
-
     @Ignore
     private Photographie photo;
     @Ignore
     private  Plante plante;
+    @Ignore
+    private Lieu lieu;
 
     /**
-     * @param nomApareil
      * @param photo
      * @param plante
      */
-    public Fiche(String nomApareil, Photographie photo, Plante plante){
-        this.nomApareil = nomApareil;
+    public Fiche(Photographie photo, Plante plante, Lieu lieu){
+
         this.photo = photo;
         this.plante = plante;
+        this.lieu = lieu;
     }
 
-    public Fiche(String nomApareil){
-        this.nomApareil = nomApareil;
+    public Fiche(){
+
     }
     public int getId_fiche() {
         return id_fiche;
@@ -43,11 +42,4 @@ public  class Fiche {
         this.id_fiche = id_fiche;
     }
 
-    public String getNomApareil() {
-        return nomApareil;
-    }
-
-    public void setNomApareil(String nomApareil) {
-        this.nomApareil = nomApareil;
-    }
 }

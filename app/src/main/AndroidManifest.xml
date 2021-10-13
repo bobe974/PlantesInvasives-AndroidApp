@@ -71,6 +71,10 @@
             android:launchMode="singleTask"
             android:parentActivityName=".Vue.MenuActivity" >
         </activity>
+        <activity
+            android:name=".Vue.FormActivity2"
+            android:parentActivityName=".Vue.MenuActivity" >
+        </activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"

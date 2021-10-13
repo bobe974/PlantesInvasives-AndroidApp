@@ -27,6 +27,7 @@ import java.util.Objects;
 public class PhotoActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 100;
     private String currentPhotoPath;
+    private  String timeStamp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class PhotoActivity extends AppCompatActivity {
      */
     private File createImageFile() throws IOException {
         // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+         timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
@@ -98,6 +99,7 @@ public class PhotoActivity extends AppCompatActivity {
             //envoie le chemin de la photo et lance l'activity formulaire
             Intent intent = new Intent(PhotoActivity.this,FormActivity.class);
             intent.putExtra("path",currentPhotoPath);
+            intent.putExtra("date",timeStamp);
             startActivity(intent);
         }else{
             Intent intent = new Intent(PhotoActivity.this,MenuActivity.class);

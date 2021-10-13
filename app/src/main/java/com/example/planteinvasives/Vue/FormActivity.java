@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,46 +36,42 @@ import java.io.FileNotFoundException;
 
 public class FormActivity extends AppCompatActivity {
 
-    private String photoPath;
-    private String nom_appareil;
+    private String photoPath, date;
     private final int REQUEST_LOCATION_PERMISSION = 1;
     private BottomNavigationView navbar;
     private BottomNavigationView.OnNavigationItemSelectedListener eventNav;
 
     private Button valideFiche;
-    private TextView position, username;
     public ImageView photo;
-
-
-    //********************TEST********************
-    Controle controle;
-    Plante plante = new Plante("PIEDMANG");
-    Photographie unephoto = new Photographie(photoPath,
-            "23 mai",23,322);
-
-//********************TEST********************
-
+    private EditText description;
+    private EditText nom;
+    private EditText prenom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
 
-        valideFiche = (Button) findViewById(R.id.btnvalideFiche);
-        navbar = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        username = (TextView) findViewById(R.id.userName);
-        photo = (ImageView) findViewById(R.id.imgPhoto);
+        valideFiche =  findViewById(R.id.btnvalideFiche);
+        navbar =  findViewById(R.id.bottom_navigation);
+        photo =  findViewById(R.id.imgPhoto);
+        description = findViewById(R.id.description);
+        nom =  findViewById(R.id.nom);
+        prenom =  findViewById(R.id.prenom);
 
-        nom_appareil = android.os.Build.MODEL;
         valideFiche.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                controle = Controle.getInstance(FormActivity.this);
-                controle.ficheDao().insert(new Fiche(nom_appareil,unephoto,plante));
-                controle.photoDao().insert(unephoto);
-                controle.planteDao().insert(plante);
 
-                Log.d("TAG", "onClick: ENREGISTRER");
+                //envoye et lance l'activity activityform2
+                Intent intent = new Intent(FormActivity.this,FormActivity2.class);
+                intent.putExtra("photopath",photoPath);
+                intent.putExtra("date",date);
+                intent.putExtra("description",description.getText().toString());
+                intent.putExtra("nom",nom.getText().toString());
+                intent.putExtra("prenom",prenom.getText().toString());
+
+                startActivity(intent);
             }
         });
 
@@ -104,10 +101,11 @@ public class FormActivity extends AppCompatActivity {
 
         navbar.setOnNavigationItemSelectedListener(eventNav);
 
-        //recupere le chemin absolu de la photo
+        //recupere le chemin absolu et la date de la photo
         Intent intent = getIntent();
         photoPath = intent.getStringExtra("path");
-        Log.d("RECUP P PATH", photoPath);
+        date = intent.getStringExtra("date");
+        Log.d("RECUP P PATH", photoPath +"date "+ date);
         loadImageFromStorage(photoPath, photo);
 
     }
