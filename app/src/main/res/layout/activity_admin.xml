@@ -39,21 +39,20 @@
         android:id="@+id/PNameSpinner2"
         android:layout_width="157dp"
         android:layout_height="44dp"
-        android:layout_marginTop="236dp"
+        android:layout_marginTop="232dp"
         android:ems="10"
         android:hint="nom plante 2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.881"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="invisible"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/PNameSpinner3"
         android:layout_width="157dp"
         android:layout_height="44dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="416dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="412dp"
         android:ems="10"
         android:hint="nom plante 5"
         android:inputType="text"
@@ -94,24 +93,36 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="584dp"
         android:text="Reset"
-        tools:layout_editor_absoluteX="63dp"
-        tools:layout_editor_absoluteY="573dp" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnconfirme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="584dp"
         android:text="valider"
-        tools:layout_editor_absoluteX="224dp"
-        tools:layout_editor_absoluteY="573dp" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="480dp"
         android:text="activer info eleve"
-        tools:layout_editor_absoluteX="136dp"
-        tools:layout_editor_absoluteY="491dp" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

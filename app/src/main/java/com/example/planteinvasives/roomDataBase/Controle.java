@@ -15,13 +15,15 @@ import com.example.planteinvasives.roomDataBase.DAO.FicheDao;
 import com.example.planteinvasives.roomDataBase.DAO.LieuDao;
 import com.example.planteinvasives.roomDataBase.DAO.PhotoDao;
 import com.example.planteinvasives.roomDataBase.DAO.PlanteDao;
+import com.example.planteinvasives.roomDataBase.DAO.SpinnerDataDao;
 import com.example.planteinvasives.roomDataBase.entity.Fiche;
 import com.example.planteinvasives.roomDataBase.entity.Lieu;
 import com.example.planteinvasives.roomDataBase.entity.Photographie;
 import com.example.planteinvasives.roomDataBase.entity.Plante;
+import com.example.planteinvasives.roomDataBase.entity.SpinnerData;
 
 
-@Database(entities = {Fiche.class, Plante.class, Photographie.class, Lieu.class}, version = 1, exportSchema = false)
+@Database(entities = {Fiche.class, Plante.class, Photographie.class, Lieu.class, SpinnerData.class}, version = 1, exportSchema = false)
 public abstract class Controle extends RoomDatabase {
 
     private static  String  DB_name = "PlanteInvasives.sqlite";
@@ -34,6 +36,7 @@ public abstract class Controle extends RoomDatabase {
     public abstract PhotoDao photoDao();
     public abstract PlanteDao planteDao();
     public abstract LieuDao lieuDao();
+    public abstract SpinnerDataDao spinnerDataDao();
 
 
     // --- INSTANCE ---

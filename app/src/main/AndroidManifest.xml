@@ -73,7 +73,13 @@
         </activity>
         <activity
             android:name=".Vue.FormActivity2"
-            android:parentActivityName=".Vue.MenuActivity" >
+            android:parentActivityName=".Vue.MenuActivity"
+            android:launchMode="singleTask">
+        </activity>
+        <activity
+            android:name=".Vue.AdminActivity"
+            android:parentActivityName=".Vue.MenuActivity"
+            android:launchMode="singleTask">
         </activity>
 
         <provider

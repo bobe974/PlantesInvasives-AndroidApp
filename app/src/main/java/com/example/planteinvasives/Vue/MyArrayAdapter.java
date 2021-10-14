@@ -37,8 +37,9 @@ public class MyArrayAdapter extends ArrayAdapter<Fiche> {
         TextView nomPlante =(TextView)cellView.findViewById(R.id.nomUtilisateur);
         ImageView imageView = (ImageView)cellView.findViewById(R.id.photo);
 
+        //recupere la fiche de l'arraylist  a la pos actuel
         Fiche f = getItem(position);
-        nomPlante.setText("user :");
+        nomPlante.setText(f.getPlante().etat);
         imageView.setImageResource(R.drawable.plante);
         //imageView.setImageResource(R.drawable.camera);
         return cellView;

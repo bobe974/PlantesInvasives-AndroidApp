@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
@@ -13,9 +14,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -33,10 +36,14 @@ import com.google.android.material.navigation.NavigationBarMenuView;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FormActivity extends AppCompatActivity {
 
     private String photoPath, date;
+    private Cursor cursor;
+    private  Controle controle;
     private final int REQUEST_LOCATION_PERMISSION = 1;
     private BottomNavigationView navbar;
     private BottomNavigationView.OnNavigationItemSelectedListener eventNav;
@@ -46,6 +53,7 @@ public class FormActivity extends AppCompatActivity {
     private EditText description;
     private EditText nom;
     private EditText prenom;
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +66,9 @@ public class FormActivity extends AppCompatActivity {
         description = findViewById(R.id.description);
         nom =  findViewById(R.id.nom);
         prenom =  findViewById(R.id.prenom);
+        spinner = findViewById(R.id.spinnerform);
+
+        loadSpinnerData();
 
         valideFiche.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,13 +98,13 @@ public class FormActivity extends AppCompatActivity {
                     case R.id.MenuNew:
                         Intent intent2 = new Intent(FormActivity.this, PhotoActivity.class);
                         startActivity(intent2);
-
-
                         return true;
 
                     case R.id.MenuProfil:
-                        System.out.println("profil");
+                        Intent intent3 = new Intent(FormActivity.this, AdminActivity.class);
+                        startActivity(intent3);
                         return true;
+
                 }
                 return false;
             }
@@ -126,6 +137,28 @@ public class FormActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+    }
+
+
+
+    private void loadSpinnerData() {
+        controle = Controle.getInstance(this);
+        cursor = controle.spinnerDataDao().getAll();
+        cursor.moveToFirst();
+
+        List<String> leslabels = new ArrayList<String>();
+
+        //parcours du cursor
+        while (!cursor.isAfterLast()){
+
+            leslabels.add(cursor.getString(1));
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        // Creation d'un apdater pour le spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,leslabels );
+        spinner.setAdapter(dataAdapter);
     }
 
 }

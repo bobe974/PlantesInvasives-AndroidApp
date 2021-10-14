@@ -17,6 +17,11 @@ public  class Fiche {
     private Photographie photo;
     @Ignore
     private  Plante plante;
+
+    public Photographie getPhoto() {
+        return photo;
+    }
+
     @Ignore
     private Lieu lieu;
 
@@ -41,5 +46,25 @@ public  class Fiche {
     public void setId_fiche(int id_fiche) {
         this.id_fiche = id_fiche;
     }
+    public void setPhoto(Photographie photo) {
+        this.photo = photo;
+    }
+
+    public Plante getPlante() {
+        return plante;
+    }
+
+    public void setPlante(Plante plante) {
+        this.plante = plante;
+    }
+
+    public Lieu getLieu() {
+        return lieu;
+    }
+
+    public void setLieu(Lieu lieu) {
+        this.lieu = lieu;
+    }
+
 
 }

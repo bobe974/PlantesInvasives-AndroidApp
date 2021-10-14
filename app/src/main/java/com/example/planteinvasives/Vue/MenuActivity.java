@@ -125,12 +125,11 @@ public class MenuActivity extends AppCompatActivity {
                     case R.id.MenuNew:
                         Intent intent2 = new Intent(MenuActivity.this, PhotoActivity.class);
                         startActivity(intent2);
-
-
                         return true;
 
                     case R.id.MenuProfil:
-                        System.out.println("profil");
+                        Intent intent3 = new Intent(MenuActivity.this, AdminActivity.class);
+                        startActivity(intent3);
                         return true;
                 }
                 return false;
