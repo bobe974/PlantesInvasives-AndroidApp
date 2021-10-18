@@ -30,6 +30,18 @@ public interface FicheDao {
             "  INNER JOIN Plante \n" +
             "  ON Fiche.id_fiche = Plante.id_plante\n" +
             "  INNER JOIN Lieu \n" +
-            "  ON Fiche.id_fiche = Lieu.id_lieu")
+            "  ON Fiche.id_fiche = Lieu.id_lieu ORDER BY Fiche.id_fiche DESC")
     Cursor getAll();
+
+    @Query("   SELECT * FROM Fiche \n" +
+            "  INNER JOIN Photographie \n" +
+            "  ON Fiche.id_fiche = Photographie.id_photo\n" +
+            "  INNER JOIN Plante \n" +
+            "  ON Fiche.id_fiche = Plante.id_plante\n" +
+            "  INNER JOIN Lieu \n" +
+            "  ON Fiche.id_fiche = Lieu.id_lieu WHERE Fiche.id_fiche = :id")
+     Cursor getById(int id);
 }
+
+
+

@@ -28,7 +28,7 @@ public abstract class Controle extends RoomDatabase {
 
     private static  String  DB_name = "PlanteInvasives.sqlite";
     //singleton
-    public static Controle INSTANCE;
+    private static Controle INSTANCE;
 
     //méthodes abstraites DAO
 
@@ -39,7 +39,7 @@ public abstract class Controle extends RoomDatabase {
     public abstract SpinnerDataDao spinnerDataDao();
 
 
-    // --- INSTANCE ---
+    // --- INSTANCE --- sinlgeton
     public static synchronized Controle getInstance(Context context) {
         Log.d("TAG", "getInstance: *************************");
         if (INSTANCE == null) {

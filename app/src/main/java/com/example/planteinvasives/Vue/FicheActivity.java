@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.planteinvasives.Modele.MaFiche;
 import com.example.planteinvasives.R;
 import com.example.planteinvasives.roomDataBase.Controle;
 import com.example.planteinvasives.roomDataBase.entity.Fiche;
@@ -34,7 +35,7 @@ public class FicheActivity extends AppCompatActivity {
     private ListView mListView;
     private MyArrayAdapter mAdapter;
     //contient toutes les fiches qui seront récupérées depuis la bdd
-    private List<Fiche> lesfiches;
+    private List<MaFiche> lesfiches;
     Controle controle;
     private BottomNavigationView navbar;
     private BottomNavigationView.OnNavigationItemSelectedListener eventNav;
@@ -47,27 +48,23 @@ public class FicheActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fiche);
 
         /************************TEST************************/
-        // To increase performance first get the index of each column in the cursor
         //recupere toutes les fiches depuis la bdd
         controle = Controle.getInstance(FicheActivity.this);
         lesfiches = new ArrayList<>();
-        lesfiches.add(new Fiche(new Photographie("chemin","auj"),new Plante("nomp","bon","ok","blabla"),
-                new Lieu("type","surface","30",30,390,"blabla")));
-        lesfiches.add(new Fiche(new Photographie("chemine","auje"),new Plante("noemp","boen","ok","blabla"),
-                new Lieu("tyepe","surfacee","3e0",302,390,"blabddla")));
        cursor = controle.ficheDao().getAll();
-       cursor.moveToFirst();
 
-        Log.d("cursorrrr", "premier colonne: "+cursor.getInt(0)+cursor.getInt(1)+cursor.getString(2)+
-                cursor.getInt(3)+cursor.getString(4)+cursor.getString(6)+
-                cursor.getString(7)+cursor.getString(8)+
-                cursor.getInt(9)+cursor.getString(10)+
-                cursor.getString(11)+cursor.getString(12)+cursor.getString(15));
+        //parcours du cursor
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()){
+            lesfiches.add(new MaFiche(cursor.getInt(0),cursor.getString(5),cursor.getString(3),cursor.getString(2)));
+            cursor.moveToNext();
+        }
+        cursor.close();
 
         /************************TEST************************/
 
         mListView = (ListView) findViewById(R.id.listeFiche);
-        mAdapter = new MyArrayAdapter(this, (ArrayList<Fiche>) lesfiches);
+        mAdapter = new MyArrayAdapter(this, (ArrayList<MaFiche>) lesfiches);
         mListView.setAdapter(mAdapter);
 
        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -75,9 +72,17 @@ public class FicheActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
                 /************************TEST************************/
                 String Name =((TextView)view.findViewById(R.id.nomPlante)).getText().toString();
-                Toast.makeText(FicheActivity.this,Name, Toast.LENGTH_SHORT).show();
+                String idFiche =((TextView)view.findViewById(R.id.textView_id)).getText().toString();
+                String path =((TextView)view.findViewById(R.id.textView_path)).getText().toString();
+                Toast.makeText(FicheActivity.this,Name+"/"+idFiche+"/"+path, Toast.LENGTH_SHORT).show();
 
+                //envoie des données a ficheActivity
                 /************************TEST************************/
+                Intent intent = new Intent(FicheActivity.this,FormActivity.class);
+                intent.putExtra("idfiche",idFiche);
+                intent.putExtra("update","100");
+                startActivity(intent);
+                Log.d("***********", "envoie a formActivity: "+ idFiche);
             }
         });
 

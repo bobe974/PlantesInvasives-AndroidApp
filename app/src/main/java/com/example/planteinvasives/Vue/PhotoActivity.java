@@ -2,24 +2,33 @@ package com.example.planteinvasives.Vue;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import com.example.planteinvasives.BuildConfig;
 import com.example.planteinvasives.R;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -41,7 +50,7 @@ public class PhotoActivity extends AppCompatActivity {
      * @return
      * @throws IOException
      */
-    private File createImageFile() throws IOException {
+    public File createImageFile() throws IOException {
         // Create an image file name
          timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
@@ -100,6 +109,7 @@ public class PhotoActivity extends AppCompatActivity {
             Intent intent = new Intent(PhotoActivity.this,FormActivity.class);
             intent.putExtra("path",currentPhotoPath);
             intent.putExtra("date",timeStamp);
+            intent.putExtra("update","0");
             startActivity(intent);
         }else{
             Intent intent = new Intent(PhotoActivity.this,MenuActivity.class);
@@ -107,4 +117,27 @@ public class PhotoActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * charge une image depuis un dossier et l'affecte dans un Imageview
+     * @param path
+     */
+    public static void loadImageFromStorage(String path, ImageView image)
+    {
+        try {
+            File f=new File(path);
+            Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
+            image.setImageBitmap(b);
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+
+    }
+    private String BitmaptoString(Bitmap bitmap){
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,50,stream);
+        byte[] byte_array = stream.toByteArray();
+        return Base64.getEncoder().encodeToString(byte_array);
+    }
 }

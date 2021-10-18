@@ -25,9 +25,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.example.planteinvasives.Modele.MaFiche;
 import com.example.planteinvasives.R;
 import com.example.planteinvasives.roomDataBase.Controle;
 import com.example.planteinvasives.roomDataBase.entity.Fiche;
+import com.example.planteinvasives.roomDataBase.entity.Lieu;
 import com.example.planteinvasives.roomDataBase.entity.Photographie;
 import com.example.planteinvasives.roomDataBase.entity.Plante;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -47,6 +49,7 @@ public class FormActivity extends AppCompatActivity {
     private final int REQUEST_LOCATION_PERMISSION = 1;
     private BottomNavigationView navbar;
     private BottomNavigationView.OnNavigationItemSelectedListener eventNav;
+    private PhotoActivity photoActivity;
 
     private Button valideFiche;
     public ImageView photo;
@@ -54,6 +57,7 @@ public class FormActivity extends AppCompatActivity {
     private EditText nom;
     private EditText prenom;
     private Spinner spinner;
+    private int UPDATE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +71,30 @@ public class FormActivity extends AppCompatActivity {
         nom =  findViewById(R.id.nom);
         prenom =  findViewById(R.id.prenom);
         spinner = findViewById(R.id.spinnerform);
+        Fiche fiche;
 
+        //recupere le chemin absolu et la date de la photo
+        Intent intent = getIntent();
+        UPDATE= Integer.parseInt(intent.getStringExtra("update"));
+        /**cas update**/
+        if(UPDATE == 100){
+            Log.d("***********", "CAS UPDATE");
+            //charge les données depuis la base
+            fiche = loadFiche(Integer.parseInt(intent.getStringExtra("idfiche")));
+            photoPath = fiche.getPhoto().getChemin();
+        }else{
+            /** cas insertion **/
+            photoPath = intent.getStringExtra("path");
+            date = intent.getStringExtra("date");
+            Log.d("RECUP P PATH", photoPath +"date "+ date);
+
+        }
+
+        //charge la photo
+
+        photoActivity.loadImageFromStorage(photoPath, photo);
+
+        //rempli le spinner
         loadSpinnerData();
 
         valideFiche.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +108,7 @@ public class FormActivity extends AppCompatActivity {
                 intent.putExtra("description",description.getText().toString());
                 intent.putExtra("nom",nom.getText().toString());
                 intent.putExtra("prenom",prenom.getText().toString());
+                intent.putExtra("nomplante",spinner.getSelectedItem().toString());
 
                 startActivity(intent);
             }
@@ -112,32 +140,9 @@ public class FormActivity extends AppCompatActivity {
 
         navbar.setOnNavigationItemSelectedListener(eventNav);
 
-        //recupere le chemin absolu et la date de la photo
-        Intent intent = getIntent();
-        photoPath = intent.getStringExtra("path");
-        date = intent.getStringExtra("date");
-        Log.d("RECUP P PATH", photoPath +"date "+ date);
-        loadImageFromStorage(photoPath, photo);
-
     }
 
-    /**
-     * charge une image depuis un dossier et l'affecte dans un Imageview
-     * @param path
-     */
-    private void loadImageFromStorage(String path, ImageView image)
-    {
-        try {
-            File f=new File(path);
-            Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
-            image.setImageBitmap(b);
-        }
-        catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
-        }
 
-    }
 
 
 
@@ -159,6 +164,26 @@ public class FormActivity extends AppCompatActivity {
         // Creation d'un apdater pour le spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,leslabels );
         spinner.setAdapter(dataAdapter);
+    }
+
+    public Fiche loadFiche(int id){
+        Log.d("***********", "loadFiche: ");
+        Fiche fiche;
+        controle = Controle.getInstance(this);
+        Cursor cursor = controle.ficheDao().getById(id);
+        cursor.moveToFirst();
+        Log.d("VALEURCURSOR","*********"+cursor.getString(2));
+        Photographie unephoto = new Photographie(cursor.getString(2),cursor.getString(3));
+        Plante uneplante = new Plante(cursor.getString(5),cursor.getString(6),
+                cursor.getString(7), cursor.getString(8));
+
+        Lieu unlieu = new Lieu(cursor.getString(10), cursor.getString(11),
+                cursor.getString(12),cursor.getInt(14),cursor.getInt(14),cursor.getString(15));
+
+        fiche = new Fiche(unephoto,uneplante,unlieu);
+        cursor.close();
+        return fiche;
+
     }
 
 }

@@ -8,16 +8,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.planteinvasives.Modele.MaFiche;
 import com.example.planteinvasives.R;
 import com.example.planteinvasives.roomDataBase.entity.Fiche;
 
 import java.util.ArrayList;
 
-public class MyArrayAdapter extends ArrayAdapter<Fiche> {
+public class MyArrayAdapter extends ArrayAdapter<MaFiche> {
 
     private final Context context;
 
-    public MyArrayAdapter(Context context, ArrayList<Fiche> lesfiches) {
+    public MyArrayAdapter(Context context, ArrayList<MaFiche> lesfiches) {
         super(context, R.layout.activity_cellule, lesfiches);
         this.context = context;
     }
@@ -33,15 +34,29 @@ public class MyArrayAdapter extends ArrayAdapter<Fiche> {
             cellView = inflater.inflate(R.layout.activity_cellule, parent, false);
         }
         //Remplissage de la cellule:
-        TextView textView = (TextView)cellView.findViewById(R.id.nomPlante);
-        TextView nomPlante =(TextView)cellView.findViewById(R.id.nomUtilisateur);
-        ImageView imageView = (ImageView)cellView.findViewById(R.id.photo);
+        //TextView textView = (TextView)cellView.findViewById(R.id.nomPlante);
+        TextView nomPlante =(TextView)cellView.findViewById(R.id.nomPlante);
+        TextView date = (TextView) cellView.findViewById(R.id.textView_date);
 
-        //recupere la fiche de l'arraylist  a la pos actuel
-        Fiche f = getItem(position);
-        nomPlante.setText(f.getPlante().etat);
-        imageView.setImageResource(R.drawable.plante);
-        //imageView.setImageResource(R.drawable.camera);
+        // id et path Textview hidden
+        TextView id = (TextView) cellView.findViewById(R.id.textView_id);
+        TextView path = (TextView) cellView.findViewById(R.id.textView_path);
+        ImageView imageView = (ImageView)cellView.findViewById(R.id.imageviewphoto);
+
+
+        //recupere la fiche de l'arraylist  a la pos actuelle
+        MaFiche f = getItem(position);
+        nomPlante.setText(f.getNomPlante());
+        date.setText(f.getDate());
+
+        //chargement de la photo
+        PhotoActivity photoActivity = new PhotoActivity();
+        photoActivity.loadImageFromStorage(f.getPhotoPath(),imageView);
+
+        //conversion de id int en string
+        id.setText(String.valueOf(f.getId()));
+        path.setText(f.getPhotoPath());
+
         return cellView;
     }
     }

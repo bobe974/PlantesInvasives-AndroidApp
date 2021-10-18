@@ -12,10 +12,10 @@
         <entry key="app/src/main/res/drawable/side_nav_bar.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/acitivity_admin.xml" value="0.2033514492753623" />
         <entry key="app/src/main/res/layout/activity_admin.xml" value="0.2033514492753623" />
-        <entry key="app/src/main/res/layout/activity_cellule.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_cellule.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_fiche.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/activity_form.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_form2.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_form.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_form2.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.125" />
         <entry key="app/src/main/res/layout/activity_menu.xml" value="0.25" />
