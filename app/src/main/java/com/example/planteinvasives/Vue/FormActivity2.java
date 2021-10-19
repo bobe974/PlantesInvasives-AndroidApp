@@ -32,7 +32,7 @@ import java.util.List;
 public class FormActivity2 extends AppCompatActivity {
 
     private String photopath,description, nomPlante, nom, prenom, date;
-    private int latitude  , longitude;
+    private int latitude  , longitude, idfiche;
     private Spinner spinnerLieu, spinnerSurface, spinnerIndividu;
     private CheckBox vegetatif, enFleur, enFruit;
     private CheckBox plantule, jeuneplant, plant;
@@ -42,7 +42,7 @@ public class FormActivity2 extends AppCompatActivity {
     private BottomNavigationView navbar;
     private BottomNavigationView.OnNavigationItemSelectedListener eventNav;
     private Controle controle;
-
+    private int UPDATE ;
 
 
     @Override
@@ -72,9 +72,32 @@ public class FormActivity2 extends AppCompatActivity {
             nom = intent.getStringExtra("nom");
             prenom = intent.getStringExtra("prenom");
             nomPlante = intent.getStringExtra("nomplante");
+            UPDATE= Integer.parseInt(intent.getStringExtra("UPDATE"));
             Log.d("tes recup form", "************"+ nomPlante+ photopath + nom + description + prenom );
         }
+        if(UPDATE == 100){
 
+            // recupere l'id de la fiche
+            Log.d("ID FICHE", "*******************: "+intent.getStringExtra("idfiche"));
+            idfiche = Integer.parseInt(intent.getStringExtra("idfiche"));
+            Log.d("ID FICHE", "*******************: "+idfiche);
+            // regle les spinners sur la bonne position
+            updatePosSpinner(spinnerLieu,intent.getStringExtra("typelieu"),4);
+            updatePosSpinner(spinnerIndividu,intent.getStringExtra("nbindividu"),5);
+            updatePosSpinner(spinnerSurface,intent.getStringExtra("surface"),4);
+
+            //checkbox
+            updateCheckbox(plant,intent.getStringExtra("stade"));
+            updateCheckbox(jeuneplant,intent.getStringExtra("stade"));
+            updateCheckbox(plantule,intent.getStringExtra("stade"));
+            updateCheckbox(vegetatif,intent.getStringExtra("etat"));
+            updateCheckbox(enFleur,intent.getStringExtra("etat"));
+            updateCheckbox(enFruit,intent.getStringExtra("etat"));
+
+            remarques.setText(intent.getStringExtra("remarques"));
+
+
+        }
         //evenements
         btnvalider.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,13 +110,28 @@ public class FormActivity2 extends AppCompatActivity {
 
                 Photographie unephoto = new Photographie(photopath,date);
                 Plante uneplante = new Plante(nomPlante,etat,stade, description);
-                Lieu unlieu = new Lieu(spinnerLieu.getSelectedItem().toString(),spinnerSurface.getSelectedItem().toString(),spinnerIndividu.getSelectedItem().toString(),1,1,"TEST");
+                Lieu unlieu = new Lieu(spinnerLieu.getSelectedItem().toString(),
+                        spinnerSurface.getSelectedItem().toString(), spinnerIndividu.getSelectedItem().toString(),1,1,remarques.getText().toString());
 
                 controle = Controle.getInstance(FormActivity2.this);
-                controle.ficheDao().insert(new Fiche(unephoto,uneplante,unlieu));
-                controle.photoDao().insert(unephoto);
-                controle.planteDao().insert(uneplante);
-                controle.lieuDao().insert(unlieu);
+
+                if(UPDATE == 100){
+                    /********cas update de l'existant*********/
+                    unlieu.setId_lieu(idfiche);
+                    uneplante.setId_plante(idfiche);
+                    controle.lieuDao().update(unlieu);
+                    controle.planteDao().update(uneplante);
+                    Log.d("CAS UPDATE", "******onClick:");
+
+                }else{
+                    /********* cas premiere insertion*******/
+                    Log.d("CAS INSERT", "******onClick:");
+                    controle.ficheDao().insert(new Fiche(unephoto,uneplante,unlieu));
+                    controle.photoDao().insert(unephoto);
+                    controle.planteDao().insert(uneplante);
+                    controle.lieuDao().insert(unlieu);
+                }
+
 
             }
         });
@@ -124,27 +162,70 @@ public class FormActivity2 extends AppCompatActivity {
 
         navbar.setOnNavigationItemSelectedListener(eventNav);
     }
+
+    /**
+     *
+     */
     public void verifEtat(){
         if (vegetatif.isChecked()){
-            etat = vegetatif.getText().toString() +" ";
+            etat = vegetatif.getText().toString() +"  ";
         }
         if (enFruit.isChecked()){
-            etat = etat + enFruit.getText().toString() + " ";
+            etat = etat + enFruit.getText().toString() + "  ";
         }
         if(enFleur.isChecked()){
             etat = etat+ enFleur.getText().toString();
         }
     }
 
+    /**
+     *
+     */
     public void verifstade(){
         if (plantule.isChecked()){
-            stade = plantule.getText().toString() +" ";
+            stade = plantule.getText().toString() +"  ";
         }
         if (jeuneplant.isChecked()){
-            stade = stade + jeuneplant.getText().toString() + " ";
+            stade = stade + jeuneplant.getText().toString() + "  ";
         }
         if(plant.isChecked()){
             stade = stade+ plant.getText().toString();
         }
     }
+
+    /**
+     * met a jour la position du spinner
+     * @param spinner
+     * @param target
+     * @param nbrow
+     */
+    public void updatePosSpinner(Spinner spinner, String target,int nbrow){
+        int row = 0;
+        for (int i =0;i<nbrow;i++){
+            Log.d("TAG", "updatespinner: " +spinner.getSelectedItem().toString()+ "target"+target);
+            spinner.setSelection(i);
+            if(spinner.getSelectedItem().toString().equals(target)){
+                Log.d("MATCHH", "updatespinner: " +spinner.getSelectedItem().toString()+ "target"+target);
+                row = i;
+            }
+        }
+        spinner.setSelection(row);
+    }
+
+    /**
+     * coche les checkboxes par rapport au champs de la bdd
+     * @param checkBox
+     * @param target
+     */
+    public void updateCheckbox(CheckBox checkBox, String target){
+        String[] tab;
+        tab = target.split("  ");
+        for (int i = 0; i < tab.length ; i++) {
+            if(checkBox.getText().toString().equals(tab[i]) && !checkBox.isChecked()){
+                checkBox.setChecked(true);
+            }
+        }
+
+    }
+
 }

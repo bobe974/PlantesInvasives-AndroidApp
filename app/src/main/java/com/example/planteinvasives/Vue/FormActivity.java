@@ -58,7 +58,7 @@ public class FormActivity extends AppCompatActivity {
     private EditText prenom;
     private Spinner spinner;
     private int UPDATE;
-
+    private Fiche fiche;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +71,7 @@ public class FormActivity extends AppCompatActivity {
         nom =  findViewById(R.id.nom);
         prenom =  findViewById(R.id.prenom);
         spinner = findViewById(R.id.spinnerform);
-        Fiche fiche;
+
 
         //recupere le chemin absolu et la date de la photo
         Intent intent = getIntent();
@@ -82,6 +82,8 @@ public class FormActivity extends AppCompatActivity {
             //charge les données depuis la base
             fiche = loadFiche(Integer.parseInt(intent.getStringExtra("idfiche")));
             photoPath = fiche.getPhoto().getChemin();
+            //prérempli les champs fu formulaire
+            loadfield(fiche);
         }else{
             /** cas insertion **/
             photoPath = intent.getStringExtra("path");
@@ -90,8 +92,7 @@ public class FormActivity extends AppCompatActivity {
 
         }
 
-        //charge la photo
-
+        //charge la photo dans l'imageview
         photoActivity.loadImageFromStorage(photoPath, photo);
 
         //rempli le spinner
@@ -109,7 +110,21 @@ public class FormActivity extends AppCompatActivity {
                 intent.putExtra("nom",nom.getText().toString());
                 intent.putExtra("prenom",prenom.getText().toString());
                 intent.putExtra("nomplante",spinner.getSelectedItem().toString());
+                intent.putExtra("UPDATE","0");
 
+                //envoie des champs supplémentaire si update
+                if(UPDATE == 100){
+                    intent.putExtra("UPDATE","100");
+                    Log.d("IDFICHEFORM1", "***************" + fiche.getId_fiche());
+                    intent.putExtra("idfiche",String.valueOf(fiche.getId_fiche()));
+                    intent.putExtra("typelieu",fiche.getLieu().getType());
+                    intent.putExtra("surface",fiche.getLieu().getSurface());
+                    intent.putExtra("nbindividu",fiche.getLieu().getNbIndividu());
+                    intent.putExtra("stade",fiche.getPlante().stade);
+                    intent.putExtra("etat",fiche.getPlante().getEtat());
+                    intent.putExtra("remarques",fiche.getLieu().getRemarques());
+
+                }
                 startActivity(intent);
             }
         });
@@ -143,9 +158,9 @@ public class FormActivity extends AppCompatActivity {
     }
 
 
-
-
-
+    /**
+     * alimente le spinner avec la table Spinnerdata
+     */
     private void loadSpinnerData() {
         controle = Controle.getInstance(this);
         cursor = controle.spinnerDataDao().getAll();
@@ -166,6 +181,11 @@ public class FormActivity extends AppCompatActivity {
         spinner.setAdapter(dataAdapter);
     }
 
+    /**
+     * retourne une fiche correspondant a l'id en paramatre depuis la bdd
+     * @param id
+     * @return
+     */
     public Fiche loadFiche(int id){
         Log.d("***********", "loadFiche: ");
         Fiche fiche;
@@ -181,8 +201,23 @@ public class FormActivity extends AppCompatActivity {
                 cursor.getString(12),cursor.getInt(14),cursor.getInt(14),cursor.getString(15));
 
         fiche = new Fiche(unephoto,uneplante,unlieu);
+        fiche.setId_fiche(id);
         cursor.close();
+
         return fiche;
+
+    }
+
+    /**
+     * prérempli les champs
+     * @param fiche
+     */
+    public void loadfield(Fiche fiche){
+        //spinner
+
+        //description
+        description.setText(fiche.getPlante().getDescription());
+        // nom et prenom
 
     }
 

@@ -7,8 +7,10 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity
-public  class Fiche {
+public  class Fiche  {
 
     @PrimaryKey(autoGenerate = true)
     private int id_fiche;
