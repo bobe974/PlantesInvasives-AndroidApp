@@ -37,6 +37,8 @@ public class PhotoActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 100;
     private String currentPhotoPath;
     private  String timeStamp;
+    private  GpsTracker gpsTracker;
+    private double latitude, longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,8 +112,14 @@ public class PhotoActivity extends AppCompatActivity {
             intent.putExtra("path",currentPhotoPath);
             intent.putExtra("date",timeStamp);
             intent.putExtra("update","0");
+
+            //recupere les données gps
+            getLocation();
+            intent.putExtra("latitude",String.valueOf(latitude));
+            intent.putExtra("longitude", String.valueOf(longitude));
             startActivity(intent);
         }else{
+
             Intent intent = new Intent(PhotoActivity.this,MenuActivity.class);
             startActivity(intent);
         }
@@ -134,10 +142,15 @@ public class PhotoActivity extends AppCompatActivity {
         }
 
     }
-    private String BitmaptoString(Bitmap bitmap){
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG,50,stream);
-        byte[] byte_array = stream.toByteArray();
-        return Base64.getEncoder().encodeToString(byte_array);
+    public void getLocation(){
+        gpsTracker = new GpsTracker(PhotoActivity.this);
+        if(gpsTracker.canGetLocation()){
+             latitude = gpsTracker.getLatitude();
+             longitude = gpsTracker.getLongitude();
+            Log.d("GETLOCATION", "latitude: "+ latitude + "longitude"+longitude);
+        }else{
+            gpsTracker.showSettingsAlert();
+        }
+
     }
 }

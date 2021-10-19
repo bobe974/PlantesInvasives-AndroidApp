@@ -1,6 +1,7 @@
 package com.example.planteinvasives.Vue;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 
@@ -8,6 +9,8 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -19,6 +22,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 
 import com.example.planteinvasives.R;
@@ -47,13 +51,12 @@ public class MenuActivity extends AppCompatActivity {
     private Button btncreateFiche, btnFiche, btnMap;
     private BottomNavigationView navbar;
     private BottomNavigationView.OnNavigationItemSelectedListener eventNav;
-    Controle controle;
 
     /****************TEST******************/
-    private GPSTracker pos;
     private double latittude;
     private double longitude;
-    private FusedLocationProviderClient fusedLocationClient;
+    private LocationManager locationManager;
+   // private FusedLocationProviderClient fusedLocationClient;
 
     /****************TEST******************/
 
@@ -62,14 +65,22 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
-        //creation base
-        //controle = Controle.getInstance(this);
-
         /****************TEST******************/
         //verifPermission();
-        // pos = new GPSTracker(this);
+        //verifie/demande les permissions
+        try {
+            if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
 
+
+
+        //locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        //locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, (LocationListener) this);
+        /**
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(MenuActivity.this);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             //permission accepté
@@ -77,7 +88,7 @@ public class MenuActivity extends AppCompatActivity {
         } else {
             //permission refusé
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE_ASK_PERMISSIONS);
-        }
+        }**/
 
 
         btncreateFiche = (Button) findViewById(R.id.btnNewFiche);
@@ -140,8 +151,9 @@ public class MenuActivity extends AppCompatActivity {
     }
 
 
+
     /****************TEST******************/
-    //get access to location permission
+    /**
     final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
 
     public void getLocation() {
@@ -175,6 +187,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         }));
     }
+*/
 
     protected void createLocationRequest() {
         LocationRequest locationRequest = LocationRequest.create();

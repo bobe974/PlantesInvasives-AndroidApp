@@ -47,9 +47,10 @@ public class FormActivity extends AppCompatActivity {
     private Cursor cursor;
     private  Controle controle;
     private final int REQUEST_LOCATION_PERMISSION = 1;
-    private BottomNavigationView navbar;
-    private BottomNavigationView.OnNavigationItemSelectedListener eventNav;
+    private String latitude, longitude;
     private PhotoActivity photoActivity;
+    private int UPDATE;
+    private Fiche fiche;
 
     private Button valideFiche;
     public ImageView photo;
@@ -57,8 +58,9 @@ public class FormActivity extends AppCompatActivity {
     private EditText nom;
     private EditText prenom;
     private Spinner spinner;
-    private int UPDATE;
-    private Fiche fiche;
+    private BottomNavigationView navbar;
+    private BottomNavigationView.OnNavigationItemSelectedListener eventNav;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,6 +90,10 @@ public class FormActivity extends AppCompatActivity {
             /** cas insertion **/
             photoPath = intent.getStringExtra("path");
             date = intent.getStringExtra("date");
+            latitude = intent.getStringExtra("latitude");
+            longitude = intent.getStringExtra("longitude");
+            Log.d("RECUP LATTI LONGI", "***************** latitude:"+latitude+"longitude"+longitude);
+
             Log.d("RECUP P PATH", photoPath +"date "+ date);
 
         }
@@ -123,7 +129,9 @@ public class FormActivity extends AppCompatActivity {
                     intent.putExtra("stade",fiche.getPlante().stade);
                     intent.putExtra("etat",fiche.getPlante().getEtat());
                     intent.putExtra("remarques",fiche.getLieu().getRemarques());
-
+                }else{
+                    intent.putExtra("latitude",latitude);
+                    intent.putExtra("longitude",longitude);
                 }
                 startActivity(intent);
             }

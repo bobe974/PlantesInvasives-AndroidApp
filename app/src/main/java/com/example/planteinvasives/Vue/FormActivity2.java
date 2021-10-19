@@ -32,7 +32,8 @@ import java.util.List;
 public class FormActivity2 extends AppCompatActivity {
 
     private String photopath,description, nomPlante, nom, prenom, date;
-    private int latitude  , longitude, idfiche;
+    private double latitude  , longitude;
+    private int idfiche;
     private Spinner spinnerLieu, spinnerSurface, spinnerIndividu;
     private CheckBox vegetatif, enFleur, enFruit;
     private CheckBox plantule, jeuneplant, plant;
@@ -96,7 +97,9 @@ public class FormActivity2 extends AppCompatActivity {
 
             remarques.setText(intent.getStringExtra("remarques"));
 
-
+        }else{
+            latitude = Double.parseDouble(intent.getStringExtra("latitude"));
+            longitude = Double.parseDouble(intent.getStringExtra("longitude"));
         }
         //evenements
         btnvalider.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +114,7 @@ public class FormActivity2 extends AppCompatActivity {
                 Photographie unephoto = new Photographie(photopath,date);
                 Plante uneplante = new Plante(nomPlante,etat,stade, description);
                 Lieu unlieu = new Lieu(spinnerLieu.getSelectedItem().toString(),
-                        spinnerSurface.getSelectedItem().toString(), spinnerIndividu.getSelectedItem().toString(),1,1,remarques.getText().toString());
+                        spinnerSurface.getSelectedItem().toString(), spinnerIndividu.getSelectedItem().toString(),latitude,longitude,remarques.getText().toString());
 
                 controle = Controle.getInstance(FormActivity2.this);
 

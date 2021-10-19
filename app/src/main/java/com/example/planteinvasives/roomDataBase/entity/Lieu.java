@@ -24,15 +24,15 @@ public class Lieu {
     private String nbIndividu;
 
     @ColumnInfo(name = "latitude")
-    private int latittude;
+    private double latittude;
 
     @ColumnInfo(name = "longitude")
-    private int longitude;
+    private double longitude;
 
     @ColumnInfo(name = "remarques")
     private String remarques;
 
-    public Lieu(String type, String surface, String nbIndividu, int latittude, int longitude, String remarques){
+    public Lieu(String type, String surface, String nbIndividu, double latittude, double longitude, String remarques){
         this.type = type;
         this.surface = surface;
         this.nbIndividu = nbIndividu;
@@ -73,7 +73,7 @@ public class Lieu {
         this.nbIndividu = nbIndividu;
     }
 
-    public int getLatittude() {
+    public double getLatittude() {
         return latittude;
     }
 
@@ -81,7 +81,7 @@ public class Lieu {
         this.latittude = latittude;
     }
 
-    public int getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
