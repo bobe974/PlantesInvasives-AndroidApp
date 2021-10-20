@@ -41,6 +41,7 @@ public interface FicheDao {
             "  INNER JOIN Lieu \n" +
             "  ON Fiche.id_fiche = Lieu.id_lieu WHERE Fiche.id_fiche = :id")
      Cursor getById(int id);
+
 }
 
 

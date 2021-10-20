@@ -68,6 +68,11 @@ public class AdminActivity extends AppCompatActivity {
                         Intent intent3 = new Intent(AdminActivity.this, AdminActivity.class);
                         startActivity(intent3);
                         return true;
+
+                    case R.id.MenuMap:
+                        Intent intent4 = new Intent(AdminActivity.this, MapActivity.class);
+                        startActivity(intent4);
+                        return true;
                 }
                 return false;
             }

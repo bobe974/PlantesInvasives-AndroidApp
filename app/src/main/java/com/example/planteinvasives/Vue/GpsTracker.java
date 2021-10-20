@@ -100,7 +100,7 @@ public class GpsTracker extends Service implements LocationListener {
                                 MIN_TIME_BW_UPDATES,
                                 MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
 
-                        Log.d("GPS Enabled", "GPS Enabled");
+                        Log.d("GPS activé", "GPS activé");
                         if (locationManager != null) {
                             location = locationManager
                                     .getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -133,7 +133,7 @@ public class GpsTracker extends Service implements LocationListener {
     }
 
     /**
-     * Function to get latitude
+     * retourne la latitude
      * */
 
     public double getLatitude(){
@@ -146,7 +146,7 @@ public class GpsTracker extends Service implements LocationListener {
     }
 
     /**
-     * Function to get longitude
+     * retourne la longitude
      * */
 
     public double getLongitude(){
@@ -159,7 +159,7 @@ public class GpsTracker extends Service implements LocationListener {
     }
 
     /**
-     * Function to check GPS/wifi enabled
+     * vérifie si la localisation est activé
      * @return boolean
      * */
 
@@ -168,8 +168,8 @@ public class GpsTracker extends Service implements LocationListener {
     }
 
     /**
-     * Function to show settings alert dialog
-     * On pressing Settings button will lauch Settings Options
+     * affiche le message d'alerte pour activer la localisation
+     *
      * */
 
     public void showSettingsAlert(){

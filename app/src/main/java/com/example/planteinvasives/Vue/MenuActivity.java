@@ -117,8 +117,8 @@ public class MenuActivity extends AppCompatActivity {
         btnMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
+                Intent intent = new Intent(MenuActivity.this,MapActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -141,6 +141,11 @@ public class MenuActivity extends AppCompatActivity {
                     case R.id.MenuProfil:
                         Intent intent3 = new Intent(MenuActivity.this, AdminActivity.class);
                         startActivity(intent3);
+                        return true;
+
+                    case R.id.MenuMap:
+                        Intent intent4 = new Intent(MenuActivity.this, MapActivity.class);
+                        startActivity(intent4);
                         return true;
                 }
                 return false;

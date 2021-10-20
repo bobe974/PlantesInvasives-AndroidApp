@@ -84,6 +84,8 @@ public class FormActivity extends AppCompatActivity {
             //charge les données depuis la base
             fiche = loadFiche(Integer.parseInt(intent.getStringExtra("idfiche")));
             photoPath = fiche.getPhoto().getChemin();
+            latitude = String.valueOf(fiche.getLieu().getLatittude());
+            longitude = String.valueOf(fiche.getLieu().getLongitude());
             //prérempli les champs fu formulaire
             loadfield(fiche);
         }else{
@@ -117,6 +119,8 @@ public class FormActivity extends AppCompatActivity {
                 intent.putExtra("prenom",prenom.getText().toString());
                 intent.putExtra("nomplante",spinner.getSelectedItem().toString());
                 intent.putExtra("UPDATE","0");
+                intent.putExtra("latitude",latitude);
+                intent.putExtra("longitude",longitude);
 
                 //envoie des champs supplémentaire si update
                 if(UPDATE == 100){
@@ -129,10 +133,9 @@ public class FormActivity extends AppCompatActivity {
                     intent.putExtra("stade",fiche.getPlante().stade);
                     intent.putExtra("etat",fiche.getPlante().getEtat());
                     intent.putExtra("remarques",fiche.getLieu().getRemarques());
-                }else{
-                    intent.putExtra("latitude",latitude);
-                    intent.putExtra("longitude",longitude);
                 }
+
+
                 startActivity(intent);
             }
         });
@@ -154,6 +157,11 @@ public class FormActivity extends AppCompatActivity {
                     case R.id.MenuProfil:
                         Intent intent3 = new Intent(FormActivity.this, AdminActivity.class);
                         startActivity(intent3);
+                        return true;
+
+                    case R.id.MenuMap:
+                        Intent intent4 = new Intent(FormActivity.this, MapActivity.class);
+                        startActivity(intent4);
                         return true;
 
                 }
@@ -206,7 +214,7 @@ public class FormActivity extends AppCompatActivity {
                 cursor.getString(7), cursor.getString(8));
 
         Lieu unlieu = new Lieu(cursor.getString(10), cursor.getString(11),
-                cursor.getString(12),cursor.getInt(14),cursor.getInt(14),cursor.getString(15));
+                cursor.getString(12),cursor.getDouble(13),cursor.getDouble(14),cursor.getString(15));
 
         fiche = new Fiche(unephoto,uneplante,unlieu);
         fiche.setId_fiche(id);

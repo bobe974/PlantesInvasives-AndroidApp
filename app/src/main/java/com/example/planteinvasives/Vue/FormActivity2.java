@@ -97,10 +97,12 @@ public class FormActivity2 extends AppCompatActivity {
 
             remarques.setText(intent.getStringExtra("remarques"));
 
-        }else{
+        }
             latitude = Double.parseDouble(intent.getStringExtra("latitude"));
             longitude = Double.parseDouble(intent.getStringExtra("longitude"));
-        }
+
+        Log.d("latitude longi", "************** latitude="+latitude +"longitude"+longitude);
+
         //evenements
         btnvalider.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,6 +159,11 @@ public class FormActivity2 extends AppCompatActivity {
                     case R.id.MenuProfil:
                         Intent intent3 = new Intent(FormActivity2.this, AdminActivity.class);
                         startActivity(intent3);
+                        return true;
+
+                    case R.id.MenuMap:
+                        Intent intent4 = new Intent(FormActivity2.this, MapActivity.class);
+                        startActivity(intent4);
                         return true;
                 }
                 return false;

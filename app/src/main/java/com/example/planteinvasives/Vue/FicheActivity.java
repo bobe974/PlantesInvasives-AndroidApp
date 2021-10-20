@@ -105,6 +105,11 @@ public class FicheActivity extends AppCompatActivity {
                         Intent intent3 = new Intent(FicheActivity.this, AdminActivity.class);
                         startActivity(intent3);
                         return true;
+
+                    case R.id.MenuMap:
+                        Intent intent4 = new Intent(FicheActivity.this, MapActivity.class);
+                        startActivity(intent4);
+                        return true;
                 }
                 return false;
             }
