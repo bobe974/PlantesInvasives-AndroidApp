@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background2">
 
 
     <EditText
@@ -11,14 +12,15 @@
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_marginStart="52dp"
-        android:background="#5676"
         android:hint="Vos remarques..."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.743" />
+        app:layout_constraintVertical_bias="0.743"
+        android:background="@drawable/custom_imput"
+        />
 
     <Button
         android:id="@+id/btnvalideForm2"
@@ -31,7 +33,8 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.862" />
+        app:layout_constraintVertical_bias="0.862"
+        android:background="@drawable/arrondir"/>
 
     <Spinner
         android:id="@+id/Slieu"
@@ -177,7 +180,8 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.355" />
+        app:layout_constraintVertical_bias="0.355"
+        />
 
     <CheckBox
         android:id="@+id/Cplant"

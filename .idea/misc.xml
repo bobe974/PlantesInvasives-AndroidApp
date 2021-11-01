@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/arrondir.xml" value="0.26197916666666665" />
+        <entry key="app/src/main/res/drawable/custom_imput.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/drawable/ic_menu_camera.xml" value="0.26197916666666665" />
