@@ -3,6 +3,7 @@ package com.example.planteinvasives.Vue;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -20,13 +21,15 @@ import com.example.planteinvasives.roomDataBase.Controle;
 import com.example.planteinvasives.roomDataBase.entity.SpinnerData;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+
 public class AdminActivity extends AppCompatActivity {
     private  int etatEleve = 0;
 
     private Controle controle;
     private EditText nomPlante1, nomPlante2,nomPlante3,nomPlante4,nomPlante5,nomEtablissemnt;
     private CheckBox ckEleve;
-    private Button confirmer;
+    private Button confirmer, reset;
     private BottomNavigationView navbar;
     private BottomNavigationView.OnNavigationItemSelectedListener eventNav;
 
@@ -44,11 +47,15 @@ public class AdminActivity extends AppCompatActivity {
         nomEtablissemnt = findViewById(R.id.nomEtablissement);
         ckEleve = findViewById(R.id.checkBoxEleve);
         confirmer = findViewById(R.id.btnconfirme);
+        reset = findViewById(R.id.reset);
 
+        //preremplir les champs
+            remplirChamps();
 
         //recupere var etat et coche suivant son etat au demarrage de l'activité
         SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
         etatEleve = sp.getInt("etatEleve", etatEleve);
+        nomEtablissemnt.setText(sp.getString("etablissement",""));
         if(etatEleve == 1){
             ckEleve.setChecked(true);
         }else{
@@ -79,6 +86,13 @@ public class AdminActivity extends AppCompatActivity {
                 editor.putString("etablissement",nomEtablissemnt.getText().toString());
                 editor.commit();
 
+            }
+        });
+
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                resetField();
             }
         });
 
@@ -114,5 +128,42 @@ public class AdminActivity extends AppCompatActivity {
         navbar.setOnNavigationItemSelectedListener(eventNav);
     }
 
+    public void remplirChamps(){
+        ArrayList<SpinnerData> lesplantes = new ArrayList<SpinnerData>();
+        Cursor cursor = controle.spinnerDataDao().getAll();
+        cursor.moveToFirst();
+
+        if (!isCursorEmpty(cursor)){
+
+            while(!cursor.isAfterLast()){
+                lesplantes.add(new SpinnerData(cursor.getInt(0),cursor.getString(1)));
+                cursor.moveToNext();
+            }
+            //remplir les champs
+            nomPlante1.setText(lesplantes.get(0).getNomPlante());
+            nomPlante2.setText(lesplantes.get(1).getNomPlante());
+            nomPlante3.setText(lesplantes.get(2).getNomPlante());
+            nomPlante4.setText(lesplantes.get(3).getNomPlante());
+            nomPlante5.setText(lesplantes.get(4).getNomPlante());
+        }
+        cursor.close();
+    }
+
+    public boolean isCursorEmpty(Cursor cursor){
+        return !cursor.moveToFirst() || cursor.getCount() == 0;
+    }
+
+    /**
+     * remets les champs et checkbox par defaut
+     */
+    public void resetField(){
+        nomPlante1.getText().clear();
+        nomPlante2.getText().clear();
+        nomPlante3.getText().clear();
+        nomPlante4.getText().clear();
+        nomPlante5.getText().clear();
+        nomEtablissemnt.getText().clear();
+        ckEleve.setChecked(false);
+    }
 
 }
