@@ -52,7 +52,9 @@
             android:name=".Vue.MenuActivity"
             android:exported="true"
             android:launchMode="singleTask"
-            android:parentActivityName=".Vue.MainActivity" >
+            android:parentActivityName=".Vue.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.PlanteInvasives.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -62,7 +64,9 @@
         <activity
             android:name=".Vue.FormActivity"
             android:launchMode="singleTask"
-            android:parentActivityName=".Vue.MenuActivity" >
+            android:parentActivityName=".Vue.MenuActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.PlanteInvasives.NoActionBar">
         </activity>
         <activity
             android:name=".Vue.PhotoActivity"
@@ -88,7 +92,6 @@
             android:parentActivityName=".Vue.MenuActivity"
             android:launchMode="singleTask">
         </activity>
-
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

@@ -52,6 +52,7 @@ public class MyArrayAdapter extends ArrayAdapter<MaFiche> {
         //chargement de la photo
         PhotoActivity photoActivity = new PhotoActivity();
         photoActivity.loadImageFromStorage(f.getPhotoPath(),imageView);
+        imageView.setRotation(photoActivity.getPhotoOrientation(f.getPhotoPath()));
 
         //conversion de id int en string
         id.setText(String.valueOf(f.getId()));

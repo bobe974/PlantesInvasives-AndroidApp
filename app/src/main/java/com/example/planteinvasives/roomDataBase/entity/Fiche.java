@@ -15,6 +15,8 @@ public  class Fiche  {
     @PrimaryKey(autoGenerate = true)
     private int id_fiche;
 
+
+
     @Ignore
     private Photographie photo;
     @Ignore

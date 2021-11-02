@@ -51,7 +51,6 @@ public class FormActivity extends AppCompatActivity {
     private PhotoActivity photoActivity;
     private int UPDATE;
     private Fiche fiche;
-
     private Button valideFiche;
     public ImageView photo;
     private EditText description;
@@ -102,6 +101,9 @@ public class FormActivity extends AppCompatActivity {
 
         //charge la photo dans l'imageview
         photoActivity.loadImageFromStorage(photoPath, photo);
+        //oriente la photo dans la bonne position
+        photo.setRotation(photoActivity.getPhotoOrientation(photoPath));
+
 
         //rempli le spinner
         loadSpinnerData();
@@ -110,7 +112,7 @@ public class FormActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //envoye et lance l'activity activityform2
+                //envoie et lance l'activity activityform2
                 Intent intent = new Intent(FormActivity.this,FormActivity2.class);
                 intent.putExtra("photopath",photoPath);
                 intent.putExtra("date",date);

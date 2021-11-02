@@ -10,10 +10,10 @@
 
     <Button
         android:id="@+id/btnNewFiche"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="48dp"
-        android:text="Nouvelle fiche"
+        android:text="Nouveau relevé"
         app:layout_constraintBottom_toTopOf="@id/btnFiches"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -23,8 +23,8 @@
 
     <Button
         android:id="@+id/btnFiches"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
         android:text="Mes fiches"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -34,23 +34,15 @@
 
     <Button
         android:id="@+id/btnMap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cartographie"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:text="Map"
         app:layout_constraintTop_toBottomOf="@id/btnFiches"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="50dp"
         android:background="@drawable/arrondir"/>
-    <ImageView
-        android:id="@+id/photo"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/btnNewFiche"
-        android:layout_marginBottom="40dp"
-        />
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation_menu"
