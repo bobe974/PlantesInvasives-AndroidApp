@@ -56,7 +56,7 @@ public class FicheActivity extends AppCompatActivity {
         //parcours du cursor
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){
-            lesfiches.add(new MaFiche(cursor.getInt(0),cursor.getString(5),cursor.getString(3),cursor.getString(2)));
+            lesfiches.add(new MaFiche(cursor.getInt(0),cursor.getString(6),cursor.getString(4),cursor.getString(3)));
             cursor.moveToNext();
         }
         cursor.close();

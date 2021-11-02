@@ -15,16 +15,12 @@ public  class Fiche  {
     @PrimaryKey(autoGenerate = true)
     private int id_fiche;
 
-
+    private String nom_etablissement;
 
     @Ignore
     private Photographie photo;
     @Ignore
     private  Plante plante;
-
-    public Photographie getPhoto() {
-        return photo;
-    }
 
     @Ignore
     private Lieu lieu;
@@ -40,11 +36,15 @@ public  class Fiche  {
         this.lieu = lieu;
     }
 
-    public Fiche(){
-
+    public Fiche(String nom_etablissement){
+        this.nom_etablissement = nom_etablissement;
     }
     public int getId_fiche() {
         return id_fiche;
+    }
+
+    public Photographie getPhoto() {
+        return photo;
     }
 
     public void setId_fiche(int id_fiche) {
@@ -70,5 +70,12 @@ public  class Fiche  {
         this.lieu = lieu;
     }
 
+    public String getNom_etablissement() {
+        return nom_etablissement;
+    }
+
+    public void setNom_etablissement(String nom_etablissement) {
+        this.nom_etablissement = nom_etablissement;
+    }
 
 }

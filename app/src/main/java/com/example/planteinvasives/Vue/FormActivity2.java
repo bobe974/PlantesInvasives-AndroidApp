@@ -1,6 +1,7 @@
 package com.example.planteinvasives.Vue;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -20,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.planteinvasives.R;
 import com.example.planteinvasives.roomDataBase.Controle;
+import com.example.planteinvasives.roomDataBase.entity.Eleve;
 import com.example.planteinvasives.roomDataBase.entity.Fiche;
 import com.example.planteinvasives.roomDataBase.entity.Lieu;
 import com.example.planteinvasives.roomDataBase.entity.Photographie;
@@ -31,9 +33,9 @@ import java.util.List;
 
 public class FormActivity2 extends AppCompatActivity {
 
-    private String photopath,description, nomPlante, nom, prenom, date;
+    private String photopath,description, nomPlante, nom, prenom, date,nomEtablissement;
     private double latitude  , longitude;
-    private int idfiche;
+    private int idfiche, etatEleve;
     private Spinner spinnerLieu, spinnerSurface, spinnerIndividu;
     private CheckBox vegetatif, enFleur, enFruit;
     private CheckBox plantule, jeuneplant, plant;
@@ -43,6 +45,7 @@ public class FormActivity2 extends AppCompatActivity {
     private BottomNavigationView navbar;
     private BottomNavigationView.OnNavigationItemSelectedListener eventNav;
     private Controle controle;
+    private  Cursor cursor;
     private int UPDATE ;
 
 
@@ -73,6 +76,8 @@ public class FormActivity2 extends AppCompatActivity {
             nom = intent.getStringExtra("nom");
             prenom = intent.getStringExtra("prenom");
             nomPlante = intent.getStringExtra("nomplante");
+            nomEtablissement = intent.getStringExtra("etablissement");
+            etatEleve = intent.getIntExtra("etatEleve",1);
             UPDATE= Integer.parseInt(intent.getStringExtra("UPDATE"));
             Log.d("tes recup form", "************"+ nomPlante+ photopath + nom + description + prenom );
         }
@@ -126,15 +131,38 @@ public class FormActivity2 extends AppCompatActivity {
                     uneplante.setId_plante(idfiche);
                     controle.lieuDao().update(unlieu);
                     controle.planteDao().update(uneplante);
+
+                    //si les champs de l'eleve sont pas vides et option eleve desactiver, on update
+                    if(etatEleve == 0 && nom.length() != 0 && prenom.length() !=0){
+                        //TODO si existant dans la base on update
+
+                        Log.d("CAS UPDATE ELEVE", "******:"+ idfiche +nom+prenom);
+                        controle.eleveDao().update(new Eleve(idfiche,nom,prenom));
+                    }else{
+                        // TODO sinon on insert dans la base l'eleve
+
+                    }
+
                     Log.d("CAS UPDATE", "******onClick:");
 
                 }else{
                     /********* cas premiere insertion*******/
-                    Log.d("CAS INSERT", "******onClick:");
-                    controle.ficheDao().insert(new Fiche(unephoto,uneplante,unlieu));
+                    Log.d("CAS INSERT", "******ETAB:"+ nomEtablissement);
+                    controle.ficheDao().insert(new Fiche(nomEtablissement));
                     controle.photoDao().insert(unephoto);
                     controle.planteDao().insert(uneplante);
                     controle.lieuDao().insert(unlieu);
+
+                    // si option retirer eleve desactiver alors on insert
+                    if(etatEleve == 0 && nom.length() != 0 && prenom.length() !=0){
+
+                        //recupere le dernier idfiche et on affecte a l'eleve le memme id
+                        cursor = controle.ficheDao().getLastId();
+                        cursor.moveToFirst();
+                        int lastid = cursor.getInt(0);
+                        controle.eleveDao().insert(new Eleve(lastid,nom,prenom));
+                        Log.d("CAS INSERT CAS ELEVE OK", "**********on insert");
+                    }
                 }
 
 

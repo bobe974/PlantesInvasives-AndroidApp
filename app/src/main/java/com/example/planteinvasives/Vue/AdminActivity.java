@@ -21,10 +21,10 @@ import com.example.planteinvasives.roomDataBase.entity.SpinnerData;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class AdminActivity extends AppCompatActivity {
-    private  int etatEleve = 1;
+    private  int etatEleve = 0;
 
     private Controle controle;
-    private EditText nomPlante1, nomPlante2,nomPlante3,nomPlante4,nomPlante5;
+    private EditText nomPlante1, nomPlante2,nomPlante3,nomPlante4,nomPlante5,nomEtablissemnt;
     private CheckBox ckEleve;
     private Button confirmer;
     private BottomNavigationView navbar;
@@ -41,6 +41,7 @@ public class AdminActivity extends AppCompatActivity {
         nomPlante3 = findViewById(R.id.PNameSpinner3);
         nomPlante4 = findViewById(R.id.PNameSpinner4);
         nomPlante5 = findViewById(R.id.PNameSpinner5);
+        nomEtablissemnt = findViewById(R.id.nomEtablissement);
         ckEleve = findViewById(R.id.checkBoxEleve);
         confirmer = findViewById(R.id.btnconfirme);
 
@@ -48,7 +49,7 @@ public class AdminActivity extends AppCompatActivity {
         //recupere var etat et coche suivant son etat au demarrage de l'activité
         SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
         etatEleve = sp.getInt("etatEleve", etatEleve);
-        if(etatEleve == 0 ){
+        if(etatEleve == 1){
             ckEleve.setChecked(true);
         }else{
             ckEleve.setChecked(false);
@@ -67,14 +68,15 @@ public class AdminActivity extends AppCompatActivity {
                 controle.spinnerDataDao().insert(new SpinnerData(4,nomPlante5.getText().toString()));
 
                 if(ckEleve.isChecked()){
-                    etatEleve = 0;
+                    etatEleve = 1;
                 }else{
-                    etatEleve=1;
+                    etatEleve=0;
                 }
                 //enregistre une variable pour l'affichage ou pas des champs de l'eleve
                 SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sp.edit();
                 editor.putInt("etatEleve", etatEleve);
+                editor.putString("etablissement",nomEtablissemnt.getText().toString());
                 editor.commit();
 
             }

@@ -30,6 +30,7 @@ import androidx.core.content.ContextCompat;
 import com.example.planteinvasives.Modele.MaFiche;
 import com.example.planteinvasives.R;
 import com.example.planteinvasives.roomDataBase.Controle;
+import com.example.planteinvasives.roomDataBase.entity.Eleve;
 import com.example.planteinvasives.roomDataBase.entity.Fiche;
 import com.example.planteinvasives.roomDataBase.entity.Lieu;
 import com.example.planteinvasives.roomDataBase.entity.Photographie;
@@ -45,10 +46,11 @@ import java.util.List;
 
 public class FormActivity extends AppCompatActivity {
 
+    private String nomEtablissement;
+    private int  etatEleve;
     private String photoPath, date;
     private Cursor cursor;
     private  Controle controle;
-    private final int REQUEST_LOCATION_PERMISSION = 1;
     private String latitude, longitude;
     private PhotoActivity photoActivity;
     private int UPDATE;
@@ -78,26 +80,33 @@ public class FormActivity extends AppCompatActivity {
         //affichage ou non des champs concernant l'eleve
         //recupere la variable serialisé
         SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
-        int etatEleve = sp.getInt("etatEleve", 0);
-        Log.d("etat", "****** eleve vaut: "+etatEleve);
+        etatEleve = sp.getInt("etatEleve", 0);
+        nomEtablissement = sp.getString("etablissement","");
+
+        Log.d("etabissement", "****** etab vaut: "+nomEtablissement);
         if (etatEleve == 1){
             nom.setVisibility(View.INVISIBLE);
             prenom.setVisibility(View.INVISIBLE);
         }
 
-        //recupere le chemin absolu et la date de la photo
+
         Intent intent = getIntent();
         UPDATE= Integer.parseInt(intent.getStringExtra("update"));
+
         /**cas update**/
         if(UPDATE == 100){
             Log.d("***********", "CAS UPDATE");
             //charge les données depuis la base
             fiche = loadFiche(Integer.parseInt(intent.getStringExtra("idfiche")));
+            Eleve eleve = loadEleve(Integer.parseInt(intent.getStringExtra("idfiche")));
             photoPath = fiche.getPhoto().getChemin();
             latitude = String.valueOf(fiche.getLieu().getLatittude());
             longitude = String.valueOf(fiche.getLieu().getLongitude());
             //prérempli les champs fu formulaire
-            loadfield(fiche);
+
+                loadfield(fiche,eleve);
+
+
         }else{
             /** cas insertion **/
             photoPath = intent.getStringExtra("path");
@@ -134,6 +143,8 @@ public class FormActivity extends AppCompatActivity {
                 intent.putExtra("UPDATE","0");
                 intent.putExtra("latitude",latitude);
                 intent.putExtra("longitude",longitude);
+                intent.putExtra("etablissement",nomEtablissement);
+                intent.putExtra("etatEleve",etatEleve);
 
                 //envoie des champs supplémentaire si update
                 if(UPDATE == 100){
@@ -216,18 +227,18 @@ public class FormActivity extends AppCompatActivity {
      * @return
      */
     public Fiche loadFiche(int id){
-        Log.d("***********", "loadFiche: ");
+
         Fiche fiche;
         controle = Controle.getInstance(this);
         Cursor cursor = controle.ficheDao().getById(id);
         cursor.moveToFirst();
-        Log.d("VALEURCURSOR","*********"+cursor.getString(2));
-        Photographie unephoto = new Photographie(cursor.getString(2),cursor.getString(3));
-        Plante uneplante = new Plante(cursor.getString(5),cursor.getString(6),
-                cursor.getString(7), cursor.getString(8));
 
-        Lieu unlieu = new Lieu(cursor.getString(10), cursor.getString(11),
-                cursor.getString(12),cursor.getDouble(13),cursor.getDouble(14),cursor.getString(15));
+        Photographie unephoto = new Photographie(cursor.getString(3),cursor.getString(4));
+        Plante uneplante = new Plante(cursor.getString(6),cursor.getString(7),
+                cursor.getString(8), cursor.getString(9));
+
+        Lieu unlieu = new Lieu(cursor.getString(11), cursor.getString(12),
+                cursor.getString(13),cursor.getDouble(14),cursor.getDouble(15),cursor.getString(16));
 
         fiche = new Fiche(unephoto,uneplante,unlieu);
         fiche.setId_fiche(id);
@@ -238,16 +249,48 @@ public class FormActivity extends AppCompatActivity {
     }
 
     /**
+     * retourne l eleve par id depuis la bdd
+     * @param id
+     * @return
+     */
+    public  Eleve loadEleve(int id){
+        Cursor cursor = controle.eleveDao().getById(id);
+        if(!isCursorEmpty(cursor)){
+            cursor.moveToFirst();
+            Eleve eleve = new Eleve(cursor.getInt(0),cursor.getString(1),cursor.getString(2));
+            return  eleve;
+        }
+        return null;
+    }
+
+
+    /**
      * prérempli les champs
      * @param fiche
      */
-    public void loadfield(Fiche fiche){
-        //spinner
+    public void loadfield(Fiche fiche, Eleve eleve){
 
         //description
         description.setText(fiche.getPlante().getDescription());
-        // nom et prenom
 
+        // nom et prenom
+        if(eleve != null){
+            nom.setText(eleve.getNom());
+            prenom.setText(eleve.getPrenom());
+        }else{
+            //si aucun eleve recuperer donc il est pas dans la base donc pas d'ajout ou update
+                nom.setVisibility(View.INVISIBLE);
+                prenom.setVisibility(View.INVISIBLE);
+        }
     }
 
+
+    /**
+     * verifie si le cursor est vide
+     * @param cursor
+     * @return
+     */
+    public boolean isCursorEmpty(Cursor cursor){
+        return !cursor.moveToFirst() || cursor.getCount() == 0;
+    }
 }

@@ -42,6 +42,8 @@ public interface FicheDao {
             "  ON Fiche.id_fiche = Lieu.id_lieu WHERE Fiche.id_fiche = :id")
      Cursor getById(int id);
 
+    @Query(" select id_fiche from Fiche order by id_fiche DESC limit 1")
+    Cursor getLastId();
 }
 
 
