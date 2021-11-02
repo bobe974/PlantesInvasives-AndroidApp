@@ -1,8 +1,10 @@
 package com.example.planteinvasives.Vue;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -73,6 +75,15 @@ public class FormActivity extends AppCompatActivity {
         prenom =  findViewById(R.id.prenom);
         spinner = findViewById(R.id.spinnerform);
 
+        //affichage ou non des champs concernant l'eleve
+        //recupere la variable serialisé
+        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
+        int etatEleve = sp.getInt("etatEleve", 0);
+        Log.d("etat", "****** eleve vaut: "+etatEleve);
+        if (etatEleve == 1){
+            nom.setVisibility(View.INVISIBLE);
+            prenom.setVisibility(View.INVISIBLE);
+        }
 
         //recupere le chemin absolu et la date de la photo
         Intent intent = getIntent();
