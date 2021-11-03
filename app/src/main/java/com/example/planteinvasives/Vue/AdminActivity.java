@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -86,6 +87,10 @@ public class AdminActivity extends AppCompatActivity {
                 editor.putString("etablissement",nomEtablissemnt.getText().toString());
                 editor.commit();
 
+                Intent intent = new Intent(AdminActivity.this,MenuActivity.class);
+                startActivity(intent);
+                Toast.makeText(getApplicationContext(), "données enregistrées", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -157,6 +162,7 @@ public class AdminActivity extends AppCompatActivity {
      * remets les champs et checkbox par defaut
      */
     public void resetField(){
+        nomPlante1.setError("reeur");
         nomPlante1.getText().clear();
         nomPlante2.getText().clear();
         nomPlante3.getText().clear();

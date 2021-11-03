@@ -33,6 +33,8 @@
         <entry key="app/src/main/res/layout/fragment_mainn.xml" value="0.125" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.12760416666666666" />
         <entry key="app/src/main/res/layout/navbar.xml" value="0.1703125" />
+        <entry key="app/src/main/res/layout/test.xml" value="0.19021739130434784" />
+        <entry key="app/src/main/res/layout/testform.xml" value="0.25" />
         <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.246875" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.246875" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.165" />

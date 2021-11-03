@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.planteinvasives.Modele.MaFiche;
 import com.example.planteinvasives.R;
 import com.example.planteinvasives.roomDataBase.Controle;
+import com.example.planteinvasives.roomDataBase.entity.Eleve;
 import com.example.planteinvasives.roomDataBase.entity.Fiche;
 import com.example.planteinvasives.roomDataBase.entity.Lieu;
 import com.example.planteinvasives.roomDataBase.entity.Photographie;
@@ -74,7 +75,6 @@ public class FicheActivity extends AppCompatActivity {
                 String Name =((TextView)view.findViewById(R.id.nomPlante)).getText().toString();
                 String idFiche =((TextView)view.findViewById(R.id.textView_id)).getText().toString();
                 String path =((TextView)view.findViewById(R.id.textView_path)).getText().toString();
-                Toast.makeText(FicheActivity.this,Name+"/"+idFiche+"/"+path, Toast.LENGTH_SHORT).show();
 
                 //envoie des données a ficheActivity
                 /************************TEST************************/
@@ -116,7 +116,6 @@ public class FicheActivity extends AppCompatActivity {
         };
 
         navbar.setOnNavigationItemSelectedListener(eventNav);
-
 
     }
 

@@ -144,6 +144,7 @@ public class FormActivity2 extends AppCompatActivity {
                     }
 
                     Log.d("CAS UPDATE", "******onClick:");
+                    Toast.makeText(getApplicationContext(), "fiche mis à jour", Toast.LENGTH_SHORT).show();
 
                 }else{
                     /********* cas premiere insertion*******/
@@ -163,8 +164,11 @@ public class FormActivity2 extends AppCompatActivity {
                         controle.eleveDao().insert(new Eleve(lastid,nom,prenom));
                         Log.d("CAS INSERT CAS ELEVE OK", "**********on insert");
                     }
+                    Toast.makeText(getApplicationContext(), "fiche enregistré !", Toast.LENGTH_SHORT).show();
                 }
 
+                Intent intent = new Intent(FormActivity2.this,MenuActivity.class);
+                startActivity(intent);
 
             }
         });

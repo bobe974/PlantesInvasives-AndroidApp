@@ -44,13 +44,12 @@ public abstract class Controle extends RoomDatabase {
 
     // --- INSTANCE --- sinlgeton
     public static synchronized Controle getInstance(Context context) {
-        Log.d("TAG", "getInstance: *************************");
         if (INSTANCE == null) {
             synchronized (Controle.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             Controle.class, DB_name).allowMainThreadQueries().build();
-                    Log.d("TAG", "base créer: *************************");
+
                 }
             }
         }
