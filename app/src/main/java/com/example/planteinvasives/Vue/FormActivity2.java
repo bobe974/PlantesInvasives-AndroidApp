@@ -42,7 +42,7 @@ public class FormActivity2 extends AppCompatActivity {
     private CheckBox vegetatif, enFleur, enFruit;
     private CheckBox plantule, jeuneplant, plant;
     private EditText remarques;
-    private Button btnvalider;
+    private Button btnvalider, btretour;
     private String etat = "", stade = "";
     private BottomNavigationView navbar;
     private BottomNavigationView.OnNavigationItemSelectedListener eventNav;
@@ -71,7 +71,7 @@ public class FormActivity2 extends AppCompatActivity {
         jeuneplant = findViewById(R.id.Cjeuneplant);
         plant = findViewById(R.id.Cplant);
         btnvalider = findViewById(R.id.btnvalideForm2);
-
+        btretour = findViewById(R.id.btnretour);
         //chargement des spinners
         Resources res = getResources();
         tablieu = res.getStringArray(R.array.typeDeLieu);
@@ -190,6 +190,14 @@ public class FormActivity2 extends AppCompatActivity {
                 Intent intent = new Intent(FormActivity2.this,MenuActivity.class);
                 startActivity(intent);
 
+            }
+        });
+
+
+        btretour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
 

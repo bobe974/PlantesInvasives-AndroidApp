@@ -21,6 +21,7 @@ import com.example.planteinvasives.R;
 import com.example.planteinvasives.roomDataBase.Controle;
 import com.example.planteinvasives.roomDataBase.entity.SpinnerData;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 
@@ -28,7 +29,7 @@ public class AdminActivity extends AppCompatActivity {
     private  int etatEleve = 0;
 
     private Controle controle;
-    private EditText nomPlante1, nomPlante2,nomPlante3,nomPlante4,nomPlante5,nomEtablissemnt;
+    private TextInputLayout nomPlante1, nomPlante2,nomPlante3,nomPlante4,nomPlante5,nomEtablissemnt;
     private CheckBox ckEleve;
     private Button confirmer, reset;
     private BottomNavigationView navbar;
@@ -41,14 +42,14 @@ public class AdminActivity extends AppCompatActivity {
 
         controle = Controle.getInstance(this);
         nomPlante1 = findViewById(R.id.PNameSpinner);
-        nomPlante2 = findViewById(R.id.PNameSpinner2);
-        nomPlante3 = findViewById(R.id.PNameSpinner3);
-        nomPlante4 = findViewById(R.id.PNameSpinner4);
-        nomPlante5 = findViewById(R.id.PNameSpinner5);
+        nomPlante2 = findViewById(R.id.PNameSpinner1);
+        nomPlante3 = findViewById(R.id.PNameSpinner2);
+        nomPlante4 = findViewById(R.id.PNameSpinner3);
+        nomPlante5 = findViewById(R.id.PNameSpinner4);
         nomEtablissemnt = findViewById(R.id.nomEtablissement);
         ckEleve = findViewById(R.id.checkBoxEleve);
         confirmer = findViewById(R.id.btnconfirme);
-        reset = findViewById(R.id.reset);
+        //reset = findViewById(R.id.reset);
 
         //preremplir les champs
             remplirChamps();
@@ -56,7 +57,7 @@ public class AdminActivity extends AppCompatActivity {
         //recupere var etat et coche suivant son etat au demarrage de l'activité
         SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
         etatEleve = sp.getInt("etatEleve", etatEleve);
-        nomEtablissemnt.setText(sp.getString("etablissement",""));
+        nomEtablissemnt.getEditText().setText(sp.getString("etablissement",""));
         if(etatEleve == 1){
             ckEleve.setChecked(true);
         }else{
@@ -69,11 +70,11 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //insertion dans la base de données
-                controle.spinnerDataDao().insert(new SpinnerData(0,nomPlante1.getText().toString()));
-                controle.spinnerDataDao().insert(new SpinnerData(1,nomPlante2.getText().toString()));
-                controle.spinnerDataDao().insert(new SpinnerData(2,nomPlante3.getText().toString()));
-                controle.spinnerDataDao().insert(new SpinnerData(3,nomPlante4.getText().toString()));
-                controle.spinnerDataDao().insert(new SpinnerData(4,nomPlante5.getText().toString()));
+                controle.spinnerDataDao().insert(new SpinnerData(0,nomPlante1.getEditText().getText().toString()));
+                controle.spinnerDataDao().insert(new SpinnerData(1,nomPlante2.getEditText().getText().toString()));
+                controle.spinnerDataDao().insert(new SpinnerData(2,nomPlante3.getEditText().getText().toString()));
+                controle.spinnerDataDao().insert(new SpinnerData(3,nomPlante4.getEditText().getText().toString()));
+                controle.spinnerDataDao().insert(new SpinnerData(4,nomPlante5.getEditText().getText().toString()));
 
                 if(ckEleve.isChecked()){
                     etatEleve = 1;
@@ -84,7 +85,7 @@ public class AdminActivity extends AppCompatActivity {
                 SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sp.edit();
                 editor.putInt("etatEleve", etatEleve);
-                editor.putString("etablissement",nomEtablissemnt.getText().toString());
+                editor.putString("etablissement",nomEtablissemnt.getEditText().getText().toString());
                 editor.commit();
 
                 Intent intent = new Intent(AdminActivity.this,MenuActivity.class);
@@ -93,13 +94,7 @@ public class AdminActivity extends AppCompatActivity {
 
             }
         });
-
-        reset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                resetField();
-            }
-        });
+        
 
         //Gestion de la navbar
         navbar = (BottomNavigationView) findViewById(R.id.bottom_navigation_admin);
@@ -145,11 +140,11 @@ public class AdminActivity extends AppCompatActivity {
                 cursor.moveToNext();
             }
             //remplir les champs
-            nomPlante1.setText(lesplantes.get(0).getNomPlante());
-            nomPlante2.setText(lesplantes.get(1).getNomPlante());
-            nomPlante3.setText(lesplantes.get(2).getNomPlante());
-            nomPlante4.setText(lesplantes.get(3).getNomPlante());
-            nomPlante5.setText(lesplantes.get(4).getNomPlante());
+            nomPlante1.getEditText().setText(lesplantes.get(0).getNomPlante());
+            nomPlante2.getEditText().setText(lesplantes.get(1).getNomPlante());
+            nomPlante3.getEditText().setText(lesplantes.get(2).getNomPlante());
+            nomPlante4.getEditText().setText(lesplantes.get(3).getNomPlante());
+            nomPlante5.getEditText().setText(lesplantes.get(4).getNomPlante());
         }
         cursor.close();
     }
@@ -163,12 +158,12 @@ public class AdminActivity extends AppCompatActivity {
      */
     public void resetField(){
         nomPlante1.setError("reeur");
-        nomPlante1.getText().clear();
-        nomPlante2.getText().clear();
-        nomPlante3.getText().clear();
-        nomPlante4.getText().clear();
-        nomPlante5.getText().clear();
-        nomEtablissemnt.getText().clear();
+        nomPlante1.getEditText().getText().clear();
+        nomPlante2.getEditText().getText().clear();
+        nomPlante3.getEditText().getText().clear();
+        nomPlante4.getEditText().getText().clear();
+        nomPlante5.getEditText().getText().clear();
+        nomEtablissemnt.getEditText().getText().clear();
         ckEleve.setChecked(false);
     }
 
