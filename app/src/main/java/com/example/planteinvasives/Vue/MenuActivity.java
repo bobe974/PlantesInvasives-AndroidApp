@@ -40,6 +40,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
+import org.osmdroid.util.GeoPoint;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
@@ -51,6 +53,7 @@ public class MenuActivity extends AppCompatActivity {
     private Button btncreateFiche, btnFiche, btnMap;
     private BottomNavigationView navbar;
     private BottomNavigationView.OnNavigationItemSelectedListener eventNav;
+    GpsTracker gpsTracker;
 
     /****************TEST******************/
     private double latittude;
@@ -76,10 +79,15 @@ public class MenuActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-
-        //locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-        //locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, (LocationListener) this);
+        //verifie si la localisation fonctionne et est activé
+        gpsTracker = new GpsTracker(MenuActivity.this);
+        if(gpsTracker.canGetLocation()){
+            double latitude = gpsTracker.getLatitude();
+            double longitude = gpsTracker.getLongitude();
+           Toast.makeText(this,"lattitude:"+latitude + " Longitude"+longitude,Toast.LENGTH_SHORT).show();
+        }else {
+            gpsTracker.showSettingsAlert();
+        }
         /**
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(MenuActivity.this);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {

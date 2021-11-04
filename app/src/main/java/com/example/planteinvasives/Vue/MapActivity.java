@@ -28,6 +28,9 @@ public class MapActivity extends AppCompatActivity {
     IMapController mapController; //interface
     private Controle controle;
     private Cursor cursor;
+    GpsTracker gpsTracker;
+    double latitude,longitude;
+    GeoPoint geoPoint;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +48,22 @@ public class MapActivity extends AppCompatActivity {
         map = findViewById(R.id.map);
         map.setTileSource(TileSourceFactory.MAPNIK); //render
         map.setBuiltInZoomControls(true); // active le zoom sur la map
-        GeoPoint startpoint = new GeoPoint(-21.1649385858128 ,55.30828365874224); //altitude et longitudde
+
+        gpsTracker = new GpsTracker(MapActivity.this);
+
+        //point de depart a la pos actuelle si gps active
+        //sinon par defaut = la reunion
+        if(gpsTracker.canGetLocation()){
+            latitude = gpsTracker.getLatitude();
+            longitude = gpsTracker.getLongitude();
+            geoPoint = new GeoPoint(latitude,longitude);
+            Log.d("GETLOCATION", "latitude: "+ latitude + "longitude"+longitude);
+        }else{
+            gpsTracker.showSettingsAlert();
+            geoPoint = new GeoPoint(-21.08,55.32);
+        }
+        GeoPoint startpoint = geoPoint;
+
         mapController = map.getController();
         mapController.setCenter(startpoint); //centre de la map
         mapController.setZoom(20.0); //niveau de zoom par default
@@ -55,10 +73,10 @@ public class MapActivity extends AppCompatActivity {
 
         //parcour cursor
         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-            items.add(new OverlayItem(cursor.getString(5),
-                    cursor.getString(8),
-                    new GeoPoint(cursor.getDouble(13), cursor.getDouble(14))));
-            Log.d("MAPPPP", "$$$$$$$$$$$$$$ NOM"+cursor.getString(5)+" LATITUDE:"+ cursor.getDouble(13)+" LONGITUDE: "+cursor.getDouble(14));
+            items.add(new OverlayItem(cursor.getString(6),
+                    cursor.getString(9),
+                    new GeoPoint(cursor.getDouble(14), cursor.getDouble(15))));
+            Log.d("MAPPPP", "$$$$$$$$$$$$$$ NOM"+cursor.getString(6)+" LATITUDE:"+ cursor.getDouble(14)+" LONGITUDE: "+cursor.getDouble(15));
 
         }
 
