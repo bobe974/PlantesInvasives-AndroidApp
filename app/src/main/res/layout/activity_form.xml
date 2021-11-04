@@ -21,82 +21,110 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="443dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintLeft_toLeftOf="parent"
-
         app:layout_constraintRight_toRightOf="parent">
 
 
-        <TextView
-            android:id="@+id/textnom"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="10dp"
-            android:text="Nom de l’espèce" />
+            android:layout_marginEnd="32dp"
+            android:hint="nom de l'espèce"
+            app:startIconDrawable="@drawable/ic_baseline_text_fields_24">
 
-        <Spinner
-            android:id="@+id/spinnerform"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/custom_imput"
-            android:minHeight="48dp"
-            android:spinnerMode="dialog"
-            app:layout_constraintHorizontal_bias="0.511"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textnom" />
+            <AutoCompleteTextView
+                android:id="@+id/spinnerform"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:inputType="none"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/description"
-            android:layout_width="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@drawable/custom_imput"
-            android:ems="10"
             android:hint="description"
-            android:inputType="textPersonName"
+            app:counterEnabled="true"
+            app:counterMaxLength="40"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            app:helperText="champ obligatoire"
+            app:helperTextTextColor="@color/purple_500">       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
 
-            android:minHeight="48dp" />
 
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="40" />
+        </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/nom"
-            android:layout_width="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@drawable/custom_imput"
-            android:ems="10"
             android:hint="nom"
-            android:inputType="textPersonName"
-            android:minHeight="48dp" />
+            app:counterEnabled="true"
+            app:counterMaxLength="20"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            app:helperText="champ obligatoire"
+            app:helperTextTextColor="@color/purple_500">       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
 
 
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="20" />
+        </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/prenom"
-            android:layout_width="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@drawable/custom_imput"
-            android:ems="10"
             android:hint="prenom"
-            android:inputType="textPersonName"
-            android:minHeight="48dp" />
+            app:counterEnabled="true"
+            app:counterMaxLength="20"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            app:helperText="champ obligatoire"
+            app:helperTextTextColor="@color/purple_500"
+
+            >       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="20" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <Button
             android:id="@+id/btnvalideFiche"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/arrondir"
             android:text="Suivant"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -111,7 +139,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="313dp"
+        android:layout_height="230dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@id/linearLayout"
         app:layout_constraintHorizontal_bias="0.0"

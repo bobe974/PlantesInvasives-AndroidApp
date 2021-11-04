@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -37,6 +38,7 @@ import com.example.planteinvasives.roomDataBase.entity.Photographie;
 import com.example.planteinvasives.roomDataBase.entity.Plante;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarMenuView;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -57,10 +59,10 @@ public class FormActivity extends AppCompatActivity {
     private Fiche fiche;
     private Button valideFiche;
     public ImageView photo;
-    private EditText description;
-    private EditText nom;
-    private EditText prenom;
-    private Spinner spinner;
+    private TextInputLayout description;
+    private TextInputLayout nom;
+    private TextInputLayout prenom;
+    private AutoCompleteTextView spinner;
     private BottomNavigationView navbar;
     private BottomNavigationView.OnNavigationItemSelectedListener eventNav;
 
@@ -136,10 +138,10 @@ public class FormActivity extends AppCompatActivity {
                 Intent intent = new Intent(FormActivity.this,FormActivity2.class);
                 intent.putExtra("photopath",photoPath);
                 intent.putExtra("date",date);
-                intent.putExtra("description",description.getText().toString());
-                intent.putExtra("nom",nom.getText().toString());
-                intent.putExtra("prenom",prenom.getText().toString());
-                intent.putExtra("nomplante",spinner.getSelectedItem().toString());
+                intent.putExtra("description",description.getEditText().getText().toString());
+                intent.putExtra("nom",nom.getEditText().getText().toString());
+                intent.putExtra("prenom",prenom.getEditText().getText().toString());
+                intent.putExtra("nomplante",spinner.getText().toString());
                 intent.putExtra("UPDATE","0");
                 intent.putExtra("latitude",latitude);
                 intent.putExtra("longitude",longitude);
@@ -271,12 +273,12 @@ public class FormActivity extends AppCompatActivity {
     public void loadfield(Fiche fiche, Eleve eleve){
 
         //description
-        description.setText(fiche.getPlante().getDescription());
+        description.getEditText().setText(fiche.getPlante().getDescription());
 
         // nom et prenom
         if(eleve != null){
-            nom.setText(eleve.getNom());
-            prenom.setText(eleve.getPrenom());
+            nom.getEditText().setText(eleve.getNom());
+            prenom.getEditText().setText(eleve.getPrenom());
         }else{
             //si aucun eleve recuperer donc il est pas dans la base donc pas d'ajout ou update
                 nom.setVisibility(View.INVISIBLE);

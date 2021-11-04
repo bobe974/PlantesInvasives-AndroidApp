@@ -1,6 +1,7 @@
 package com.example.planteinvasives.Vue;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -36,7 +38,7 @@ public class FormActivity2 extends AppCompatActivity {
     private String photopath,description, nomPlante, nom, prenom, date,nomEtablissement;
     private double latitude  , longitude;
     private int idfiche, etatEleve;
-    private Spinner spinnerLieu, spinnerSurface, spinnerIndividu;
+    private AutoCompleteTextView spinnerLieu, spinnerSurface, spinnerIndividu;
     private CheckBox vegetatif, enFleur, enFruit;
     private CheckBox plantule, jeuneplant, plant;
     private EditText remarques;
@@ -46,7 +48,11 @@ public class FormActivity2 extends AppCompatActivity {
     private BottomNavigationView.OnNavigationItemSelectedListener eventNav;
     private Controle controle;
     private  Cursor cursor;
-    private int UPDATE ;
+    private int UPDATE;
+    private String[] tablieu, tabsurface,tabindividu;
+
+
+
 
 
     @Override
@@ -65,6 +71,20 @@ public class FormActivity2 extends AppCompatActivity {
         jeuneplant = findViewById(R.id.Cjeuneplant);
         plant = findViewById(R.id.Cplant);
         btnvalider = findViewById(R.id.btnvalideForm2);
+
+        //chargement des spinners
+        Resources res = getResources();
+        tablieu = res.getStringArray(R.array.typeDeLieu);
+        tabsurface = res.getStringArray(R.array.surface);
+        tabindividu = res.getStringArray(R.array.individu);
+
+        ArrayAdapter adapterlieu = new ArrayAdapter(this,R.layout.support_simple_spinner_dropdown_item,tablieu);
+        ArrayAdapter adaptersurface = new ArrayAdapter(this,R.layout.support_simple_spinner_dropdown_item,tabsurface);
+        ArrayAdapter adapterindividu = new ArrayAdapter(this,R.layout.support_simple_spinner_dropdown_item,tabindividu);
+
+        spinnerLieu.setAdapter(adapterlieu);
+        spinnerSurface.setAdapter(adaptersurface);
+        spinnerIndividu.setAdapter(adapterindividu);
 
 
         //recupere les données du formulaire 1
@@ -88,9 +108,9 @@ public class FormActivity2 extends AppCompatActivity {
             idfiche = Integer.parseInt(intent.getStringExtra("idfiche"));
             Log.d("ID FICHE", "*******************: "+idfiche);
             // regle les spinners sur la bonne position
-            updatePosSpinner(spinnerLieu,intent.getStringExtra("typelieu"),4);
-            updatePosSpinner(spinnerIndividu,intent.getStringExtra("nbindividu"),5);
-            updatePosSpinner(spinnerSurface,intent.getStringExtra("surface"),4);
+            spinnerLieu.setText(intent.getStringExtra("typelieu"),false);
+            spinnerIndividu.setText(intent.getStringExtra("nbindividu"),false);
+            spinnerSurface.setText(intent.getStringExtra("surface"),false);
 
             //checkbox
             updateCheckbox(plant,intent.getStringExtra("stade"));
@@ -120,8 +140,8 @@ public class FormActivity2 extends AppCompatActivity {
 
                 Photographie unephoto = new Photographie(photopath,date);
                 Plante uneplante = new Plante(nomPlante,etat,stade, description);
-                Lieu unlieu = new Lieu(spinnerLieu.getSelectedItem().toString(),
-                        spinnerSurface.getSelectedItem().toString(), spinnerIndividu.getSelectedItem().toString(),latitude,longitude,remarques.getText().toString());
+                Lieu unlieu = new Lieu(spinnerLieu.getText().toString(),
+                        spinnerSurface.getText().toString(), spinnerIndividu.getText().toString(),latitude,longitude,remarques.getText().toString());
 
                 controle = Controle.getInstance(FormActivity2.this);
 
@@ -244,16 +264,18 @@ public class FormActivity2 extends AppCompatActivity {
     public void updatePosSpinner(Spinner spinner, String target,int nbrow){
         int row = 0;
         for (int i =0;i<nbrow;i++){
-            Log.d("TAG", "updatespinner: " +spinner.getSelectedItem().toString()+ "target"+target);
             spinner.setSelection(i);
             if(spinner.getSelectedItem().toString().equals(target)){
-                Log.d("MATCHH", "updatespinner: " +spinner.getSelectedItem().toString()+ "target"+target);
+
                 row = i;
             }
         }
         spinner.setSelection(row);
     }
 
+    /******************TEST ***********************/
+
+    /******************TEST ***********************/
     /**
      * coche les checkboxes par rapport au champs de la bdd
      * @param checkBox
