@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="418dp"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
 
         android:layout_marginTop="30dp"
@@ -37,25 +37,29 @@
 
             <CheckBox
                 android:id="@+id/Cplantule"
-                android:layout_width="100dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
+                android:layout_marginLeft="15dp"
+                android:background="@color/white"
                 android:text="plantule" />
 
             <CheckBox
                 android:id="@+id/Cjeuneplant"
-                android:layout_width="wrap_content"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:text="jeune plant" />
+                android:text="jeune plant"
+                android:background="@color/white"/>
 
             <CheckBox
                 android:id="@+id/Cplant"
-                android:layout_width="100dp"
+                android:layout_width="110dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="25dp"
-                android:text="plant" />
+                android:layout_marginRight="10dp"
+                android:text="plant"
+                android:background="@color/white"/>
         </LinearLayout>
 
 
@@ -78,24 +82,28 @@
 
             <CheckBox
                 android:id="@+id/Cvegetatif"
-                android:layout_width="wrap_content"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:text="végétatif" />
+                android:layout_marginLeft="15dp"
+                android:text="végétatif"
+                android:background="@color/white"/>
 
             <CheckBox
                 android:id="@+id/Cfleur"
-                android:layout_width="wrap_content"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="42dp"
-                android:text="en fleurs" />
+                android:layout_marginLeft="30dp"
+                android:text="en fleurs"
+                android:background="@color/white"/>
 
             <CheckBox
                 android:id="@+id/Cfruit"
-                android:layout_width="wrap_content"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:text="en fruits" />
+                android:layout_marginLeft="25dp"
+                android:background="@color/white"
+                android:text="en fruits"
+                android:layout_marginRight="10dp"/>
         </LinearLayout>
 
 
@@ -156,7 +164,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:startIconDrawable="@drawable/ic_baseline_text_fields_24">
+        app:startIconDrawable="@drawable/ic_baseline_text_fields_24"
+        app:boxBackgroundColor="@color/white">
 
         <AutoCompleteTextView
             android:id="@+id/Slieu"
@@ -181,7 +190,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:startIconDrawable="@drawable/ic_baseline_text_fields_24">
+        app:startIconDrawable="@drawable/ic_baseline_text_fields_24"
+        app:boxBackgroundColor="@color/white">
 
         <AutoCompleteTextView
             android:id="@+id/Ssurface"
@@ -207,7 +217,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:startIconDrawable="@drawable/ic_baseline_text_fields_24">
+        app:startIconDrawable="@drawable/ic_baseline_text_fields_24"
+        app:boxBackgroundColor="@color/white">
 
         <AutoCompleteTextView
             android:id="@+id/Sindividu"

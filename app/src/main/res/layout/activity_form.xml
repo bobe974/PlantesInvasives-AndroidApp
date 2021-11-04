@@ -37,7 +37,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="32dp"
             android:hint="nom de l'espèce"
-            app:startIconDrawable="@drawable/ic_baseline_text_fields_24">
+            app:startIconDrawable="@drawable/ic_baseline_text_fields_24"
+            app:boxBackgroundColor="@color/white">
 
             <AutoCompleteTextView
                 android:id="@+id/spinnerform"
@@ -63,7 +64,8 @@
             app:endIconMode="clear_text"
             app:errorEnabled="true"
             app:helperText="champ obligatoire"
-            app:helperTextTextColor="@color/purple_500">       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
+            app:helperTextTextColor="#D1291D"
+            app:boxBackgroundColor="@color/white">       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
 
 
             <com.google.android.material.textfield.TextInputEditText
@@ -85,7 +87,8 @@
             app:endIconMode="clear_text"
             app:errorEnabled="true"
             app:helperText="champ obligatoire"
-            app:helperTextTextColor="@color/purple_500">       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
+            app:helperTextTextColor="#D1291D"
+            app:boxBackgroundColor="@color/white">       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
 
 
             <com.google.android.material.textfield.TextInputEditText
@@ -107,8 +110,8 @@
             app:endIconMode="clear_text"
             app:errorEnabled="true"
             app:helperText="champ obligatoire"
-            app:helperTextTextColor="@color/purple_500"
-
+            app:helperTextTextColor="#D1291D"
+            app:boxBackgroundColor="@color/white"
             >       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
 
 
