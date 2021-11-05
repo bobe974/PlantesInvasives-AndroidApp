@@ -71,6 +71,7 @@ public class MenuActivity extends AppCompatActivity {
         /****************TEST******************/
         //verifPermission();
         //verifie/demande les permissions
+
         try {
             if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
                 ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
@@ -79,6 +80,15 @@ public class MenuActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        /**
+        try {
+            if(ContextCompat.checkSelfPermission(this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CAMERA},100);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+**/
         //verifie si la localisation fonctionne et est activé
         gpsTracker = new GpsTracker(MenuActivity.this);
         if(gpsTracker.canGetLocation()){
