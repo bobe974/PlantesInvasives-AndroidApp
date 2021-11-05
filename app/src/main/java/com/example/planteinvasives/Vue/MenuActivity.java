@@ -55,22 +55,12 @@ public class MenuActivity extends AppCompatActivity {
     private BottomNavigationView.OnNavigationItemSelectedListener eventNav;
     GpsTracker gpsTracker;
 
-    /****************TEST******************/
-    private double latittude;
-    private double longitude;
-    private LocationManager locationManager;
-   // private FusedLocationProviderClient fusedLocationClient;
-
-    /****************TEST******************/
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        /****************TEST******************/
-        //verifPermission();
-        //verifie/demande les permissions
+
 
         try {
             if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
@@ -98,15 +88,6 @@ public class MenuActivity extends AppCompatActivity {
         }else {
             gpsTracker.showSettingsAlert();
         }
-        /**
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(MenuActivity.this);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            //permission accepté
-            getLocation();
-        } else {
-            //permission refusé
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE_ASK_PERMISSIONS);
-        }**/
 
 
         btncreateFiche = (Button) findViewById(R.id.btnNewFiche);
@@ -173,136 +154,4 @@ public class MenuActivity extends AppCompatActivity {
         navbar.setOnNavigationItemSelectedListener(eventNav);
     }
 
-
-
-    /****************TEST******************/
-    /**
-    final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
-
-    public void getLocation() {
-        Log.d("getlocation", "***********************************");
-
-
-        fusedLocationClient.getLastLocation().addOnCompleteListener((new OnCompleteListener<Location>() {
-
-            @Override
-            public void onComplete(@NonNull Task<Location> task) {
-                //on recupere un objet Location dans un Task
-                Log.d("onComplete", "********************************");
-                Location location = task.getResult();
-                if (location != null) {
-                    Log.d("LOCATION NON NULL", "********************************");
-                    try {
-                        Geocoder geocoder = new Geocoder(MenuActivity.this, Locale.getDefault());
-                        //list des addresses
-                        List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-
-                        //assigne aux variable locales
-                        Log.d("ASSIGNE VARIABLE", "******************************");
-
-                        Log.d("POSSSS", "latitude" + addresses.get(0).getLatitude());
-                        latittude = addresses.get(0).getLatitude();
-                        longitude = addresses.get(0).getLongitude();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }));
-    }
-*/
-
-    protected void createLocationRequest() {
-        LocationRequest locationRequest = LocationRequest.create();
-        locationRequest.setInterval(0);
-        locationRequest.setFastestInterval(0);
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-
-        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
-                .addLocationRequest(locationRequest);
-
-        SettingsClient client = LocationServices.getSettingsClient(this);
-        Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
-       
-
-    }
-
-    /****************TEST******************/
 }
-/**
- private void TakePhoto() {
- Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
- try {
- startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
- }
- catch (ActivityNotFoundException e) {
- // display error state to the user
- CharSequence msg = "impossible d'ouvrir l'appareil photo";
- int duration = Toast.LENGTH_SHORT;
- Toast toast = Toast.makeText(MenuActivity.this,msg,duration);
- }
- }
- **/
-/**
- * enregistrer l'image dans le dossier
- * /data/data/com.example.planteinvasives/app_data/photo
- * @param bitmapImage
- * @return
- */
-
-/**
- private String saveToInternalStorage(Bitmap bitmapImage){
- ContextWrapper cw = new ContextWrapper(getApplicationContext());
- // path to /data/data/yourapp/app_data/imageDir
- File directory = cw.getDir("photo", Context.MODE_PRIVATE);
- // Create imageDir
- File mypath=new File(directory,"plante.jpg");
-
- FileOutputStream fos = null;
- try {
- fos = new FileOutputStream(mypath);
- // Use the compress method on the BitMap object to write image to the OutputStream
- bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
- Toast.makeText(this,"image enregistré !", Toast.LENGTH_SHORT).show();
- } catch (Exception e) {
- e.printStackTrace();
- } finally {
- try {
- fos.close();
- } catch (IOException e) {
- e.printStackTrace();
- }
- }
- return directory.getAbsolutePath();
- }
- **/
-/**
- public void SavePhotoIntoFolder(BitmapDrawable bitmapDrawable){
-
- Bitmap bitmap = bitmapDrawable.getBitmap();
- saveImageToGallery(bitmap);
-
- }**/
-
-/**
- * enregistre un bitmap dans un sous dossier /data/android/pictures/planteInvasives
- * @param image
-
-public void saveImageToGallery(Bitmap image){
-FileOutputStream fos;
-try {
-if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.Q){
-ContentResolver resolver = getContentResolver();
-ContentValues contentValues = new ContentValues();
-contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME,"Image_"+".jpg");
-contentValues.put(MediaStore.MediaColumns.MIME_TYPE,"Image/jpeg");
-contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES+ File.separator +"PlantesInvasives");
-Uri imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,contentValues);
-fos = (FileOutputStream) resolver.openOutputStream(Objects.requireNonNull(imageUri));
-Toast.makeText(this,"image enregistré !", Toast.LENGTH_SHORT).show();
-}
-}catch (Exception e){
-Toast.makeText(this,"image non enregistré \n"+ e.getMessage(), Toast.LENGTH_SHORT).show();
-
-}
-}**/

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Projet EEE éco délégués</string>
+    <string name="btn_releve">Nouveau Relevé</string>
+    <string name="btn_fiche">Mes fiches</string>
+    <string name="btn_map">Carte</string>
+
+    <string name="nom">Nom</string>
+    <string name="prenom">Prénom</string>
+    <string name="nom_espc">Nom de l\'espèce</string>
+    <string name="desc">Description</string>
+    <string name="btn_next">Suivant</string>
+
+    <string name="type_lieu">Type de Lieu</string>
+    <string name="surface">Surface occupée (en m2)</string>
+    <string name="individu">Nombre d\'individus</string>
+    <string name="stade">Stade de croissance</string>
+    <string name="plantule">Plantule</string>
+    <string name="jplant">Jeune plant</string>
+    <string name="plant">Plant</string>
+    <string name="etatplant">État des plants</string>
+    <string name="vege">Végétatif</string>
+    <string name="fruit">En fruits</string>
+    <string name="fleur">En fleurs</string>
+    <string name="rem">Vos remarques...</string>
+    <string name="retour">Retour</string>
+    <string name="btn_next2">Valider</string>
+
+
+    <string name="etabname">Nom de l\'établissement</string>
+    <string name="p1">Nom espèce n°1</string>
+    <string name="p2">Nom espèce n°2</string>
+    <string name="p3">Nom espèce n°3</string>
+    <string name="p4">Nom espèce n°4</string>
+    <string name="p5">Nom espèce n°5</string>
+    <string name="info">Retirer info élève</string>
+
+</resources>

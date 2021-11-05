@@ -19,13 +19,15 @@
         app:menu="@menu/bottom_navigation_menu" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/linearLayoutform"
         android:layout_width="match_parent"
         android:layout_height="443dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutimg">
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -36,9 +38,9 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="32dp"
-            android:hint="nom de l'espèce"
-            app:startIconDrawable="@drawable/ic_baseline_text_fields_24"
-            app:boxBackgroundColor="@color/white">
+            android:hint="@string/nom_espc"
+            app:boxBackgroundColor="@color/white"
+            app:startIconDrawable="@drawable/ic_baseline_text_fields_24">
 
             <AutoCompleteTextView
                 android:id="@+id/spinnerform"
@@ -58,14 +60,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:hint="description"
+            android:hint="@string/desc"
+            app:boxBackgroundColor="@color/white"
             app:counterEnabled="true"
             app:counterMaxLength="40"
             app:endIconMode="clear_text"
             app:errorEnabled="true"
             app:helperText="champ obligatoire"
-            app:helperTextTextColor="#D1291D"
-            app:boxBackgroundColor="@color/white">       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
+            app:helperTextTextColor="#D1291D">       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
 
 
             <com.google.android.material.textfield.TextInputEditText
@@ -80,15 +82,15 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:hint="nom"
+            android:layout_marginTop="10dp"
+            android:hint="@string/nom"
+            app:boxBackgroundColor="@color/white"
             app:counterEnabled="true"
             app:counterMaxLength="20"
             app:endIconMode="clear_text"
             app:errorEnabled="true"
             app:helperText="champ obligatoire"
-            app:helperTextTextColor="#D1291D"
-            app:boxBackgroundColor="@color/white">       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
+            app:helperTextTextColor="#D1291D">       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
 
 
             <com.google.android.material.textfield.TextInputEditText
@@ -103,22 +105,22 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:hint="prenom"
+            android:layout_marginTop="10dp"
+            android:hint="@string/prenom"
+            app:boxBackgroundColor="@color/white"
             app:counterEnabled="true"
             app:counterMaxLength="20"
             app:endIconMode="clear_text"
             app:errorEnabled="true"
             app:helperText="champ obligatoire"
-            app:helperTextTextColor="#D1291D"
-            app:boxBackgroundColor="@color/white"
-            >       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
+            app:helperTextTextColor="#D1291D">       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
 
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLength="20" />
+                android:maxLength="20"
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -129,7 +131,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="12dp"
             android:background="@drawable/arrondir"
-            android:text="Suivant"
+            android:text="@string/btn_next"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -141,10 +143,12 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayoutimg"
         android:layout_width="match_parent"
         android:layout_height="230dp"
+        android:layout_marginBottom="1dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@id/linearLayout"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayoutform"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

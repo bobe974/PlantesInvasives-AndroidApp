@@ -119,14 +119,5 @@ public class FicheActivity extends AppCompatActivity {
 
     }
 
-    //retourne des Fiches contenant les données
-    /**
-    private Fiche cursorToFiche(Cursor cursor) {
-        int id = cursor.getInt(0);
-        String date = cursor.getString(1);
-        float calories = cursor.getFloat(2);
-        Fiche fiche = new Fiche(id, date, calories);
-        return fiche;
-    }**/
 
 }

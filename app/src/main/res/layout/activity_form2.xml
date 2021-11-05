@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:text="Stade de croissance"
+            android:text="@string/stade"
             android:textColor="@color/black"
             android:textStyle="bold" />
 
@@ -41,14 +41,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:background="@color/white"
-                android:text="plantule" />
+                android:text="@string/plantule" />
 
             <CheckBox
                 android:id="@+id/Cjeuneplant"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:text="jeune plant"
+                android:text="@string/jplant"
                 android:background="@color/white"/>
 
             <CheckBox
@@ -58,7 +58,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="10dp"
-                android:text="plant"
+                android:text="@string/plant"
                 android:background="@color/white"/>
         </LinearLayout>
 
@@ -69,7 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:text="Etat des plants"
+            android:text="@string/etatplant"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:layout_marginRight="10dp"/>
@@ -85,7 +85,7 @@
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:text="végétatif"
+                android:text="@string/vege"
                 android:background="@color/white"/>
 
             <CheckBox
@@ -93,7 +93,7 @@
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:text="en fleurs"
+                android:text="@string/fleur"
                 android:background="@color/white"/>
 
             <CheckBox
@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:background="@color/white"
-                android:text="en fruits"
+                android:text="@string/fruit"
                 android:layout_marginRight="10dp"/>
         </LinearLayout>
 
@@ -118,7 +118,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/custom_imput"
-        android:hint="Vos remarques..."
+        android:hint="@string/rem"
         app:layout_constraintBottom_toTopOf="@+id/btnvalideForm2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
@@ -130,7 +130,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:background="@drawable/arrondir"
-        android:text="retour"
+        android:text="@string/retour"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -144,7 +144,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="250dp"
         android:background="@drawable/arrondir"
-        android:text="valider"
+        android:text="@string/btn_next2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -156,11 +156,10 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:hint="type de lieu"
+        android:hint="@string/type_lieu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -182,11 +181,10 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginStart="32dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="32dp"
-        android:hint="surface occupée (en m2)"
+        android:hint="@string/surface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -209,11 +207,11 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+
         android:layout_marginStart="32dp"
         android:layout_marginTop="184dp"
         android:layout_marginEnd="32dp"
-        android:hint="Nombre d’individus observés"
+        android:hint="@string/individu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

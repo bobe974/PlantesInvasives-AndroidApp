@@ -38,6 +38,7 @@ public class PhotoActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 100;
     private String currentPhotoPath;
     private  String timeStamp;
+    private String ladate;
     private  GpsTracker gpsTracker;
     private double latitude, longitude;
 
@@ -56,6 +57,7 @@ public class PhotoActivity extends AppCompatActivity {
     public File createImageFile() throws IOException {
         // Create an image file name
          timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        ladate = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
@@ -111,7 +113,7 @@ public class PhotoActivity extends AppCompatActivity {
             //envoie le chemin de la photo et lance l'activity formulaire
             Intent intent = new Intent(PhotoActivity.this,FormActivity.class);
             intent.putExtra("path",currentPhotoPath);
-            intent.putExtra("date",timeStamp);
+            intent.putExtra("date",ladate);
             intent.putExtra("update","0");
 
             //recupere les données gps
@@ -158,6 +160,7 @@ public class PhotoActivity extends AppCompatActivity {
             Log.d("GETLOCATION", "latitude: "+ latitude + "longitude"+longitude);
         }else{
             gpsTracker.showSettingsAlert();
+
         }
 
     }

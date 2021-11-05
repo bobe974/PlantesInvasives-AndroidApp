@@ -123,9 +123,9 @@ public class FormActivity extends AppCompatActivity {
 
         //charge la photo dans l'imageview
         photoActivity.loadImageFromStorage(photoPath, photo);
+
         //oriente la photo dans la bonne position
         photo.setRotation(photoActivity.getPhotoOrientation(photoPath));
-
 
         //rempli le spinner
         loadSpinnerData();
@@ -267,7 +267,7 @@ public class FormActivity extends AppCompatActivity {
 
 
     /**
-     * prérempli les champs
+     * prérempli les champs et le spinner et masque les champs eleves si il n'est pas dans la base
      * @param fiche
      */
     public void loadfield(Fiche fiche, Eleve eleve){
@@ -279,6 +279,9 @@ public class FormActivity extends AppCompatActivity {
         if(eleve != null){
             nom.getEditText().setText(eleve.getNom());
             prenom.getEditText().setText(eleve.getPrenom());
+
+            //spinner
+            spinner.setText(fiche.getPlante().getNom(),false);
         }else{
             //si aucun eleve recuperer donc il est pas dans la base donc pas d'ajout ou update
                 nom.setVisibility(View.INVISIBLE);
