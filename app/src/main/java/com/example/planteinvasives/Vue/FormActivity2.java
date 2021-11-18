@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -16,11 +14,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.planteinvasives.R;
 import com.example.planteinvasives.roomDataBase.Controle;
 import com.example.planteinvasives.roomDataBase.entity.Eleve;
@@ -29,9 +25,6 @@ import com.example.planteinvasives.roomDataBase.entity.Lieu;
 import com.example.planteinvasives.roomDataBase.entity.Photographie;
 import com.example.planteinvasives.roomDataBase.entity.Plante;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /** Affiche la seconde partie du  formulaire et recupere données qui ont été complété depuis FormActivity
  *deux cas d'utilisation

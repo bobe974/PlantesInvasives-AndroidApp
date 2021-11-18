@@ -1,19 +1,7 @@
 package com.example.planteinvasives.Vue;
-
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
-
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
-
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -26,25 +14,7 @@ import androidx.core.content.ContextCompat;
 
 
 import com.example.planteinvasives.R;
-
-import com.example.planteinvasives.roomDataBase.Controle;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsRequest;
-import com.google.android.gms.location.LocationSettingsResponse;
-import com.google.android.gms.location.SettingsClient;
-import com.google.android.gms.tasks.OnCompleteListener;
-
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-
-import org.osmdroid.util.GeoPoint;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
 
 /**
  *Page principale de l'application

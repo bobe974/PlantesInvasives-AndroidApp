@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.planteinvasives.Modele.MaFiche;
 import com.example.planteinvasives.R;
-import com.example.planteinvasives.roomDataBase.entity.Fiche;
 
 import java.util.ArrayList;
 /**Classe qui gere l'affichage d'une liste

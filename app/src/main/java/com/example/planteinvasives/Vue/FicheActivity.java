@@ -1,7 +1,6 @@
 package com.example.planteinvasives.Vue;
 
 
-import android.content.Context;
 import android.content.Intent;
 
 import android.database.Cursor;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,11 +20,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.planteinvasives.Modele.MaFiche;
 import com.example.planteinvasives.R;
 import com.example.planteinvasives.roomDataBase.Controle;
-import com.example.planteinvasives.roomDataBase.entity.Eleve;
-import com.example.planteinvasives.roomDataBase.entity.Fiche;
-import com.example.planteinvasives.roomDataBase.entity.Lieu;
-import com.example.planteinvasives.roomDataBase.entity.Photographie;
-import com.example.planteinvasives.roomDataBase.entity.Plante;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;

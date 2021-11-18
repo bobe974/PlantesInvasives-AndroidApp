@@ -1,7 +1,6 @@
 package com.example.planteinvasives.Vue;
 
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 

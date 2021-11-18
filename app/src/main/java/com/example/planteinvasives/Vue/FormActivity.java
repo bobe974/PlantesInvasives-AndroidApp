@@ -1,17 +1,9 @@
 package com.example.planteinvasives.Vue;
 
-import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.location.Location;
-import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -19,16 +11,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
-import com.example.planteinvasives.Modele.MaFiche;
 import com.example.planteinvasives.R;
 import com.example.planteinvasives.roomDataBase.Controle;
 import com.example.planteinvasives.roomDataBase.entity.Eleve;
@@ -37,12 +22,7 @@ import com.example.planteinvasives.roomDataBase.entity.Lieu;
 import com.example.planteinvasives.roomDataBase.entity.Photographie;
 import com.example.planteinvasives.roomDataBase.entity.Plante;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarMenuView;
 import com.google.android.material.textfield.TextInputLayout;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
