@@ -46,6 +46,15 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Affiche la premiere partie du  formulaire
+ *Deux cas d'utilisation ->
+ * premiere insertion et cas mise a jour du formulaire
+ * cas premiere insertion: insertion basique d'un relevé
+ * cas mise a jour: prérempli les champs et listes déroulantes du formumaire
+ * @author etienne baillif
+ * @version 1.0
+ */
+
 public class FormActivity extends AppCompatActivity {
 
     private String nomEtablissement;
@@ -106,7 +115,7 @@ public class FormActivity extends AppCompatActivity {
             longitude = String.valueOf(fiche.getLieu().getLongitude());
             //prérempli les champs fu formulaire
 
-                loadfield(fiche,eleve);
+            loadfield(fiche,eleve);
 
 
         }else{
@@ -201,7 +210,7 @@ public class FormActivity extends AppCompatActivity {
 
 
     /**
-     * alimente le spinner avec la table Spinnerdata
+     * alimente une liste déroulante depuis une base de données
      */
     private void loadSpinnerData() {
         controle = Controle.getInstance(this);
@@ -224,9 +233,9 @@ public class FormActivity extends AppCompatActivity {
     }
 
     /**
-     * retourne une fiche correspondant a l'id en paramatre depuis la bdd
-     * @param id
-     * @return
+     * retourne une fiche par id depuis la bdd
+     * @param id correcpond au champs id d'une table
+     * @return un objet de type Fiche
      */
     public Fiche loadFiche(int id){
 
@@ -251,9 +260,9 @@ public class FormActivity extends AppCompatActivity {
     }
 
     /**
-     * retourne l eleve par id depuis la bdd
+     * retourne les données d'un eleve par id depuis la base de données
      * @param id
-     * @return
+     * @return un objet de type Eleve
      */
     public  Eleve loadEleve(int id){
         Cursor cursor = controle.eleveDao().getById(id);
@@ -267,8 +276,11 @@ public class FormActivity extends AppCompatActivity {
 
 
     /**
-     * prérempli les champs et le spinner et masque les champs eleves si il n'est pas dans la base
+     * prérempli les champs et une liste déroulante
+     * masque les champs nom et prenom si l'objet eleve en parametre n'est pas dans la base de données
+     * lil n'est pas dans la base
      * @param fiche
+     * @param eleve
      */
     public void loadfield(Fiche fiche, Eleve eleve){
 
@@ -284,8 +296,8 @@ public class FormActivity extends AppCompatActivity {
             spinner.setText(fiche.getPlante().getNom(),false);
         }else{
             //si aucun eleve recuperer donc il est pas dans la base donc pas d'ajout ou update
-                nom.setVisibility(View.INVISIBLE);
-                prenom.setVisibility(View.INVISIBLE);
+            nom.setVisibility(View.INVISIBLE);
+            prenom.setVisibility(View.INVISIBLE);
         }
     }
 

@@ -33,6 +33,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Affiche la seconde partie du  formulaire et recupere données qui ont été complété depuis FormActivity
+ *deux cas d'utilisation
+ * premiere insertion et cas mise a jour du formulaire
+ * cas premiere insertion: insertion basique d'un relevé
+ * cas mise a jour: prérempli les champs, listes déroulantes et checkbox du formumaire
+ * @author etienne baillif
+ * @version 1.0
+ */
 public class FormActivity2 extends AppCompatActivity {
 
     private String photopath,description, nomPlante, nom, prenom, date,nomEtablissement;
@@ -99,14 +107,13 @@ public class FormActivity2 extends AppCompatActivity {
             nomEtablissement = intent.getStringExtra("etablissement");
             etatEleve = intent.getIntExtra("etatEleve",1);
             UPDATE= Integer.parseInt(intent.getStringExtra("UPDATE"));
-            Log.d("tes recup form", "************"+ nomPlante+ photopath + nom + description + prenom );
+
         }
         if(UPDATE == 100){
 
             // recupere l'id de la fiche
-            Log.d("ID FICHE", "*******************: "+intent.getStringExtra("idfiche"));
             idfiche = Integer.parseInt(intent.getStringExtra("idfiche"));
-            Log.d("ID FICHE", "*******************: "+idfiche);
+
             // regle les spinners sur la bonne position
             spinnerLieu.setText(intent.getStringExtra("typelieu"),false);
             spinnerIndividu.setText(intent.getStringExtra("nbindividu"),false);
@@ -123,17 +130,15 @@ public class FormActivity2 extends AppCompatActivity {
             remarques.setText(intent.getStringExtra("remarques"));
 
         }
-            latitude = Double.parseDouble(intent.getStringExtra("latitude"));
-            longitude = Double.parseDouble(intent.getStringExtra("longitude"));
-
-        Log.d("latitude longi", "************** latitude="+latitude +"longitude"+longitude);
+        latitude = Double.parseDouble(intent.getStringExtra("latitude"));
+        longitude = Double.parseDouble(intent.getStringExtra("longitude"));
 
         //evenements
         btnvalider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //insertion dans la base de données
 
+                //insertion dans la base de données
                 //recupere les valeurs checkboxes
                 verifEtat();
                 verifstade();
@@ -155,20 +160,15 @@ public class FormActivity2 extends AppCompatActivity {
                     //si les champs de l'eleve sont pas vides et option eleve desactiver, on update
                     if(etatEleve == 0 && nom.length() != 0 && prenom.length() !=0){
                         //TODO si existant dans la base on update
-
-                        Log.d("CAS UPDATE ELEVE", "******:"+ idfiche +nom+prenom);
                         controle.eleveDao().update(new Eleve(idfiche,nom,prenom));
                     }else{
                         // TODO sinon on insert dans la base l'eleve
 
                     }
-
-                    Log.d("CAS UPDATE", "******onClick:");
                     Toast.makeText(getApplicationContext(), "fiche mis à jour", Toast.LENGTH_SHORT).show();
 
                 }else{
                     /********* cas premiere insertion*******/
-                    Log.d("CAS INSERT", "******ETAB:"+ nomEtablissement);
                     controle.ficheDao().insert(new Fiche(nomEtablissement));
                     controle.photoDao().insert(unephoto);
                     controle.planteDao().insert(uneplante);
@@ -234,7 +234,8 @@ public class FormActivity2 extends AppCompatActivity {
     }
 
     /**
-     *
+     *vérifie si les checkboxs etat sont cochés
+     * si c'est le cas on recupere son libellé
      */
     public void verifEtat(){
         if (vegetatif.isChecked()){
@@ -249,7 +250,8 @@ public class FormActivity2 extends AppCompatActivity {
     }
 
     /**
-     *
+     *vérifie si les checkboxs stade sont cochés
+     * si c'est le cas on recupere son libellé
      */
     public void verifstade(){
         if (plantule.isChecked()){
@@ -264,9 +266,9 @@ public class FormActivity2 extends AppCompatActivity {
     }
 
     /**
-     * met a jour la position du spinner
-     * @param spinner
-     * @param target
+     * met à jour la position d'une liste déroulante
+     * @param spinner liste déroulante du formulaire
+     * @param target  champ a afficher
      * @param nbrow
      */
     public void updatePosSpinner(Spinner spinner, String target,int nbrow){
@@ -281,11 +283,8 @@ public class FormActivity2 extends AppCompatActivity {
         spinner.setSelection(row);
     }
 
-    /******************TEST ***********************/
-
-    /******************TEST ***********************/
     /**
-     * coche les checkboxes par rapport au champs de la bdd
+     * coche les checkboxs par rapport au champ récupéré  depuis la base de données
      * @param checkBox
      * @param target
      */

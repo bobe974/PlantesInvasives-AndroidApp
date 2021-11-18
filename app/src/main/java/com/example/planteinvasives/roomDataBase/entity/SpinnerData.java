@@ -4,6 +4,10 @@ import androidx.room.Entity;
 import androidx.room.OnConflictStrategy;
 import androidx.room.PrimaryKey;
 
+/** Table contenant les 5 champs des noms des especes
+ * @author etienne baillif
+ * @version 1.0
+ */
 @Entity
 public class SpinnerData {
 

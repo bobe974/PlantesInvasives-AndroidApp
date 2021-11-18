@@ -33,7 +33,11 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-
+/**
+ *Classe pour qui contient les fonctions liée a la prise de photo
+ * @author etienne baillif
+ * @version 1.0
+ */
 public class PhotoActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 100;
     private String currentPhotoPath;
@@ -50,13 +54,13 @@ public class PhotoActivity extends AppCompatActivity {
     }
 
     /**
-     * créer un fichier unique
-     * @return
+     * créer un fichier avec un nom unique dans le stockage interne de l'appareil
+     * @return un objet de type File
      * @throws IOException
      */
     public File createImageFile() throws IOException {
         // Create an image file name
-         timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         ladate = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
@@ -71,7 +75,7 @@ public class PhotoActivity extends AppCompatActivity {
         return image;
     }
 
-    /**
+    /** Lance l’appareil photo existant
      *
      */
     private void dispatchTakePictureIntent() {
@@ -130,7 +134,7 @@ public class PhotoActivity extends AppCompatActivity {
 
     /**
      * charge une image depuis un dossier et l'affecte dans un Imageview
-     * @param path
+     * @param path chemin du fichier
      */
     public static void loadImageFromStorage(String path, ImageView image)
     {
@@ -155,8 +159,8 @@ public class PhotoActivity extends AppCompatActivity {
     public void getLocation(){
         gpsTracker = new GpsTracker(PhotoActivity.this);
         if(gpsTracker.canGetLocation()){
-             latitude = gpsTracker.getLatitude();
-             longitude = gpsTracker.getLongitude();
+            latitude = gpsTracker.getLatitude();
+            longitude = gpsTracker.getLongitude();
             Log.d("GETLOCATION", "latitude: "+ latitude + "longitude"+longitude);
         }else{
             gpsTracker.showSettingsAlert();
@@ -166,7 +170,7 @@ public class PhotoActivity extends AppCompatActivity {
     }
 
     /**
-     * donne la position de la photo
+     * donne la position et l'orientation  de la photo
      * @param imagePath
      * @return
      */

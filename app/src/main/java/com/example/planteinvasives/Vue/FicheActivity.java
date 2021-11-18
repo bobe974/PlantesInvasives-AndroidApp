@@ -31,8 +31,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
+/** classe qui permet d'afficher la liste des fiches
+ *
+ *
+ * @author etienne baillif
+ * @version 1.0
+ */
 
 public class FicheActivity extends AppCompatActivity {
+
     private ListView mListView;
     private MyArrayAdapter mAdapter;
     //contient toutes les fiches qui seront récupérées depuis la bdd
@@ -48,11 +55,11 @@ public class FicheActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fiche);
 
-        /************************TEST************************/
+
         //recupere toutes les fiches depuis la bdd
         controle = Controle.getInstance(FicheActivity.this);
         lesfiches = new ArrayList<>();
-       cursor = controle.ficheDao().getAll();
+        cursor = controle.ficheDao().getAll();
 
         //parcours du cursor
         cursor.moveToFirst();
@@ -62,13 +69,12 @@ public class FicheActivity extends AppCompatActivity {
         }
         cursor.close();
 
-        /************************TEST************************/
 
         mListView = (ListView) findViewById(R.id.listeFiche);
         mAdapter = new MyArrayAdapter(this, (ArrayList<MaFiche>) lesfiches);
         mListView.setAdapter(mAdapter);
 
-       mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
                 /************************TEST************************/

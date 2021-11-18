@@ -13,6 +13,11 @@ import com.example.planteinvasives.R;
 import com.example.planteinvasives.roomDataBase.entity.Fiche;
 
 import java.util.ArrayList;
+/**Classe qui gere l'affichage d'une liste
+ *dont les données à afficher dans chaque listItem d'une Listview
+ * @author etienne baillif
+ * @version 1.0
+ */
 
 public class MyArrayAdapter extends ArrayAdapter<MaFiche> {
 
@@ -60,4 +65,4 @@ public class MyArrayAdapter extends ArrayAdapter<MaFiche> {
 
         return cellView;
     }
-    }
+}

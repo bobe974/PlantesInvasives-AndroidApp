@@ -19,7 +19,12 @@ import android.util.Log;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
-
+/**
+ *Classe qui permet d'utiliser la geoloccation  par la classe LocationManager
+ * pour récupérer les données, la  lattitude et la longitude
+ * @author etienne baillif
+ * @version 1.0
+ */
 public class GpsTracker extends Service implements LocationListener {
     private final Context mContext;
 
@@ -32,17 +37,17 @@ public class GpsTracker extends Service implements LocationListener {
     // flag for GPS status
     boolean canGetLocation = false;
 
-    Location location; // location
-    double latitude; // latitude
-    double longitude; // longitude
+    Location location;
+    double latitude;
+    double longitude;
 
-    // The minimum distance to change Updates in meters
+    // distance minimum en metre pour mettre a jour
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
 
-    // The minimum time between updates in milliseconds
+    // temps minimum entre mise a jours
     private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1; // 1 minute
 
-    // Declaring a Location Manager
+    // Location manager
     protected LocationManager locationManager;
 
     public GpsTracker(Context context) {
@@ -50,24 +55,28 @@ public class GpsTracker extends Service implements LocationListener {
         getLocation();
     }
 
+    /**
+     *
+     * @return Location
+     */
     public Location getLocation() {
         try {
             locationManager = (LocationManager) mContext.getSystemService(LOCATION_SERVICE);
 
-            // getting GPS status
+            // statut du gps
             isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
-            // getting network status
+            //statut du réseau
             isNetworkEnabled = locationManager
                     .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
             if (!isGPSEnabled && !isNetworkEnabled) {
-                // no network provider is enabled
+                // aucun provider trouvé
             } else {
                 this.canGetLocation = true;
-                // First get location from Network Provider
+
                 if (isNetworkEnabled) {
-                    //check the network permission
+                    //vérifie les permissions
                     if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         ActivityCompat.requestPermissions((Activity) mContext, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
                     }
@@ -76,7 +85,6 @@ public class GpsTracker extends Service implements LocationListener {
                             MIN_TIME_BW_UPDATES,
                             MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
 
-                    Log.d("Network", "Network");
                     if (locationManager != null) {
                         location = locationManager
                                 .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
@@ -88,7 +96,7 @@ public class GpsTracker extends Service implements LocationListener {
                     }
                 }
 
-                // if GPS Enabled get lat/long using GPS Services
+                // si le gps est activé on recupere les données la lattitude et la longitude
                 if (isGPSEnabled) {
                     if (location == null) {
                         //check the network permission
@@ -121,10 +129,6 @@ public class GpsTracker extends Service implements LocationListener {
         return location;
     }
 
-    /**
-     * Stop using GPS listener
-     * Calling this function will stop using GPS in your app
-     * */
 
     public void stopUsingGPS(){
         if(locationManager != null){
@@ -134,6 +138,7 @@ public class GpsTracker extends Service implements LocationListener {
 
     /**
      * retourne la latitude
+     * @return la latitude
      * */
 
     public double getLatitude(){
@@ -147,6 +152,7 @@ public class GpsTracker extends Service implements LocationListener {
 
     /**
      * retourne la longitude
+     * @return longitude
      * */
 
     public double getLongitude(){
@@ -168,7 +174,7 @@ public class GpsTracker extends Service implements LocationListener {
     }
 
     /**
-     * affiche le message d'alerte pour activer la localisation
+     * affiche le message d'alerte qui indique d'activer la localisation
      *
      * */
 

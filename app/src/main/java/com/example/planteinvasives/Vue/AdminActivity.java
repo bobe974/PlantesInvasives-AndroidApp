@@ -24,6 +24,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
+/** Page d'administration de l'application
+ *
+ *
+ * @author etienne baillif
+ * @version 1.0
+ */
 
 public class AdminActivity extends AppCompatActivity {
     private  int etatEleve = 0;
@@ -52,7 +58,7 @@ public class AdminActivity extends AppCompatActivity {
         //reset = findViewById(R.id.reset);
 
         //preremplir les champs
-            remplirChamps();
+        remplirChamps();
 
         //recupere var etat et coche suivant son etat au demarrage de l'activité
         SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
@@ -94,7 +100,7 @@ public class AdminActivity extends AppCompatActivity {
 
             }
         });
-        
+
 
         //Gestion de la navbar
         navbar = (BottomNavigationView) findViewById(R.id.bottom_navigation_admin);
@@ -128,6 +134,9 @@ public class AdminActivity extends AppCompatActivity {
         navbar.setOnNavigationItemSelectedListener(eventNav);
     }
 
+    /**
+     * alimente avec le nom des especes les champs du formulaire depuis une base de données
+     */
     public void remplirChamps(){
         ArrayList<SpinnerData> lesplantes = new ArrayList<SpinnerData>();
         Cursor cursor = controle.spinnerDataDao().getAll();
@@ -154,10 +163,10 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     /**
-     * remets les champs et checkbox par defaut
+     * remets les champs et checkbox par défaut
      */
     public void resetField(){
-        nomPlante1.setError("reeur");
+        nomPlante1.setError("erreur");
         nomPlante1.getEditText().getText().clear();
         nomPlante2.getEditText().getText().clear();
         nomPlante3.getEditText().getText().clear();

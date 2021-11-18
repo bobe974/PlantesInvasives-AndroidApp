@@ -1,15 +1,10 @@
 package com.example.planteinvasives.roomDataBase;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.room.Database;
-import androidx.room.OnConflictStrategy;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.planteinvasives.roomDataBase.DAO.EleveDao;
 import com.example.planteinvasives.roomDataBase.DAO.FicheDao;
@@ -24,7 +19,10 @@ import com.example.planteinvasives.roomDataBase.entity.Photographie;
 import com.example.planteinvasives.roomDataBase.entity.Plante;
 import com.example.planteinvasives.roomDataBase.entity.SpinnerData;
 
-
+/** Classe du controlleur de la base de donénes
+ * @author etienne baillif
+ * @version 1.0
+ */
 @Database(entities = {Fiche.class, Plante.class, Photographie.class, Lieu.class, Eleve.class, SpinnerData.class}, version = 1, exportSchema = false)
 public abstract class Controle extends RoomDatabase {
 
@@ -43,6 +41,12 @@ public abstract class Controle extends RoomDatabase {
 
 
     // --- INSTANCE --- sinlgeton
+
+    /**
+     * singleton qui permet d'avoir une instance unique du controlleur
+     * @param context
+     * @return un Controleur
+     */
     public static synchronized Controle getInstance(Context context) {
         if (INSTANCE == null) {
             synchronized (Controle.class) {

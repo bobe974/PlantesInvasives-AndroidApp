@@ -3,6 +3,10 @@ package com.example.planteinvasives.roomDataBase.entity;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+/** Classe correspondant a la table Eleve de la base de données
+ * @author etienne baillif
+ * @version 1.0
+ */
 @Entity
 public class Eleve {
     @PrimaryKey

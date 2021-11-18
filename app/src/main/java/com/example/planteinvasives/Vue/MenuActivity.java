@@ -46,7 +46,11 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-
+/**
+ *Page principale de l'application
+ * @author etienne baillif
+ * @version 1.0
+ */
 public class MenuActivity extends AppCompatActivity {
 
 
@@ -70,25 +74,15 @@ public class MenuActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        /**
-        try {
-            if(ContextCompat.checkSelfPermission(this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
-                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CAMERA},100);
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-**/
         //verifie si la localisation fonctionne et est activé
         gpsTracker = new GpsTracker(MenuActivity.this);
         if(gpsTracker.canGetLocation()){
             double latitude = gpsTracker.getLatitude();
             double longitude = gpsTracker.getLongitude();
-           Toast.makeText(this,"lattitude:"+latitude + " Longitude"+longitude,Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"lattitude:"+latitude + " Longitude"+longitude,Toast.LENGTH_SHORT).show();
         }else {
             gpsTracker.showSettingsAlert();
         }
-
 
         btncreateFiche = (Button) findViewById(R.id.btnNewFiche);
         btnFiche = (Button) findViewById(R.id.btnFiches);

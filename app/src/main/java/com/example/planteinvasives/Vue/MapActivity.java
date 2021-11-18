@@ -21,7 +21,13 @@ import org.osmdroid.views.overlay.ItemizedOverlayWithFocus;
 import org.osmdroid.views.overlay.OverlayItem;
 
 import java.util.ArrayList;
-
+/**
+ *Classe qui charge la map Openstreetmap
+ * utilise les données gps pour centrer la map a la position de l'utilisateur
+ * permet une tracabilité des relevés en affichant des marqueurs sur la carte
+ * @author etienne baillif
+ * @version 1.0
+ */
 public class MapActivity extends AppCompatActivity {
 
     private MapView map;
@@ -84,8 +90,8 @@ public class MapActivity extends AppCompatActivity {
 
 
         //OverlayItem home = new OverlayItem("nom plante","sous titre", new GeoPoint(-21.16493,55.308284));
-       // Drawable m =  home.getMarker(0); //forme du marqueur
-       // items.add(home);
+        // Drawable m =  home.getMarker(0); //forme du marqueur
+        // items.add(home);
 
         //items.add(new OverlayItem("point2", "soustitre",new GeoPoint(-22.233,55.7373)));
 
