@@ -1,10 +1,15 @@
 package com.example.planteinvasives.Vue;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -100,11 +105,55 @@ public class MenuActivity extends AppCompatActivity {
                         Intent intent2 = new Intent(MenuActivity.this, PhotoActivity.class);
                         startActivity(intent2);
                         return true;
-
+                    /******************/
                     case R.id.MenuProfil:
-                        Intent intent3 = new Intent(MenuActivity.this, AdminActivity.class);
-                        startActivity(intent3);
+                        //protégé par un mot de passe
+                        String mdp = "gabon";
+
+                        // on recupere la vue de la fenetre contextuelle
+                        LayoutInflater li = LayoutInflater.from(MenuActivity.this);
+                        View promptsView = li.inflate(R.layout.prompts, null);
+
+                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                                MenuActivity.this);
+
+                        // on ajoute la fenetre a  alertdialog builder
+                        alertDialogBuilder.setView(promptsView);
+
+                        final EditText pssword = (EditText) promptsView
+                                .findViewById(R.id.passwordField);
+
+                        // ajout de la boite de dialogue
+                        alertDialogBuilder
+                                .setCancelable(false)
+                                .setPositiveButton("OK",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                // get user input and set it to result
+                                                System.out.println("mdp: "+ pssword.getText().toString());
+                                                if(pssword.getText().toString().equals(mdp)){
+                                                    Intent intent3 = new Intent(MenuActivity.this, AdminActivity.class);
+                                                    startActivity(intent3);
+                                                }else {
+                                                    Toast.makeText(getApplicationContext(), "Mot de passe Invalide", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        })
+                                .setNegativeButton("Annuler",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog,int id) {
+                                                dialog.cancel();
+                                            }
+                                        });
+
+                        // alert dialog
+                        AlertDialog alertDialog = alertDialogBuilder.create();
+
+                        // affichage
+                        alertDialog.show();
+
                         return true;
+                        /**********************/
 
                     case R.id.MenuMap:
                         Intent intent4 = new Intent(MenuActivity.this, MapActivity.class);

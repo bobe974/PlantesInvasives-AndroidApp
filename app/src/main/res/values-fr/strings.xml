@@ -18,12 +18,12 @@
     <string name="stade">Stade de croissance</string>
     <string name="plantule">Plantule</string>
     <string name="jplant">Jeune plant</string>
-    <string name="plant">Plant</string>
+    <string name="plant">Plant adulte</string>
     <string name="etatplant">État des plants</string>
     <string name="vege">Végétatif</string>
     <string name="fruit">En fruits</string>
     <string name="fleur">En fleurs</string>
-    <string name="rem">Vos remarques...</string>
+    <string name="rem">Remarques</string>
     <string name="retour">Retour</string>
     <string name="btn_next2">Valider</string>
 
@@ -34,6 +34,6 @@
     <string name="p3">Nom espèce n°3</string>
     <string name="p4">Nom espèce n°4</string>
     <string name="p5">Nom espèce n°5</string>
-    <string name="info">Retirer info élève</string>
+    <string name="info">Retirer infos d’identification</string>
 
 </resources>

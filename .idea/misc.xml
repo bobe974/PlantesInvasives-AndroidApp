@@ -24,6 +24,7 @@
         <entry key="app/src/main/res/layout/activity_fiche.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_form.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_form2.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_launch.xml" value="0.213768115942029" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.125" />
         <entry key="app/src/main/res/layout/activity_map.xml" value="0.17119565217391305" />
@@ -37,21 +38,25 @@
         <entry key="app/src/main/res/layout/fragment_mainn.xml" value="0.125" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.12760416666666666" />
         <entry key="app/src/main/res/layout/navbar.xml" value="0.1703125" />
+        <entry key="app/src/main/res/layout/prompts.xml" value="0.20969202898550723" />
         <entry key="app/src/main/res/layout/test.xml" value="0.19021739130434784" />
         <entry key="app/src/main/res/layout/testform.xml" value="0.25" />
         <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.246875" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.246875" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.165" />
         <entry key="app/src/main/res/menu/main.xml" value="0.246875" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
         <entry key="app/src/main/res/xml/file_paths.xml" value="0.1671875" />
       </map>
     </option>
   </component>
   <component name="JavadocGenerationManager">
-    <option name="OUTPUT_DIRECTORY" value="$USER_HOME$/Desktop/cours/projet TER/javadoc" />
+    <option name="OUTPUT_DIRECTORY" value="$USER_HOME$/Desktop/cours/projet TER/javadocfinal" />
     <option name="OPTION_SCOPE" value="private" />
     <option name="OPTION_DOCUMENT_TAG_AUTHOR" value="true" />
     <option name="OPTION_DOCUMENT_TAG_VERSION" value="true" />
+    <option name="OTHER_OPTIONS" value="-classpath /Users/etienne/Library/Android/sdk/platforms/android-31/android.jar" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />

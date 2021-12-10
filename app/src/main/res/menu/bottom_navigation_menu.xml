@@ -14,7 +14,7 @@
         android:id="@+id/MenuProfil"
         android:enabled="true"
         android:icon="@drawable/baseline_manage_accounts_black_48dp"
-        android:title="Option"/>
+        android:title="Paramètres"/>
     <item
         android:id="@+id/MenuMap"
         android:enabled="true"
