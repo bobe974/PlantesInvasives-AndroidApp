@@ -20,6 +20,13 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="roundImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+        <item name="color">@color/white</item>
+    </style>
+
+
     <style name="Theme.PlanteInvasives.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.PlanteInvasives.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
