@@ -92,7 +92,9 @@
         <activity
             android:name=".vue.activity.AdminActivity"
             android:parentActivityName=".vue.activity.MenuActivity"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.PlanteInvasives.NoActionBar">
+
         </activity>
         <activity
             android:name=".vue.activity.MapActivity"

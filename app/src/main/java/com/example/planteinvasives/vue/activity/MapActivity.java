@@ -3,6 +3,7 @@ package com.example.planteinvasives.vue.activity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
@@ -40,6 +41,8 @@ public class MapActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //page en plein ecran
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         //instance opensstreetmap
         Configuration.getInstance().load(getApplicationContext(),
