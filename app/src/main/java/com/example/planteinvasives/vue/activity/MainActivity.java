@@ -1,4 +1,4 @@
-package com.example.planteinvasives.Vue;
+package com.example.planteinvasives.vue.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;

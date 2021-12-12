@@ -1,4 +1,4 @@
-package com.example.planteinvasives.Vue;
+package com.example.planteinvasives.vue.activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 import com.example.planteinvasives.BuildConfig;
+import com.example.planteinvasives.geolocalisation.GpsTracker;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -29,7 +31,7 @@ public class PhotoActivity extends AppCompatActivity {
     private String currentPhotoPath;
     private  String timeStamp;
     private String ladate;
-    private  GpsTracker gpsTracker;
+    private GpsTracker gpsTracker;
     private double latitude, longitude;
 
     @Override
@@ -100,7 +102,7 @@ public class PhotoActivity extends AppCompatActivity {
 
             Log.d("CHEMIN PHOTO***********", currentPhotoPath);
             //envoie le chemin de la photo et lance l'activity formulaire
-            Intent intent = new Intent(PhotoActivity.this,FormActivity.class);
+            Intent intent = new Intent(PhotoActivity.this, FormActivity.class);
             intent.putExtra("path",currentPhotoPath);
             intent.putExtra("date",ladate);
             intent.putExtra("update","0");
@@ -112,7 +114,7 @@ public class PhotoActivity extends AppCompatActivity {
             startActivity(intent);
         }else{
 
-            Intent intent = new Intent(PhotoActivity.this,MenuActivity.class);
+            Intent intent = new Intent(PhotoActivity.this, MenuActivity.class);
             startActivity(intent);
         }
     }

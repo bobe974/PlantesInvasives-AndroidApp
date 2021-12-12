@@ -1,4 +1,4 @@
-package com.example.planteinvasives.Vue;
+package com.example.planteinvasives.vue.activity;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
 import com.example.planteinvasives.R;
+import com.example.planteinvasives.geolocalisation.GpsTracker;
 import com.example.planteinvasives.roomDataBase.Controle;
 
 import org.osmdroid.api.IMapController;

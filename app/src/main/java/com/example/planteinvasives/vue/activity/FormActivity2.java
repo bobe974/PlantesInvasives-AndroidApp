@@ -1,4 +1,4 @@
-package com.example.planteinvasives.Vue;
+package com.example.planteinvasives.vue.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -183,7 +183,7 @@ public class FormActivity2 extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "fiche enregistré !", Toast.LENGTH_SHORT).show();
                 }
 
-                Intent intent = new Intent(FormActivity2.this,MenuActivity.class);
+                Intent intent = new Intent(FormActivity2.this, MenuActivity.class);
                 startActivity(intent);
 
             }

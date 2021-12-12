@@ -1,4 +1,4 @@
-package com.example.planteinvasives.Vue;
+package com.example.planteinvasives.vue.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -130,7 +130,7 @@ public class FormActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 //envoie et lance l'activity activityform2
-                Intent intent = new Intent(FormActivity.this,FormActivity2.class);
+                Intent intent = new Intent(FormActivity.this, FormActivity2.class);
                 intent.putExtra("photopath",photoPath);
                 intent.putExtra("date",date);
                 intent.putExtra("description",description.getEditText().getText().toString());

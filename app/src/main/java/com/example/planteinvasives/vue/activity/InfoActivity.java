@@ -1,4 +1,4 @@
-package com.example.planteinvasives.Vue;
+package com.example.planteinvasives.vue.activity;
 
 import android.os.Bundle;
 import android.view.WindowManager;
@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.planteinvasives.R;
-import com.example.planteinvasives.Vue.adapter.MyViewPagerAdapter;
+import com.example.planteinvasives.vue.adapter.MyViewPagerAdapter;
 
 
 public class InfoActivity extends AppCompatActivity {

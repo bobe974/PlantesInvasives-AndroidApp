@@ -47,13 +47,13 @@
         android:roundIcon="@drawable/launchicon"
         android:supportsRtl="true"
         android:theme="@style/Theme.PlanteInvasives" >
-        <activity android:name=".Vue.MainActivity" >
+        <activity android:name=".vue.activity.MainActivity" >
         </activity>
         <activity
-            android:name=".Vue.MenuActivity"
+            android:name=".vue.activity.MenuActivity"
             android:exported="true"
             android:launchMode="singleTask"
-            android:parentActivityName=".Vue.MainActivity"
+            android:parentActivityName=".vue.activity.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.PlanteInvasives.NoActionBar">
             <intent-filter>
@@ -63,45 +63,45 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Vue.FormActivity"
+            android:name=".vue.activity.FormActivity"
             android:launchMode="singleTask"
-            android:parentActivityName=".Vue.MenuActivity"
+            android:parentActivityName=".vue.activity.MenuActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.PlanteInvasives.NoActionBar">
         </activity>
         <activity
-            android:name=".Vue.PhotoActivity"
-            android:parentActivityName=".Vue.MenuActivity"
+            android:name=".vue.activity.PhotoActivity"
+            android:parentActivityName=".vue.activity.MenuActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.PlanteInvasives.NoActionBar"
             >
         </activity>
         <activity
-            android:name=".Vue.FicheActivity"
+            android:name=".vue.activity.FicheActivity"
             android:launchMode="singleTask"
-            android:parentActivityName=".Vue.MenuActivity"
+            android:parentActivityName=".vue.activity.MenuActivity"
             >
         </activity>
         <activity
-            android:name=".Vue.FormActivity2"
-            android:parentActivityName=".Vue.MenuActivity"
+            android:name=".vue.activity.FormActivity2"
+            android:parentActivityName=".vue.activity.MenuActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.PlanteInvasives.NoActionBar">
         </activity>
         <activity
-            android:name=".Vue.AdminActivity"
-            android:parentActivityName=".Vue.MenuActivity"
+            android:name=".vue.activity.AdminActivity"
+            android:parentActivityName=".vue.activity.MenuActivity"
             android:launchMode="singleTask">
         </activity>
         <activity
-            android:name=".Vue.MapActivity"
-            android:parentActivityName=".Vue.MenuActivity"
+            android:name=".vue.activity.MapActivity"
+            android:parentActivityName=".vue.activity.MenuActivity"
             android:launchMode="singleTask">
         </activity>
         <activity
-            android:name=".Vue.InfoActivity"
-            android:parentActivityName=".Vue.MenuActivity"
+            android:name=".vue.activity.InfoActivity"
+            android:parentActivityName=".vue.activity.MenuActivity"
             android:launchMode="singleTask"
             android:theme="@style/Theme.PlanteInvasives.NoActionBar">
         </activity>
@@ -119,7 +119,7 @@
         </provider>
 
         <service
-            android:name=".Vue.MenuActivity"
+            android:name=".vue.activity.MenuActivity"
             android:foregroundServiceType="location"  >
         <!-- Any inner elements would go here. -->
     </service>

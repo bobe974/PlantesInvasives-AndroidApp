@@ -1,6 +1,4 @@
-package com.example.planteinvasives.Vue;
-
-import static android.content.Context.LOCATION_SERVICE;
+package com.example.planteinvasives.geolocalisation;
 
 import android.Manifest;
 import android.app.Activity;

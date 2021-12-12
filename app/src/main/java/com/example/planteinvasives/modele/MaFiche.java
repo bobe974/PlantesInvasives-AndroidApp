@@ -1,4 +1,4 @@
-package com.example.planteinvasives.Modele;
+package com.example.planteinvasives.modele;
 
 public class MaFiche {
     private int id;

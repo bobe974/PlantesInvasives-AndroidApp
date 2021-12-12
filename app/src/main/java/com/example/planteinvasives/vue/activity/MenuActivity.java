@@ -1,10 +1,9 @@
-package com.example.planteinvasives.Vue;
+package com.example.planteinvasives.vue.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +18,7 @@ import androidx.core.content.ContextCompat;
 
 
 import com.example.planteinvasives.R;
+import com.example.planteinvasives.geolocalisation.GpsTracker;
 import com.example.planteinvasives.roomDataBase.Controle;
 import com.example.planteinvasives.roomDataBase.entity.SpinnerData;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -50,7 +50,7 @@ public class MenuActivity extends AppCompatActivity {
         List<SpinnerData> users;
         users = controle.spinnerDataDao().getAllUser();
         if (!(users.size()>0)) {
-            startActivity(new Intent(this,InfoActivity.class));
+            startActivity(new Intent(this, InfoActivity.class));
         }
 
         try {
@@ -97,7 +97,7 @@ public class MenuActivity extends AppCompatActivity {
         btnMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MenuActivity.this,MapActivity.class);
+                Intent intent = new Intent(MenuActivity.this, MapActivity.class);
                 startActivity(intent);
             }
         });

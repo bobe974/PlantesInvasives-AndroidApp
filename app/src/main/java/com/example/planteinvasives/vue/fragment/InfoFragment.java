@@ -1,4 +1,4 @@
-package com.example.planteinvasives.Vue.Fragment;
+package com.example.planteinvasives.vue.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.planteinvasives.R;
-import com.example.planteinvasives.Vue.MenuActivity;
+import com.example.planteinvasives.vue.activity.MenuActivity;
 
 public class InfoFragment extends Fragment {
 

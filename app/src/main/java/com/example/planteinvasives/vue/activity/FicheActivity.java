@@ -1,4 +1,4 @@
-package com.example.planteinvasives.Vue;
+package com.example.planteinvasives.vue.activity;
 
 
 import android.content.Intent;
@@ -17,9 +17,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.planteinvasives.Modele.MaFiche;
+import com.example.planteinvasives.modele.MaFiche;
 import com.example.planteinvasives.R;
-import com.example.planteinvasives.Vue.adapter.MyArrayAdapter;
+import com.example.planteinvasives.vue.adapter.MyArrayAdapter;
 import com.example.planteinvasives.roomDataBase.Controle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -78,7 +78,7 @@ public class FicheActivity extends AppCompatActivity {
 
                 //envoie des données a ficheActivity
                 /************************TEST************************/
-                Intent intent = new Intent(FicheActivity.this,FormActivity.class);
+                Intent intent = new Intent(FicheActivity.this, FormActivity.class);
                 intent.putExtra("idfiche",idFiche);
                 intent.putExtra("update","100");
                 startActivity(intent);

@@ -1,4 +1,4 @@
-package com.example.planteinvasives.Vue.adapter;
+package com.example.planteinvasives.vue.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,9 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.planteinvasives.Modele.MaFiche;
+import com.example.planteinvasives.modele.MaFiche;
 import com.example.planteinvasives.R;
-import com.example.planteinvasives.Vue.PhotoActivity;
+import com.example.planteinvasives.vue.activity.PhotoActivity;
 
 import java.util.ArrayList;
 /**Classe qui gere l'affichage d'une liste

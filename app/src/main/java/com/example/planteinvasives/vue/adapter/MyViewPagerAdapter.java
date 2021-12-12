@@ -1,11 +1,11 @@
-package com.example.planteinvasives.Vue.adapter;
+package com.example.planteinvasives.vue.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.planteinvasives.Vue.Fragment.InfoFragment;
+import com.example.planteinvasives.vue.fragment.InfoFragment;
 
 public class MyViewPagerAdapter extends FragmentPagerAdapter {
 
