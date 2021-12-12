@@ -99,6 +99,15 @@
             android:parentActivityName=".Vue.MenuActivity"
             android:launchMode="singleTask">
         </activity>
+        <activity
+            android:name=".Vue.InfoActivity"
+            android:parentActivityName=".Vue.MenuActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.PlanteInvasives.NoActionBar">
+        </activity>
+
+
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

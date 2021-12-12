@@ -25,4 +25,8 @@ public interface SpinnerDataDao {
     @Query("select * from spinnerdata")
     Cursor getAll();
 
+    @Query("select * from spinnerdata")
+    List<SpinnerData> getAllUser();
+
+
 }

@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.planteinvasives.Modele.MaFiche;
 import com.example.planteinvasives.R;
+import com.example.planteinvasives.Vue.adapter.MyArrayAdapter;
 import com.example.planteinvasives.roomDataBase.Controle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

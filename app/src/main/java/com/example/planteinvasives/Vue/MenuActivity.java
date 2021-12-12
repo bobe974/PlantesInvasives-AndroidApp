@@ -19,7 +19,11 @@ import androidx.core.content.ContextCompat;
 
 
 import com.example.planteinvasives.R;
+import com.example.planteinvasives.roomDataBase.Controle;
+import com.example.planteinvasives.roomDataBase.entity.SpinnerData;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.List;
 
 /**
  *Page principale de l'application
@@ -33,6 +37,7 @@ public class MenuActivity extends AppCompatActivity {
     private BottomNavigationView navbar;
     private BottomNavigationView.OnNavigationItemSelectedListener eventNav;
     GpsTracker gpsTracker;
+    Controle controle;
 
 
     @Override
@@ -40,6 +45,13 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+        //lance la page de premiere utilisation si la base de données est vide
+        controle = Controle.getInstance(this);
+        List<SpinnerData> users;
+        users = controle.spinnerDataDao().getAllUser();
+        if (!(users.size()>0)) {
+            startActivity(new Intent(this,InfoActivity.class));
+        }
 
         try {
             if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
