@@ -3,7 +3,6 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,7 +12,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/nomEtablissement"
+        android:id="@+id/FnomEtablissement"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -42,7 +41,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/PNameSpinner"
+        android:id="@+id/FNameSpinner"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -60,7 +59,7 @@
         app:helperTextTextColor="#D1291D"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nomEtablissement">       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
+        app:layout_constraintTop_toBottomOf="@id/FnomEtablissement">       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
 
 
         <com.google.android.material.textfield.TextInputEditText
@@ -70,7 +69,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/PNameSpinner1"
+        android:id="@+id/FNameSpinner1"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -88,7 +87,7 @@
         app:helperTextTextColor="#D1291D"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/PNameSpinner">       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
+        app:layout_constraintTop_toBottomOf="@id/FNameSpinner">       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
 
 
         <com.google.android.material.textfield.TextInputEditText
@@ -98,7 +97,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/PNameSpinner2"
+        android:id="@+id/FNameSpinner2"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -115,7 +114,7 @@
         app:helperTextTextColor="#D1291D"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/PNameSpinner1"
+        app:layout_constraintTop_toBottomOf="@id/FNameSpinner1"
 
         >       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
 
@@ -127,7 +126,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/PNameSpinner3"
+        android:id="@+id/FNameSpinner3"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -144,7 +143,7 @@
         app:helperTextTextColor="#D1291D"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/PNameSpinner2"
+        app:layout_constraintTop_toBottomOf="@id/FNameSpinner2"
 
         >       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
 
@@ -156,7 +155,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/PNameSpinner4"
+        android:id="@+id/FNameSpinner4"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -173,7 +172,7 @@
         app:helperTextTextColor="#D1291D"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/PNameSpinner3"
+        app:layout_constraintTop_toBottomOf="@id/FNameSpinner3"
 
         >       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
 
@@ -186,7 +185,7 @@
 
 
     <Button
-        android:id="@+id/btnconfirme"
+        android:id="@+id/Fbtnconfirme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -194,12 +193,11 @@
         android:layout_marginBottom="50dp"
         android:background="@drawable/arrondir"
         android:text="@string/btn_next2"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_admin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PNameSpinner4" />
+        app:layout_constraintTop_toBottomOf="@+id/FNameSpinner4" />
 
     <CheckBox
-        android:id="@+id/checkBoxEleve"
+        android:id="@+id/FcheckBoxEleve"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -208,21 +206,13 @@
         android:background="@color/white"
         android:text="@string/info"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_admin"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/btnconfirme"
+        app:layout_constraintRight_toLeftOf="@id/Fbtnconfirme"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PNameSpinner4"
+        app:layout_constraintTop_toBottomOf="@+id/FNameSpinner4"
         app:layout_constraintVertical_bias="0.516" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation_admin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_navigation_menu" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

@@ -36,7 +36,7 @@ public class AdminActivity extends AppCompatActivity {
     private Controle controle;
     private TextInputLayout nomPlante1, nomPlante2,nomPlante3,nomPlante4,nomPlante5,nomEtablissemnt;
     private CheckBox ckEleve;
-    private Button confirmer, reset;
+    private Button confirmer;
     private BottomNavigationView navbar;
     private BottomNavigationView.OnNavigationItemSelectedListener eventNav;
 

@@ -109,6 +109,12 @@
             android:launchMode="singleTask"
             android:theme="@style/Theme.PlanteInvasives.NoActionBar">
         </activity>
+        <activity
+            android:name=".vue.activity.FirstAdminActivity"
+            android:launchMode="singleTask"
+            android:parentActivityName=".vue.activity.MenuActivity"
+            android:theme="@style/Theme.PlanteInvasives.NoActionBar">
+        </activity>
 
 
 

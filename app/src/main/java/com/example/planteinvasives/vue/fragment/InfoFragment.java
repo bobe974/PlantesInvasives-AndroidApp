@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.planteinvasives.R;
+import com.example.planteinvasives.vue.activity.FirstAdminActivity;
 import com.example.planteinvasives.vue.activity.InfoActivity;
 import com.example.planteinvasives.vue.activity.MenuActivity;
 
@@ -69,7 +70,7 @@ public class InfoFragment extends Fragment {
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        getActivity().startActivity(new Intent(getContext(), MenuActivity.class));
+                        getActivity().startActivity(new Intent(getContext(), FirstAdminActivity.class));
                     }
                 });
                 break;
