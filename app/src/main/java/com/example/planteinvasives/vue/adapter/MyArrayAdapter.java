@@ -1,6 +1,8 @@
 package com.example.planteinvasives.vue.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +24,12 @@ import java.util.ArrayList;
 public class MyArrayAdapter extends ArrayAdapter<MaFiche> {
 
     private final Context context;
+    private Activity activity;
 
-    public MyArrayAdapter(Context context, ArrayList<MaFiche> lesfiches) {
+    public MyArrayAdapter(Context context, ArrayList<MaFiche> lesfiches, Activity activity) {
         super(context, R.layout.activity_cellule, lesfiches);
         this.context = context;
+        this.activity = activity;
     }
 
     // Méthode appelée automatiquement lorsqu’Android
@@ -56,8 +60,9 @@ public class MyArrayAdapter extends ArrayAdapter<MaFiche> {
 
         //chargement de la photo
         PhotoActivity photoActivity = new PhotoActivity();
-        photoActivity.loadImageFromStorage(f.getPhotoPath(),imageView);
-        imageView.setRotation(photoActivity.getPhotoOrientation(f.getPhotoPath()));
+        Bitmap bitmap = photoActivity.loadImageFromStorage(f.getPhotoPath(),activity);
+        imageView.setImageBitmap(bitmap);
+        //imageView.setRotation(photoActivity.getPhotoOrientation(f.getPhotoPath()));
 
         //conversion de id int en string
         id.setText(String.valueOf(f.getId()));

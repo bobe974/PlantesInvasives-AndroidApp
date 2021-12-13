@@ -153,27 +153,32 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayoutimg"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="230dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayoutimg"
         android:layout_marginBottom="1dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayoutform"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.0"
+        android:background="#FF000000">
+
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imgPhoto"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FF000000"
             android:theme="@style/roundImageView"
-            app:srcCompat="@drawable/ic_launcher_background" />
-    </LinearLayout>
+            app:srcCompat="@drawable/ic_launcher_background"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+
+            />
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

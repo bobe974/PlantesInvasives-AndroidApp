@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -120,10 +121,14 @@ public class FormActivity extends AppCompatActivity {
         }
 
         //charge la photo dans l'imageview
-        photoActivity.loadImageFromStorage(photoPath, photo);
+        System.out.println("path"+ photoPath);
+        Bitmap bitmap = photoActivity.loadImageFromStorage(photoPath,this);
+        photo.setImageBitmap(bitmap);
+
 
         //oriente la photo dans la bonne position
-        photo.setRotation(photoActivity.getPhotoOrientation(photoPath));
+        //photo.setRotation(photoActivity.getPhotoOrientation(photoPath));
+
 
         //rempli le spinner
         loadSpinnerData();

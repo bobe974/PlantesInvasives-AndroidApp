@@ -60,6 +60,4 @@ public abstract class Controle extends RoomDatabase {
         return INSTANCE;
     }
 
-    
-
 }

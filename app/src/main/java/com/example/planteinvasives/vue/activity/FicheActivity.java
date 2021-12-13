@@ -68,7 +68,7 @@ public class FicheActivity extends AppCompatActivity {
 
 
         mListView = (ListView) findViewById(R.id.listeFiche);
-        mAdapter = new MyArrayAdapter(this, (ArrayList<MaFiche>) lesfiches);
+        mAdapter = new MyArrayAdapter(this, (ArrayList<MaFiche>) lesfiches,this);
         mListView.setAdapter(mAdapter);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
