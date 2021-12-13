@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -125,14 +126,10 @@ public class FormActivity extends AppCompatActivity {
         Bitmap bitmap = photoActivity.loadImageFromStorage(photoPath,this);
         photo.setImageBitmap(bitmap);
 
-
-        //oriente la photo dans la bonne position
-        //photo.setRotation(photoActivity.getPhotoOrientation(photoPath));
-
-
         //rempli le spinner
         loadSpinnerData();
 
+        //EVENT
         valideFiche.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -168,6 +165,11 @@ public class FormActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //event focus pour cacher le clavier
+        setEventOnFocus(description.getEditText());
+        setEventOnFocus(nom.getEditText());
+        setEventOnFocus(prenom.getEditText());
 
         //Gestion de la navbar
         eventNav   = new BottomNavigationView.OnNavigationItemSelectedListener(){
@@ -345,5 +347,33 @@ public class FormActivity extends AppCompatActivity {
      */
     public boolean isCursorEmpty(Cursor cursor){
         return !cursor.moveToFirst() || cursor.getCount() == 0;
+    }
+
+    /**
+     * cache le clavier par default
+     * @param view
+     */
+    public void hideSoftKeyboard(View view)
+    {
+        InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    /**
+     * ajoute l'event onfocus sur une edittext
+     * @param editText
+     */
+    public void setEventOnFocus(EditText editText){
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (!b) {
+                    Log.d("focus", "focus lost");
+                    hideSoftKeyboard(view);
+                } else {
+                    Log.d("focus", "focused");
+                }
+            }
+        });
     }
 }

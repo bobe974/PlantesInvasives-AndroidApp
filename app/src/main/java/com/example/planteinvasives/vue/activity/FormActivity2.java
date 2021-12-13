@@ -1,5 +1,6 @@
 package com.example.planteinvasives.vue.activity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -132,7 +134,7 @@ public class FormActivity2 extends AppCompatActivity {
         latitude = Double.parseDouble(intent.getStringExtra("latitude"));
         longitude = Double.parseDouble(intent.getStringExtra("longitude"));
 
-        //evenements
+        //EVENEMENTS
         btnvalider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -199,6 +201,9 @@ public class FormActivity2 extends AppCompatActivity {
                 finish();
             }
         });
+
+        //event onfocus pour cacher le clavier
+        setEventOnFocus(remarques);
 
         //Gestion de la navbar
         navbar = (BottomNavigationView) findViewById(R.id.bottom_navigation_form);
@@ -338,6 +343,34 @@ public class FormActivity2 extends AppCompatActivity {
             }
         }
 
+    }
+
+    /**
+     * cache le clavier par default
+     * @param view
+     */
+    public void hideSoftKeyboard(View view)
+    {
+        InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    /**
+     * ajoute l'event onfocus sur une edittext
+     * @param editText
+     */
+    public void setEventOnFocus(EditText editText){
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (!b) {
+                    Log.d("focus", "focus lost");
+                    hideSoftKeyboard(view);
+                } else {
+                    Log.d("focus", "focused");
+                }
+            }
+        });
     }
 
 }
