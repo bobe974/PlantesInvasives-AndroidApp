@@ -51,8 +51,7 @@ public class FicheActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fiche);
         //page en plein ecran
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-
+        setTitle("Retour accueil");
         //recupere toutes les fiches depuis la bdd
         controle = Controle.getInstance(FicheActivity.this);
         lesfiches = new ArrayList<>();

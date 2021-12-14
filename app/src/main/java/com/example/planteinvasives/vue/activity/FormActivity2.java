@@ -31,6 +31,7 @@ import com.example.planteinvasives.roomDataBase.entity.Lieu;
 import com.example.planteinvasives.roomDataBase.entity.Photographie;
 import com.example.planteinvasives.roomDataBase.entity.Plante;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.checkbox.MaterialCheckBox;
 
 /** Affiche la seconde partie du  formulaire et recupere données qui ont été complété depuis FormActivity
  *deux cas d'utilisation
@@ -166,7 +167,7 @@ public class FormActivity2 extends AppCompatActivity {
                         // TODO sinon on insert dans la base l'eleve
 
                     }
-                    Toast.makeText(getApplicationContext(), "fiche mis à jour", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Fiche modifiée", Toast.LENGTH_SHORT).show();
 
                 }else{
                     /********* cas premiere insertion*******/
@@ -185,7 +186,7 @@ public class FormActivity2 extends AppCompatActivity {
                         controle.eleveDao().insert(new Eleve(lastid,nom,prenom));
                         Log.d("CAS INSERT CAS ELEVE OK", "**********on insert");
                     }
-                    Toast.makeText(getApplicationContext(), "fiche enregistré !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Fiche enregistrée !", Toast.LENGTH_SHORT).show();
                 }
 
                 Intent intent = new Intent(FormActivity2.this, MenuActivity.class);
@@ -249,7 +250,7 @@ public class FormActivity2 extends AppCompatActivity {
                                                     Intent intent3 = new Intent(FormActivity2.this, AdminActivity.class);
                                                     startActivity(intent3);
                                                 }else {
-                                                    Toast.makeText(getApplicationContext(), "Mot de passe Invalide", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(getApplicationContext(), "Mot de passe invalide", Toast.LENGTH_SHORT).show();
                                                 }
                                             }
                                         })
