@@ -141,6 +141,11 @@ public class AdminActivity extends AppCompatActivity {
                         Intent intent4 = new Intent(AdminActivity.this, MapActivity.class);
                         startActivity(intent4);
                         return true;
+
+                    case R.id.MenuFiche:
+                        Intent intent5 = new Intent(AdminActivity.this, FicheActivity.class);
+                        startActivity(intent5);
+                        return true;
                 }
                 return false;
             }

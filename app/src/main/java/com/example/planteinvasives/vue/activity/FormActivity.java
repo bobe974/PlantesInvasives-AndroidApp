@@ -237,6 +237,11 @@ public class FormActivity extends AppCompatActivity {
                         startActivity(intent4);
                         return true;
 
+                    case R.id.MenuFiche:
+                        Intent intent5 = new Intent(FormActivity.this, FicheActivity.class);
+                        startActivity(intent5);
+                        return true;
+
                 }
                 return false;
             }

@@ -5,19 +5,27 @@
         android:enabled="true"
         android:icon="@drawable/baseline_home_black_48dp"
         android:title="Accueil"/>
+
+    <item
+        android:id="@+id/MenuMap"
+        android:enabled="true"
+        android:icon="@drawable/baseline_explore_black_48dp"
+        android:title="Carte"/>
     <item
         android:id="@+id/MenuNew"
         android:enabled="true"
         android:icon="@drawable/baseline_photo_camera_black_48dp"
         android:title="New"/>
     <item
+        android:id="@+id/MenuFiche"
+        android:enabled="true"
+        android:icon="@drawable/folder"
+        android:title="Fiches"/>
+
+    <item
         android:id="@+id/MenuProfil"
         android:enabled="true"
         android:icon="@drawable/baseline_manage_accounts_black_48dp"
         android:title="Paramètres"/>
-    <item
-        android:id="@+id/MenuMap"
-        android:enabled="true"
-        android:icon="@drawable/baseline_explore_black_48dp"
-        android:title="Carte"/>
+
 </menu>
