@@ -76,17 +76,15 @@
             android:hint="@string/desc"
             app:boxBackgroundColor="@color/white"
             app:counterEnabled="true"
-            app:counterMaxLength="40"
+            app:counterMaxLength="50"
             app:endIconMode="clear_text"
-            app:errorEnabled="true"
-            app:helperText="champ obligatoire"
             app:helperTextTextColor="#D1291D">       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
 
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLength="40" />
+                android:maxLength="50" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -98,18 +96,14 @@
             android:layout_marginTop="10dp"
             android:hint="@string/nom"
             app:boxBackgroundColor="@color/white"
-            app:counterEnabled="true"
-            app:counterMaxLength="20"
             app:endIconMode="clear_text"
-            app:errorEnabled="true"
-            app:helperText="champ obligatoire"
             app:helperTextTextColor="#D1291D">       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
 
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLength="20" />
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -118,21 +112,16 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="12dp"
             android:hint="@string/prenom"
             app:boxBackgroundColor="@color/white"
-            app:counterEnabled="true"
-            app:counterMaxLength="20"
             app:endIconMode="clear_text"
-            app:errorEnabled="true"
-            app:helperText="champ obligatoire"
             app:helperTextTextColor="#D1291D">       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
 
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLength="20"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 

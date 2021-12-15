@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -34,7 +35,7 @@ import java.util.List;
 public class MenuActivity extends AppCompatActivity {
 
 
-    private Button btncreateFiche, btnFiche, btnMap;
+    private CardView btncreateFiche, btnFiche, btnMap, btnParam;
     private BottomNavigationView navbar;
     private BottomNavigationView.OnNavigationItemSelectedListener eventNav;
     GpsTracker gpsTracker;
@@ -74,9 +75,10 @@ public class MenuActivity extends AppCompatActivity {
             gpsTracker.showSettingsAlert();
         }
 
-        btncreateFiche = (Button) findViewById(R.id.btnNewFiche);
-        btnFiche = (Button) findViewById(R.id.btnFiches);
-        btnMap = (Button) findViewById(R.id.btnMap);
+        btncreateFiche =  findViewById(R.id.btnNewFiche);
+        btnFiche =  findViewById(R.id.btnFiches);
+        btnMap =  findViewById(R.id.btnMap);
+        btnParam = findViewById(R.id.btnparam);
         navbar = (BottomNavigationView) findViewById(R.id.bottom_navigation_menu);
 
         //EVENEMENTS
@@ -105,6 +107,56 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        btnParam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //protégé par un mot de passe
+                String mdp = "gabon";
+
+                // on recupere la vue de la fenetre contextuelle
+                LayoutInflater li = LayoutInflater.from(MenuActivity.this);
+                View promptsView = li.inflate(R.layout.prompts, null);
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        MenuActivity.this);
+
+                // on ajoute la fenetre a  alertdialog builder
+                alertDialogBuilder.setView(promptsView);
+
+                final EditText pssword = (EditText) promptsView
+                        .findViewById(R.id.passwordField);
+
+                // ajout de la boite de dialogue
+                alertDialogBuilder
+                        .setCancelable(false)
+                        .setPositiveButton("OK",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        // get user input and set it to result
+                                        System.out.println("mdp: "+ pssword.getText().toString());
+                                        if(pssword.getText().toString().equals(mdp)){
+                                            Intent intent3 = new Intent(MenuActivity.this, AdminActivity.class);
+                                            startActivity(intent3);
+                                        }else {
+                                            Toast.makeText(getApplicationContext(), "Mot de passe Invalide", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                })
+                        .setNegativeButton("Annuler",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                // alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // affichage
+                alertDialog.show();
+
+            }
+        });
 
         //Gestion de la navbar
         eventNav = new BottomNavigationView.OnNavigationItemSelectedListener() {
