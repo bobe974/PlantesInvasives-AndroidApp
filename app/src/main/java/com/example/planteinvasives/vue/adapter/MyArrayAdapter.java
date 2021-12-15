@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.planteinvasives.modele.MaFiche;
 import com.example.planteinvasives.R;
 import com.example.planteinvasives.vue.activity.PhotoActivity;
@@ -59,9 +60,14 @@ public class MyArrayAdapter extends ArrayAdapter<MaFiche> {
         date.setText(f.getDate());
 
         //chargement de la photo
-        PhotoActivity photoActivity = new PhotoActivity();
-        Bitmap bitmap = photoActivity.loadImageFromStorage(f.getPhotoPath(),activity);
-        imageView.setImageBitmap(bitmap);
+        //PhotoActivity photoActivity = new PhotoActivity();
+        //Bitmap bitmap = photoActivity.loadImageFromStorage(f.getPhotoPath(),activity);
+        Glide.with(getContext())
+                .load(f.getPhotoPath())
+                .into(imageView);
+
+
+        //imageView.setImageBitmap(bitmap);
         //imageView.setRotation(photoActivity.getPhotoOrientation(f.getPhotoPath()));
 
         //conversion de id int en string

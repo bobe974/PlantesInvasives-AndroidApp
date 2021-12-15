@@ -23,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.planteinvasives.modele.MaFiche;
 import com.example.planteinvasives.R;
 import com.example.planteinvasives.vue.adapter.MyArrayAdapter;
