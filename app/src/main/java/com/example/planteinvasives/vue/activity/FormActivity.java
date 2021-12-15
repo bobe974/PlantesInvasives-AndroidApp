@@ -23,6 +23,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.bumptech.glide.Glide;
 import com.example.planteinvasives.R;
 import com.example.planteinvasives.roomDataBase.Controle;
 import com.example.planteinvasives.roomDataBase.entity.Eleve;
@@ -166,6 +168,16 @@ public class FormActivity extends AppCompatActivity {
             }
         });
 
+        //agrandissement de l'image
+        photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //envoie du path a pour afficher la preview
+                Intent intent = new Intent(FormActivity.this,PreviewActivity.class);
+                intent.putExtra("chemin",photoPath);
+                startActivity(intent);
+            }
+        });
         //event focus pour cacher le clavier
         setEventOnFocus(description.getEditText());
         setEventOnFocus(nom.getEditText());

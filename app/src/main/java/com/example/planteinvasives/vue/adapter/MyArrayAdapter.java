@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DecodeFormat;
 import com.example.planteinvasives.modele.MaFiche;
 import com.example.planteinvasives.R;
 import com.example.planteinvasives.vue.activity.PhotoActivity;
@@ -64,7 +65,10 @@ public class MyArrayAdapter extends ArrayAdapter<MaFiche> {
         //Bitmap bitmap = photoActivity.loadImageFromStorage(f.getPhotoPath(),activity);
         Glide.with(getContext())
                 .load(f.getPhotoPath())
+                .override(500,500)
                 .into(imageView);
+
+
 
 
         //imageView.setImageBitmap(bitmap);
