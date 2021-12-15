@@ -43,6 +43,7 @@ public class MapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //page en plein ecran
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setTitle("Retour accueil");
 
         //instance opensstreetmap
         Configuration.getInstance().load(getApplicationContext(),
@@ -58,7 +59,7 @@ public class MapActivity extends AppCompatActivity {
         map.setTileSource(TileSourceFactory.MAPNIK); //render
         map.setBuiltInZoomControls(true); // active le zoom sur la map
 
-        gpsTracker = new GpsTracker(MapActivity.this);
+        gpsTracker = Controle.getGpsTracker();
 
         //point de depart a la pos actuelle si gps active
         //sinon par defaut = la reunion

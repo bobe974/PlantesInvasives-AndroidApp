@@ -1,5 +1,7 @@
 package com.example.planteinvasives.geolocalisation;
 
+import static android.content.Context.LOCATION_SERVICE;
+
 import android.Manifest;
 import android.app.Activity;
 import android.app.Service;
@@ -73,8 +75,27 @@ public class GpsTracker extends Service implements LocationListener {
             } else {
                 this.canGetLocation = true;
 
+                if (isNetworkEnabled) {
+                    //vérifie les permissions
+                    if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions((Activity) mContext, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
+                    }
+                    locationManager.requestLocationUpdates(
+                            LocationManager.NETWORK_PROVIDER,
+                            MIN_TIME_BW_UPDATES,
+                            MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
 
-                //partie GPS avec GPS PROVIDER
+                    if (locationManager != null) {
+                        location = locationManager
+                                .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+                        if (location != null) {
+                            latitude = location.getLatitude();
+                            longitude = location.getLongitude();
+                        }
+                    }
+                }
+
                 // si le gps est activé on recupere les données la lattitude et la longitude
                 if (isGPSEnabled) {
                     if (location == null) {
@@ -82,7 +103,6 @@ public class GpsTracker extends Service implements LocationListener {
                         if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                             ActivityCompat.requestPermissions((Activity) mContext, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
                         }
-                        Log.d("NETWORK_PROVIDER", "on utilise la geolocalisation précise ");
                         locationManager.requestLocationUpdates(
                                 LocationManager.GPS_PROVIDER,
                                 MIN_TIME_BW_UPDATES,
@@ -96,39 +116,10 @@ public class GpsTracker extends Service implements LocationListener {
                             if (location != null) {
                                 latitude = location.getLatitude();
                                 longitude = location.getLongitude();
-                                Log.d("PRECISE", "GpsService: Longitude: "+ longitude+"Lattitude: "+ latitude);
                             }
                         }
                     }
-                }else{
-                    // si il y a pas de gps on utilise la version approximative
-                    //partie geolocalisation par réseau avec NETWORK_PROVIDER
-
-                    if (isNetworkEnabled) {
-                        //vérifie les permissions
-                        if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                            ActivityCompat.requestPermissions((Activity) mContext, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
-                        }
-                        Log.d("NETWORK_PROVIDER", "on utilise la geolocalisation approximative ");
-                        locationManager.requestLocationUpdates(
-                                LocationManager.NETWORK_PROVIDER,
-                                MIN_TIME_BW_UPDATES,
-                                MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
-
-                        if (locationManager != null) {
-                            location = locationManager
-                                    .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-
-                            if (location != null) {
-                                latitude = location.getLatitude();
-                                longitude = location.getLongitude();
-                                Log.d("APPROX", "GpsService: Longitude: "+ longitude+"Lattitude: "+ latitude);
-                            }
-                        }
-                    }
-
                 }
-
             }
 
         } catch (Exception e) {
@@ -137,7 +128,6 @@ public class GpsTracker extends Service implements LocationListener {
 
         return location;
     }
-
 
 
     public void stopUsingGPS(){

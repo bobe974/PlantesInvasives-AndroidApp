@@ -6,6 +6,8 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+
+import com.example.planteinvasives.geolocalisation.GpsTracker;
 import com.example.planteinvasives.roomDataBase.DAO.EleveDao;
 import com.example.planteinvasives.roomDataBase.DAO.FicheDao;
 import com.example.planteinvasives.roomDataBase.DAO.LieuDao;
@@ -29,6 +31,10 @@ public abstract class Controle extends RoomDatabase {
     private static  String  DB_name = "PlanteInvasives.sqlite";
     //singleton
     private static Controle INSTANCE;
+    private  static GpsTracker gpsTracker;
+    private static Context context;
+
+
 
     //méthodes abstraites DAO
 
@@ -44,15 +50,18 @@ public abstract class Controle extends RoomDatabase {
 
     /**
      * singleton qui permet d'avoir une instance unique du controlleur
-     * @param context
+     * @param lecontext
      * @return un Controleur
      */
-    public static synchronized Controle getInstance(Context context) {
+    public static synchronized Controle getInstance(Context lecontext) {
         if (INSTANCE == null) {
             synchronized (Controle.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                    INSTANCE = Room.databaseBuilder(lecontext.getApplicationContext(),
                             Controle.class, DB_name).allowMainThreadQueries().build();
+                    gpsTracker = new GpsTracker(lecontext);
+                    context = lecontext;
+                    System.out.println("***** nouvelle instance: l/"+gpsTracker.getLatitude()+"lon/"+gpsTracker.getLongitude());
 
                 }
             }
@@ -60,4 +69,12 @@ public abstract class Controle extends RoomDatabase {
         return INSTANCE;
     }
 
+    public static GpsTracker getGpsTracker() {
+        return gpsTracker;
+    }
+
+    public static void InstancieGps(){
+        gpsTracker = new GpsTracker(context);
+        System.out.println("update"+gpsTracker.getLatitude()+gpsTracker.getLongitude());
+    }
 }

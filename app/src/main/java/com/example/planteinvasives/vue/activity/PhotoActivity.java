@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 import com.example.planteinvasives.BuildConfig;
 import com.example.planteinvasives.geolocalisation.GpsTracker;
+import com.example.planteinvasives.roomDataBase.Controle;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -152,7 +153,7 @@ public class PhotoActivity extends AppCompatActivity {
      * recupere les donnees gps lors de la prise de photo
      */
     public void getLocation(){
-        gpsTracker = new GpsTracker(PhotoActivity.this);
+        gpsTracker = Controle.getGpsTracker();
         if(gpsTracker.canGetLocation()){
             latitude = gpsTracker.getLatitude();
             longitude = gpsTracker.getLongitude();
