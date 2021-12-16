@@ -57,7 +57,7 @@ public class FormActivity extends AppCompatActivity {
     private PhotoActivity photoActivity;
     private int UPDATE;
     private Fiche fiche;
-    private Button valideFiche;
+    private Button valideFiche, btnnext,btnprevious;
     public ImageView photo;
     private TextInputLayout description;
     private TextInputLayout nom;
@@ -74,6 +74,8 @@ public class FormActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         valideFiche =  findViewById(R.id.btnvalideFiche);
+        btnnext = findViewById(R.id.btnnextFiche);
+        btnprevious = findViewById(R.id.btnpreviousFiche);
         navbar =  findViewById(R.id.bottom_navigation);
         photo =  findViewById(R.id.imgPhoto);
         description = findViewById(R.id.description);
@@ -87,7 +89,7 @@ public class FormActivity extends AppCompatActivity {
         etatEleve = sp.getInt("etatEleve", 0);
         nomEtablissement = sp.getString("etablissement","");
 
-        Log.d("etabissement", "****** etab vaut: "+nomEtablissement);
+
         if (etatEleve == 1){
             nom.setVisibility(View.INVISIBLE);
             prenom.setVisibility(View.INVISIBLE);
@@ -107,8 +109,11 @@ public class FormActivity extends AppCompatActivity {
             latitude = String.valueOf(fiche.getLieu().getLatittude());
             longitude = String.valueOf(fiche.getLieu().getLongitude());
             //prérempli les champs fu formulaire
-
             loadfield(fiche,eleve);
+
+            //affiche les boutton suivant et précédent
+            btnnext.setVisibility(View.VISIBLE);
+            btnprevious.setVisibility(View.VISIBLE);
 
 
         }else{
@@ -132,6 +137,74 @@ public class FormActivity extends AppCompatActivity {
         loadSpinnerData();
 
         //EVENT
+        /*****************TEST******************/
+        btnnext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               int idnext =  getNextFiche(fiche.getId_fiche());
+                if(idnext != 0){
+                    //on affecte la nouvelle instance a la fiche de la classe
+                    nom.setVisibility(View.VISIBLE);
+                    prenom.setVisibility(View.VISIBLE);
+                    fiche = loadFiche(idnext);
+                    if (etatEleve == 1){
+                        nom.setVisibility(View.INVISIBLE);
+                        prenom.setVisibility(View.INVISIBLE);
+                    }
+                    photoPath = fiche.getPhoto().getChemin();
+                    date = fiche.getPhoto().getDate();
+                    latitude = String.valueOf(fiche.getLieu().getLatittude());
+                    longitude = String.valueOf(fiche.getLieu().getLongitude());
+                    nomEtablissement = fiche.getNom_etablissement();
+
+                    //prérempli les champs du formulaire
+                    Eleve uneleve = loadEleve(fiche.getId_fiche());
+                    loadfield(fiche,uneleve);
+                    //charge la nouvelle photo
+                    Bitmap bitmap = photoActivity.loadImageFromStorage(fiche.getPhoto().getChemin(),FormActivity.this);
+                    photo.setImageBitmap(bitmap);
+                }else {
+                    Toast.makeText(FormActivity.this,"C'est la première fiche!",Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        });
+
+        btnprevious.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int idnext =  getPreviousFiche(fiche.getId_fiche());
+
+                if(idnext != 0){
+                    nom.setVisibility(View.VISIBLE);
+                    prenom.setVisibility(View.VISIBLE);
+                    //on affecte la nouvelle instance a la fiche de la classe
+                    fiche = loadFiche(idnext);
+                    if (etatEleve == 1){
+                        nom.setVisibility(View.INVISIBLE);
+                        prenom.setVisibility(View.INVISIBLE);
+                    }
+                    photoPath = fiche.getPhoto().getChemin();
+                    date = fiche.getPhoto().getDate();
+                    latitude = String.valueOf(fiche.getLieu().getLatittude());
+                    longitude = String.valueOf(fiche.getLieu().getLongitude());
+                    nomEtablissement = fiche.getNom_etablissement();
+
+                    //prérempli les champs du formulaire
+                    Eleve uneleve = loadEleve(fiche.getId_fiche());
+                    loadfield(fiche,uneleve);
+                    //charge la nouvelle photo
+                    Bitmap bitmap = photoActivity.loadImageFromStorage(fiche.getPhoto().getChemin(),FormActivity.this);
+                    photo.setImageBitmap(bitmap);
+                }else {
+                    Toast.makeText(FormActivity.this,"C'est dernière fiche!",Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        });
+        /*****************TEST******************/
         valideFiche.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -392,5 +465,63 @@ public class FormActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    /**
+     * retourne l'id de fiche a  la pos suivante
+     * le premier id de la base commence a 1
+     * @param currentid
+     * @return
+     */
+    public int getNextFiche(int currentid){
+        List<Fiche> fiches;
+        int next = 0;
+        fiches = Controle.getInstance(getApplicationContext()).getAllFiche();
+        //parcours des fiches
+        for (int i = 0; i < fiches.size() ; i++) {
+
+            if(fiches.get(i).getId_fiche() == currentid){
+                //System.out.println("fiche n:" + fiches.get(i).getId_fiche() );
+                //System.out.println("current id:" + currentid );
+                //cas fiche precedente (liste inversé car odre decroissant donc fiche suivant en vérité)
+                //cas fiche suivante
+                if(i != 0){
+                    next = fiches.get(i-1).getId_fiche();
+                }
+
+            }
+        }
+
+
+        return next;
+    }
+
+    /**
+     * retourne l'id de la fiche de la  pos suivante
+     * le premier id de la base commence a 1
+     * @param currentid
+     * @return
+     */
+    public int getPreviousFiche(int currentid){
+        List<Fiche> fiches;
+        int previous = 0;
+        fiches = Controle.getInstance(getApplicationContext()).getAllFiche();
+        //parcours des fiches
+        for (int i = 0; i < fiches.size() ; i++) {
+
+            if(fiches.get(i).getId_fiche() == currentid){
+                //cas fiche precedente (liste inversé car odre decroissant donc fiche suivant en vérité)
+                //cas fiche suivante
+                if(i < fiches.size()-1){
+                    System.out.println("current "+currentid);
+                    System.out.println("match i= "+i  );
+                    System.out.println("fiche size = "+fiches.size()  );
+                    previous= fiches.get(i+1).getId_fiche();
+                }
+            }
+        }
+        System.out.println("precedent "+previous);
+
+        return previous;
     }
 }

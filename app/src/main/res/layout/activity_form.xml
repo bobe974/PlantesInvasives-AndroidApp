@@ -125,6 +125,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
+
         <Button
             android:id="@+id/btnvalideFiche"
             android:layout_width="wrap_content"
@@ -138,10 +139,44 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.887" />
+            app:layout_constraintVertical_bias="0.887"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btnnextFiche"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginRight="40dp"
+                android:visibility="invisible"
+                android:drawableRight="@drawable/next"
+                app:backgroundTint="@color/white"
+                />
+
+            <Button
+                android:id="@+id/btnpreviousFiche"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="left"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="40dp"
+                app:backgroundTint="@color/white"
+              android:theme="@style/Theme.Button.Changer"
+                android:drawableRight="@drawable/previous"
+                android:visibility="invisible" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
     </LinearLayout>
+
+
 
     <FrameLayout
         android:layout_width="match_parent"

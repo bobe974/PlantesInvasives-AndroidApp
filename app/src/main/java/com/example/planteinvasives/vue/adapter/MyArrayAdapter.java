@@ -65,7 +65,7 @@ public class MyArrayAdapter extends ArrayAdapter<MaFiche> {
         //Bitmap bitmap = photoActivity.loadImageFromStorage(f.getPhotoPath(),activity);
         Glide.with(getContext())
                 .load(f.getPhotoPath())
-                .override(500,500)
+                .centerCrop()
                 .into(imageView);
 
 
