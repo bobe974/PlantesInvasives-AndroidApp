@@ -117,7 +117,7 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View view) {
                 System.out.println("****longlat="+Controle.getGpsTracker().getLongitude() +Controle.getGpsTracker().getLatitude());
                 //protégé par un mot de passe
-                String mdp = "gabon";
+                String mdp = "root";
 
                 // on recupere la vue de la fenetre contextuelle
                 LayoutInflater li = LayoutInflater.from(MenuActivity.this);

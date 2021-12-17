@@ -37,8 +37,8 @@ public class InfoFragment extends Fragment {
             case 1:
                 image.setImageResource(R.drawable.background);
                 btn.setText("Suivant");
-                apercu.setText("Identifier et repérer!");
-                description.setText("Utilisez la caméra de l'application pour prendre en photo les espèces invasives.");
+                apercu.setText("Identifier et repérer les espèces invasives");
+                description.setText(R.string.tuto1);
                 image.setImageResource(R.drawable.takephoto);
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -51,8 +51,8 @@ public class InfoFragment extends Fragment {
             case 2:
                 image.setImageResource(R.drawable.background2);
                 btn.setText("Suivant");
-                apercu.setText("Complétez le formulaire!");
-                description.setText("Un formulaire sera disponible pour renseigner des informations sur l'espece prise en photo");
+                apercu.setText("Description de l'espèce invasive");
+                description.setText(R.string.tuto2);
                 image.setImageResource(R.drawable.form);
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -65,7 +65,7 @@ public class InfoFragment extends Fragment {
                 image.setImageResource(R.drawable.background);
                 btn.setText("J'ai compris!");
                 apercu.setText("Configuration des noms d'espèces");
-                description.setText("Pour utiliser l'application, une liste de 5 plantes doit être paramètrée");
+                description.setText(R.string.tuto3);
                 image.setImageResource(R.drawable.param);
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override

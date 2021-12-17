@@ -223,7 +223,7 @@ public class FormActivity2 extends AppCompatActivity {
 
                     case R.id.MenuProfil:
                         //protégé par un mot de passe
-                        String mdp = "gabon";
+                        String mdp = "root";
 
                         // on recupere la vue de la fenetre contextuelle
                         LayoutInflater li = LayoutInflater.from(FormActivity2.this);

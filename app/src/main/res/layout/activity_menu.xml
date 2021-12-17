@@ -34,7 +34,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:textColor="@color/black"
             android:text="L'objectif du projet EEE est de détecter
-            et signaler des espèces invasives de manière précoce à l'Île de la Reunion"/>
+            et signaler les espèces invasives de manière précoce à l'île de la Réunion"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <GridLayout

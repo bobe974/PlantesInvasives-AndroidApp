@@ -272,7 +272,7 @@ public class FormActivity extends AppCompatActivity {
 
                     case R.id.MenuProfil:
                         //protégé par un mot de passe
-                        String mdp = "gabon";
+                        String mdp = "root";
 
                         // on recupere la vue de la fenetre contextuelle
                         LayoutInflater li = LayoutInflater.from(FormActivity.this);
@@ -462,6 +462,7 @@ public class FormActivity extends AppCompatActivity {
                     hideSoftKeyboard(view);
                 } else {
                     Log.d("focus", "focused");
+
                 }
             }
         });

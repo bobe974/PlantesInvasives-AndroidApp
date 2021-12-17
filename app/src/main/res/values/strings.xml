@@ -33,7 +33,13 @@
     <string name="p4">Nom espèce n°4</string>
     <string name="p5">Nom espèce n°5</string>
     <string name="info">Retirer infos d’identification</string>
-    
+
+    <string name="tuto1">Utilisez la caméra de l\'application pour prendre en photo les espèces invasives.</string>
+    <string name="tuto2">Un formulaire sera disponible pour renseigner des informations sur l\'espece prise en photo</string>
+    <string name="tuto3">Pour utiliser l\'application, une liste de 5 plantes doit être paramètrée</string>
+
+
+    <!--clé mapbox-->
     <string name="access_token" translatable="false">pk.eyJ1IjoiYm9iZXU5NzQiLCJhIjoiY2t4N2hwZnMzMzRvYzJ0bGEyZDJzM2lnaCJ9.wo9hZyfcEXfOzZ2ltoRI8g</string>
 
 </resources>
