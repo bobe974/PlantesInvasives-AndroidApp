@@ -24,8 +24,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bumptech.glide.Glide;
 import com.example.planteinvasives.R;
+import com.example.planteinvasives.map.MapBoxActivity;
 import com.example.planteinvasives.roomDataBase.Controle;
 import com.example.planteinvasives.roomDataBase.entity.Eleve;
 import com.example.planteinvasives.roomDataBase.entity.Fiche;
@@ -164,7 +164,7 @@ public class FormActivity extends AppCompatActivity {
                     Bitmap bitmap = photoActivity.loadImageFromStorage(fiche.getPhoto().getChemin(),FormActivity.this);
                     photo.setImageBitmap(bitmap);
                 }else {
-                    Toast.makeText(FormActivity.this,"C'est la première fiche!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FormActivity.this," Dernière fiche!",Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -198,7 +198,7 @@ public class FormActivity extends AppCompatActivity {
                     Bitmap bitmap = photoActivity.loadImageFromStorage(fiche.getPhoto().getChemin(),FormActivity.this);
                     photo.setImageBitmap(bitmap);
                 }else {
-                    Toast.makeText(FormActivity.this,"C'est dernière fiche!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FormActivity.this,"Première fiche!",Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -318,7 +318,7 @@ public class FormActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.MenuMap:
-                        Intent intent4 = new Intent(FormActivity.this, MapActivity.class);
+                        Intent intent4 = new Intent(FormActivity.this, MapBoxActivity.class);
                         startActivity(intent4);
                         return true;
 

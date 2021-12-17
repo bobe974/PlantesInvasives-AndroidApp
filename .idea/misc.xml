@@ -32,11 +32,13 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.125" />
         <entry key="app/src/main/res/layout/activity_map.xml" value="0.17119565217391305" />
+        <entry key="app/src/main/res/layout/activity_mapbox.xml" value="0.22010869565217392" />
         <entry key="app/src/main/res/layout/activity_menu.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_my_row.xml" value="0.2472114766292213" />
         <entry key="app/src/main/res/layout/activity_photo.xml" value="0.11639492753623189" />
         <entry key="app/src/main/res/layout/activity_preview.xml" value="0.17798913043478262" />
         <entry key="app/src/main/res/layout/activity_recycler.xml" value="0.171875" />
+        <entry key="app/src/main/res/layout/custom_marker_display.xml" value="0.21603260869565216" />
         <entry key="app/src/main/res/layout/fragment_1.xml" value="0.11770833333333333" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.12760416666666666" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.12760416666666666" />

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -13,7 +12,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
@@ -22,9 +20,9 @@ import androidx.core.content.ContextCompat;
 
 import com.example.planteinvasives.R;
 import com.example.planteinvasives.geolocalisation.GpsTracker;
+import com.example.planteinvasives.map.MapBoxActivity;
 import com.example.planteinvasives.roomDataBase.Controle;
 import com.example.planteinvasives.roomDataBase.entity.SpinnerData;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
@@ -71,7 +69,6 @@ public class MenuActivity extends AppCompatActivity {
         if(gpsTracker.canGetLocation()){
             double latitude = gpsTracker.getLatitude();
             double longitude = gpsTracker.getLongitude();
-            Toast.makeText(this,"lattitude:"+latitude + " Longitude"+longitude,Toast.LENGTH_SHORT).show();
         }else {
             gpsTracker.showSettingsAlert();
         }
@@ -110,7 +107,7 @@ public class MenuActivity extends AppCompatActivity {
         btnMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MenuActivity.this, MapActivity.class);
+                Intent intent = new Intent(MenuActivity.this, MapBoxActivity.class);
                 startActivity(intent);
             }
         });

@@ -1,4 +1,4 @@
-package com.example.planteinvasives.vue.activity;
+package com.example.planteinvasives.map;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -84,7 +84,7 @@ public class MapActivity extends AppCompatActivity {
         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
             items.add(new OverlayItem(cursor.getString(6),
                     cursor.getString(9),
-                    new GeoPoint(cursor.getDouble(14), cursor.getDouble(15))));
+                    new GeoPoint(cursor.getDouble(15), cursor.getDouble(15))));
             Log.d("MAPPPP", "$$$$$$$$$$$$$$ NOM"+cursor.getString(6)+" LATITUDE:"+ cursor.getDouble(14)+" LONGITUDE: "+cursor.getDouble(15));
 
         }

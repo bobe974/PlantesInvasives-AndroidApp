@@ -1,7 +1,6 @@
 package com.example.planteinvasives.vue.activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -21,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.planteinvasives.R;
+import com.example.planteinvasives.map.MapBoxActivity;
 import com.example.planteinvasives.roomDataBase.Controle;
 import com.example.planteinvasives.roomDataBase.entity.SpinnerData;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -138,7 +138,7 @@ public class AdminActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.MenuMap:
-                        Intent intent4 = new Intent(AdminActivity.this, MapActivity.class);
+                        Intent intent4 = new Intent(AdminActivity.this, MapBoxActivity.class);
                         startActivity(intent4);
                         return true;
 

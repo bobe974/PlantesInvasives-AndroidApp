@@ -24,6 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.planteinvasives.R;
+import com.example.planteinvasives.map.MapBoxActivity;
 import com.example.planteinvasives.roomDataBase.Controle;
 import com.example.planteinvasives.roomDataBase.entity.Eleve;
 import com.example.planteinvasives.roomDataBase.entity.Fiche;
@@ -31,7 +32,6 @@ import com.example.planteinvasives.roomDataBase.entity.Lieu;
 import com.example.planteinvasives.roomDataBase.entity.Photographie;
 import com.example.planteinvasives.roomDataBase.entity.Plante;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.checkbox.MaterialCheckBox;
 
 /** Affiche la seconde partie du  formulaire et recupere données qui ont été complété depuis FormActivity
  *deux cas d'utilisation
@@ -269,7 +269,7 @@ public class FormActivity2 extends AppCompatActivity {
                         return true;
 
                     case R.id.MenuMap:
-                        Intent intent4 = new Intent(FormActivity2.this, MapActivity.class);
+                        Intent intent4 = new Intent(FormActivity2.this, MapBoxActivity.class);
                         startActivity(intent4);
                         return true;
 

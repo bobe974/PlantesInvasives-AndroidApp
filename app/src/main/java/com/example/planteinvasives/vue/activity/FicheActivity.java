@@ -23,7 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bumptech.glide.Glide;
+import com.example.planteinvasives.map.MapBoxActivity;
 import com.example.planteinvasives.modele.MaFiche;
 import com.example.planteinvasives.R;
 import com.example.planteinvasives.vue.adapter.MyArrayAdapter;
@@ -158,7 +158,7 @@ public class FicheActivity extends AppCompatActivity {
 
 
                     case R.id.MenuMap:
-                        Intent intent4 = new Intent(FicheActivity.this, MapActivity.class);
+                        Intent intent4 = new Intent(FicheActivity.this, MapBoxActivity.class);
                         startActivity(intent4);
                         return true;
 

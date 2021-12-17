@@ -4,13 +4,11 @@
     android:layout_height="match_parent"
     xmlns:mapbox="http://schemas.android.com/apk/res-auto">
 
-    <org.osmdroid.views.MapView
-        android:id="@+id/map"
+
+    <com.mapbox.mapboxsdk.maps.MapView
+        android:id="@+id/mapboxid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        mapbox:mapbox_styleUrl="styles/mapbox/streets-v10"
-        mapbox:mapbox_cameraZoom="12"
-        mapbox:mapbox_cameraTargetLat="-21.1649"
-        mapbox:mapbox_cameraTargetLng="55.3082"
+
         />
 </LinearLayout>
