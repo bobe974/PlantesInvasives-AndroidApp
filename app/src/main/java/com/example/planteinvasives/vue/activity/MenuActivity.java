@@ -3,6 +3,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.LayoutInflater;
@@ -25,13 +27,17 @@ import com.example.planteinvasives.R;
 import com.example.planteinvasives.geolocalisation.GpsTracker;
 import com.example.planteinvasives.map.MapBoxActivity;
 import com.example.planteinvasives.roomDataBase.Controle;
+import com.example.planteinvasives.roomDataBase.entity.Fiche;
 import com.example.planteinvasives.roomDataBase.entity.SpinnerData;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Writer;
 import java.util.List;
 
 /**
@@ -122,11 +128,17 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        //TODO TEST DUMP DB
+        //TODO TEST DUMP DB*********************************************
         btndump.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dumpDatabase();
+                exportToCsv("Eleve");
+                exportToCsv("Fiche");
+                exportToCsv("Lieu");
+                exportToCsv("Photographie");
+                exportToCsv("Plante");
+
             }
         });
 
@@ -241,6 +253,64 @@ public class MenuActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * le nom de la méthode parle d'elle meme
+     */
+    public void exportToCsv(String nomTable){
+        SQLiteDatabase sqldb = controle.getSQLiteDB(getApplicationContext());
+        Cursor c = null;
 
+        try {
+            c = sqldb.rawQuery("select * from "+nomTable, null);
+            int rowcount = 0;
+            int colcount = 0;
+            File sDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES+"/DBsaves");
+            String filename = nomTable+ ".csv";
+            //créer un répertoire
+            //File sdir = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES+"/DBsaves"),"CSV");
+            // nom du fichier
+            File saveFile = new File(sDir, filename);
+            FileWriter fw = new FileWriter(saveFile);
 
+            BufferedWriter bw = new BufferedWriter(fw);
+            rowcount = c.getCount();
+            colcount = c.getColumnCount();
+            if (rowcount > 0) {
+                c.moveToFirst();
+
+                for (int i = 0; i < colcount; i++) {
+                    if (i != colcount - 1) {
+
+                        //séparateur
+                        bw.write(c.getColumnName(i) + ";");
+
+                    } else {
+
+                        bw.write(c.getColumnName(i));
+                    }
+                }
+                bw.newLine();
+
+                for (int i = 0; i < rowcount; i++) {
+                    c.moveToPosition(i);
+
+                    for (int j = 0; j < colcount; j++) {
+                        if (j != colcount - 1)
+                            bw.write(c.getString(j) + ";");
+                        else
+                            bw.write(c.getString(j));
+                    }
+                    bw.newLine();
+                }
+                bw.flush();
+                Toast.makeText(getApplicationContext(),"exportation complete",Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception ex) {
+            if (sqldb.isOpen()) {
+                sqldb.close();
+            }
+        } finally {
+
+        }
+    }
 }

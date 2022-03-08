@@ -2,6 +2,7 @@ package com.example.planteinvasives.roomDataBase;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
 
 import androidx.room.Database;
@@ -133,7 +134,14 @@ public abstract class Controle extends RoomDatabase {
        spinnerDataDao().checkpoint(new SimpleSQLiteQuery("pragma wal_checkpoint(full)"));
     }
 
-
+    /**
+     * retourne un objet type MysqliteDB pour manipuler la base
+     * @param context
+     * @return
+     */
+    public SQLiteDatabase getSQLiteDB(Context context) {
+        return SQLiteDatabase.openDatabase(context.getDatabasePath(DB_name).getPath(),null,SQLiteDatabase.OPEN_READWRITE);
+    }
 }
 
 
