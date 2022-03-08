@@ -2,10 +2,12 @@ package com.example.planteinvasives.roomDataBase;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.os.Environment;
 
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SimpleSQLiteQuery;
 
 
 import com.example.planteinvasives.geolocalisation.GpsTracker;
@@ -23,6 +25,11 @@ import com.example.planteinvasives.roomDataBase.entity.Photographie;
 import com.example.planteinvasives.roomDataBase.entity.Plante;
 import com.example.planteinvasives.roomDataBase.entity.SpinnerData;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,6 +85,8 @@ public abstract class Controle extends RoomDatabase {
         return gpsTracker;
     }
 
+
+
     public static void InstancieGps(){
         gpsTracker = new GpsTracker(context);
         System.out.println("update"+gpsTracker.getLatitude()+gpsTracker.getLongitude());
@@ -112,4 +121,19 @@ public abstract class Controle extends RoomDatabase {
         cursor.close();
         return lesfiches;
     }
+
+    /**
+     * recupere les dernieres informations sur le fichier .sqlite depuis les fichiers wal et shm
+     */
+    public void checkpointDB(){
+        eleveDao().checkpoint(new SimpleSQLiteQuery("pragma wal_checkpoint(full)"));
+        ficheDao().checkpoint(new SimpleSQLiteQuery("pragma wal_checkpoint(full)"));
+       lieuDao().checkpoint(new SimpleSQLiteQuery("pragma wal_checkpoint(full)"));
+       photoDao().checkpoint(new SimpleSQLiteQuery("pragma wal_checkpoint(full)"));
+       spinnerDataDao().checkpoint(new SimpleSQLiteQuery("pragma wal_checkpoint(full)"));
+    }
+
+
 }
+
+

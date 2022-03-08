@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -16,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.room.Room;
+import androidx.sqlite.db.SimpleSQLiteQuery;
 
 
 import com.example.planteinvasives.R;
@@ -24,6 +27,11 @@ import com.example.planteinvasives.map.MapBoxActivity;
 import com.example.planteinvasives.roomDataBase.Controle;
 import com.example.planteinvasives.roomDataBase.entity.SpinnerData;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 /**
@@ -35,7 +43,7 @@ public class MenuActivity extends AppCompatActivity {
 
 
     private CardView btncreateFiche, btnFiche, btnMap, btnParam;
-    private Button btnUpdate;
+    private Button btnUpdate, btndump;
     private TextView textlongitude, textlatitude;
     GpsTracker gpsTracker;
     Controle controle;
@@ -50,6 +58,7 @@ public class MenuActivity extends AppCompatActivity {
 
         //lance la page de premiere utilisation si la base de données est vide
         controle = Controle.getInstance(this);
+
         List<SpinnerData> users;
         users = controle.spinnerDataDao().getAllUser();
         if (!(users.size()>0)) {
@@ -78,6 +87,7 @@ public class MenuActivity extends AppCompatActivity {
         btnMap =  findViewById(R.id.btnMap);
         btnParam = findViewById(R.id.btnparam);
         btnUpdate = findViewById(R.id.btnactualiser);
+        btndump = findViewById(R.id.btndump);
         textlatitude = findViewById(R.id.labellattitude);
         textlongitude = findViewById(R.id.labellongitude);
 
@@ -109,6 +119,14 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MenuActivity.this, MapBoxActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        //TODO TEST DUMP DB
+        btndump.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dumpDatabase();
             }
         });
 
@@ -186,4 +204,43 @@ public class MenuActivity extends AppCompatActivity {
         super.onResume();
         updatepos();
     }
+
+    /**
+     * sauvegarde un dump de la bdd au format .sql  -> android/data/files/pictures/DBsaves
+     */
+    public void dumpDatabase(){
+        //recupere les dernieres données
+        controle.checkpointDB();
+
+        File dbfile = getDatabasePath("PlanteInvasives.sqlite");
+        Toast.makeText(getApplicationContext(), "nom"+ dbfile.getName(), Toast.LENGTH_SHORT).show();
+        File sdir = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES),"DBsaves");
+        String sfpath = sdir.getPath() + File.separator + dbfile.getName();
+        //String sfpath = sdir.getPath() + File.separator + dbfile.getName() + String.valueOf(System.currentTimeMillis());
+        if (!sdir.exists()) {
+            sdir.mkdirs();
+        }
+        File savefile = new File(sfpath);
+        try {
+            savefile.createNewFile();
+            int buffersize = 8 * 1024;
+            byte[] buffer = new byte[buffersize];
+            int bytes_read = buffersize;
+            OutputStream savedb = new FileOutputStream(sfpath);
+            InputStream indb = new FileInputStream(dbfile);
+            while ((bytes_read = indb.read(buffer,0,buffersize)) > 0) {
+                savedb.write(buffer,0,bytes_read);
+            }
+            savedb.flush();
+            indb.close();
+            savedb.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
 }

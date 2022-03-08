@@ -37,7 +37,7 @@ public class InfoFragment extends Fragment {
             case 1:
                 image.setImageResource(R.drawable.background);
                 btn.setText("Suivant");
-                apercu.setText("Identifier et repérer les espèces invasives");
+                apercu.setText("Repérer les espèces invasives");
                 description.setText(R.string.tuto1);
                 image.setImageResource(R.drawable.takephoto);
                 btn.setOnClickListener(new View.OnClickListener() {
