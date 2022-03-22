@@ -46,7 +46,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
-                android:background="@color/white"
+                android:background="@color/fondChamps"
                 android:text="@string/plantule"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/Cjeuneplant"
@@ -57,7 +57,7 @@
                 android:id="@+id/Cjeuneplant"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@color/fondChamps"
                 android:text="@string/jplant"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -70,7 +70,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="24dp"
-                android:background="@color/white"
+                android:background="@color/fondChamps"
                 android:text="@string/plant"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -101,7 +101,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
-                android:background="@color/white"
+                android:background="@color/fondChamps"
                 android:text="@string/vege"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/Cfruit"
@@ -113,7 +113,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:background="@color/white"
+                android:background="@color/fondChamps"
                 android:text="@string/fleur"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -124,7 +124,7 @@
                 android:id="@+id/Cfruit"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@color/fondChamps"
                 android:text="@string/fruit"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -153,10 +153,13 @@
             android:layout_height="100dp"
             android:background="@drawable/custom_imput"
             android:hint="@string/rem"
-
+            android:overScrollMode="always"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="vertical"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="top" />
 
 
         <Button
@@ -206,7 +209,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:startIconDrawable="@drawable/ic_baseline_text_fields_24"
-        app:boxBackgroundColor="@color/white">
+        app:boxBackgroundColor="@color/fondChamps">
 
         <AutoCompleteTextView
             android:id="@+id/Slieu"
@@ -232,7 +235,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:startIconDrawable="@drawable/ic_baseline_text_fields_24"
-        app:boxBackgroundColor="@color/white">
+        app:boxBackgroundColor="@color/fondChamps">
 
         <AutoCompleteTextView
             android:id="@+id/Sindividu"
@@ -255,7 +258,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
 
             app:startIconDrawable="@drawable/ic_baseline_text_fields_24"
-            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundColor="@color/fondChamps"
             tools:ignore="UnknownId">
 
             <AutoCompleteTextView
@@ -266,7 +269,7 @@
                 android:inputType="none"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
-                android:background="@color/white"/>
+                android:background="@color/fondChamps"/>
         </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

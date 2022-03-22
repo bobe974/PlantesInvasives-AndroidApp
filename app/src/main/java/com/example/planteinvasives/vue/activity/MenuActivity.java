@@ -23,6 +23,7 @@ import androidx.room.Room;
 import androidx.sqlite.db.SimpleSQLiteQuery;
 
 
+import com.example.planteinvasives.BuildConfig;
 import com.example.planteinvasives.R;
 import com.example.planteinvasives.geolocalisation.GpsTracker;
 import com.example.planteinvasives.map.MapBoxActivity;
@@ -50,9 +51,11 @@ public class MenuActivity extends AppCompatActivity {
 
     private CardView btncreateFiche, btnFiche, btnMap, btnParam;
     private Button btnUpdate, btndump;
-    private TextView textlongitude, textlatitude;
+    private TextView textlongitude, textlatitude, textAccueil;
     GpsTracker gpsTracker;
     Controle controle;
+    int versionCode = BuildConfig.VERSION_CODE;
+    String versionName = BuildConfig.VERSION_NAME;
 
 
     @Override
@@ -96,10 +99,15 @@ public class MenuActivity extends AppCompatActivity {
         btndump = findViewById(R.id.btndump);
         textlatitude = findViewById(R.id.labellattitude);
         textlongitude = findViewById(R.id.labellongitude);
+        textAccueil= findViewById(R.id.msgAccueil);
 
         //affichage lattitude longitude
+        String newLine = System.getProperty("line.separator");
+
         textlatitude.setText("lattitude: " + Controle.getGpsTracker().getLatitude());
         textlongitude.setText("longitude: "+ Controle.getGpsTracker().getLongitude());
+        textAccueil.setText("Application de signalement des espèces exotiques envahissantes " +
+                "ou potentiellement envahissantes" +newLine+ newLine+"Ver: " +versionName);
 
 
         //EVENEMENTS

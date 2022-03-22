@@ -51,7 +51,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="32dp"
             android:hint="@string/nom_espc"
-            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundColor="@color/fondChamps"
             app:startIconDrawable="@drawable/ic_baseline_text_fields_24">
 
 
@@ -74,7 +74,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:hint="@string/desc"
-            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundColor="@color/fondChamps"
             app:counterEnabled="true"
             app:counterMaxLength="50"
             app:endIconMode="clear_text"
@@ -95,7 +95,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:hint="@string/nom"
-            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundColor="@color/fondChamps"
             app:endIconMode="clear_text"
             app:helperTextTextColor="#D1291D">       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
 
@@ -113,7 +113,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="12dp"
             android:hint="@string/prenom"
-            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundColor="@color/fondChamps"
             app:endIconMode="clear_text"
             app:helperTextTextColor="#D1291D">       <!-- app:startIconDrawable="@drawable/ic_launcher_background"-->
 
@@ -154,7 +154,7 @@
                 android:layout_marginRight="40dp"
                 android:visibility="invisible"
                 android:drawableRight="@drawable/next"
-                app:backgroundTint="@color/white"
+                app:backgroundTint="@color/fondChamps"
                 />
 
             <Button
@@ -165,7 +165,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginLeft="40dp"
-                app:backgroundTint="@color/white"
+                app:backgroundTint="@color/fondChamps"
               android:theme="@style/Theme.Button.Changer"
                 android:drawableRight="@drawable/previous"
                 android:visibility="invisible" />

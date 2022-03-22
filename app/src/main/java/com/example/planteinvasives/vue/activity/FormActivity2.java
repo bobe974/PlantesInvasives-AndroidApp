@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -130,6 +131,7 @@ public class FormActivity2 extends AppCompatActivity {
             updateCheckbox(enFruit,intent.getStringExtra("etat"));
 
             remarques.setText(intent.getStringExtra("remarques"));
+            remarques.setGravity(Gravity.LEFT);
 
         }
         latitude = Double.parseDouble(intent.getStringExtra("latitude"));
