@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
+import android.widget.Toast;
 
 import androidx.room.Database;
 import androidx.room.Room;
@@ -141,6 +142,16 @@ public abstract class Controle extends RoomDatabase {
      */
     public SQLiteDatabase getSQLiteDB(Context context) {
         return SQLiteDatabase.openDatabase(context.getDatabasePath(DB_name).getPath(),null,SQLiteDatabase.OPEN_READWRITE);
+    }
+
+    /**
+     * supprimer les données de la base
+     */
+    @Override
+    public void clearAllTables() {
+        Toast toast = Toast.makeText(context.getApplicationContext(), "Données supprimées (transfert USB)",
+                Toast.LENGTH_SHORT);
+        toast.show();
     }
 }
 

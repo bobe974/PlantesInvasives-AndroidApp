@@ -35,6 +35,7 @@
     <string name="p4">Nom espèce n°4</string>
     <string name="p5">Nom espèce n°5</string>
     <string name="info">Retirer infos d’identification &#160;</string>
+    <string name="conservation">Supprimer les données après synchronisation &#160;</string>
 
     <string name="tuto1">Utilisez la caméra de l\'application pour prendre en photo les espèces invasives.</string>
     <string name="tuto2">Un formulaire sera disponible pour renseigner des informations sur l\'espèce prise en photo</string>

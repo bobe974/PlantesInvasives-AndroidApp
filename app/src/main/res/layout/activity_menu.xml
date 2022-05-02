@@ -258,16 +258,6 @@
             android:text="actualiser"
             android:theme="@style/roundImageView"/>
 
-        <Button
-            android:id="@+id/btndump"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/labellongitude"
-            android:layout_marginTop="20dp"
-            android:text="dump"
-            android:theme="@style/roundImageView"
-            android:visibility="invisible"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

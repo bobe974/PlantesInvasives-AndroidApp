@@ -20,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.planteinvasives.R;
+import com.example.planteinvasives.map.MapActivity;
 import com.example.planteinvasives.map.MapBoxActivity;
 import com.example.planteinvasives.roomDataBase.Controle;
 import com.example.planteinvasives.roomDataBase.entity.SpinnerData;
@@ -36,10 +37,12 @@ import java.util.ArrayList;
 
 public class AdminActivity extends AppCompatActivity {
     private  int etatEleve = 0;
+    private int etatDel = 0;
 
     private Controle controle;
     private TextInputLayout nomPlante1, nomPlante2,nomPlante3,nomPlante4,nomPlante5,nomEtablissemnt;
     private CheckBox ckEleve;
+    private CheckBox ckDel;
     private Button confirmer;
     private BottomNavigationView navbar;
     private BottomNavigationView.OnNavigationItemSelectedListener eventNav;
@@ -59,6 +62,7 @@ public class AdminActivity extends AppCompatActivity {
         nomPlante5 = findViewById(R.id.PNameSpinner4);
         nomEtablissemnt = findViewById(R.id.nomEtablissement);
         ckEleve = findViewById(R.id.checkBoxEleve);
+        ckDel = findViewById(R.id.checkBoxDel);
         confirmer = findViewById(R.id.btnconfirme);
         //reset = findViewById(R.id.reset);
 
@@ -68,11 +72,17 @@ public class AdminActivity extends AppCompatActivity {
         //recupere var etat et coche suivant son etat au demarrage de l'activité
         SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
         etatEleve = sp.getInt("etatEleve", etatEleve);
+        etatDel = sp.getInt("etatDel", etatDel);
         nomEtablissemnt.getEditText().setText(sp.getString("etablissement",""));
         if(etatEleve == 1){
             ckEleve.setChecked(true);
         }else{
             ckEleve.setChecked(false);
+        }
+        if(etatDel == 1){
+            ckDel.setChecked(true);
+        }else{
+            ckDel.setChecked(false);
         }
 
 
@@ -92,11 +102,19 @@ public class AdminActivity extends AppCompatActivity {
                 }else{
                     etatEleve=0;
                 }
+
+                if(ckDel.isChecked()){
+                    etatDel = 1;
+                }else{
+                    etatDel=0;
+                }
                 //enregistre une variable pour l'affichage ou pas des champs de l'eleve
                 SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sp.edit();
                 editor.putInt("etatEleve", etatEleve);
                 editor.putString("etablissement",nomEtablissemnt.getEditText().getText().toString());
+                //état checkbox delete usb
+                editor.putInt("etatDel",etatDel);
                 editor.commit();
 
                 Intent intent = new Intent(AdminActivity.this, MenuActivity.class);
@@ -138,7 +156,7 @@ public class AdminActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.MenuMap:
-                        Intent intent4 = new Intent(AdminActivity.this, MapBoxActivity.class);
+                        Intent intent4 = new Intent(AdminActivity.this, MapActivity.class);
                         startActivity(intent4);
                         return true;
 

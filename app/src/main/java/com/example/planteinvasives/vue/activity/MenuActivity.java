@@ -1,7 +1,10 @@
 package com.example.planteinvasives.vue.activity;
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -19,26 +22,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.room.Room;
-import androidx.sqlite.db.SimpleSQLiteQuery;
-
-
 import com.example.planteinvasives.BuildConfig;
 import com.example.planteinvasives.R;
 import com.example.planteinvasives.geolocalisation.GpsTracker;
-import com.example.planteinvasives.map.MapBoxActivity;
+import com.example.planteinvasives.map.MapActivity;
 import com.example.planteinvasives.roomDataBase.Controle;
-import com.example.planteinvasives.roomDataBase.entity.Fiche;
 import com.example.planteinvasives.roomDataBase.entity.SpinnerData;
+
+import org.apache.commons.io.FileUtils;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.Writer;
 import java.util.List;
 
 /**
@@ -48,13 +48,13 @@ import java.util.List;
  */
 public class MenuActivity extends AppCompatActivity {
 
-
     private CardView btncreateFiche, btnFiche, btnMap, btnParam;
     private Button btnUpdate, btndump;
     private TextView textlongitude, textlatitude, textAccueil;
     GpsTracker gpsTracker;
     Controle controle;
     int versionCode = BuildConfig.VERSION_CODE;
+    int etatApp = 0;
     String versionName = BuildConfig.VERSION_NAME;
 
 
@@ -96,7 +96,6 @@ public class MenuActivity extends AppCompatActivity {
         btnMap =  findViewById(R.id.btnMap);
         btnParam = findViewById(R.id.btnparam);
         btnUpdate = findViewById(R.id.btnactualiser);
-        btndump = findViewById(R.id.btndump);
         textlatitude = findViewById(R.id.labellattitude);
         textlongitude = findViewById(R.id.labellongitude);
         textAccueil= findViewById(R.id.msgAccueil);
@@ -131,22 +130,8 @@ public class MenuActivity extends AppCompatActivity {
         btnMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MenuActivity.this, MapBoxActivity.class);
+                Intent intent = new Intent(MenuActivity.this, MapActivity.class);
                 startActivity(intent);
-            }
-        });
-
-        //TODO TEST DUMP DB*********************************************
-        btndump.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dumpDatabase();
-                exportToCsv("Eleve");
-                exportToCsv("Fiche");
-                exportToCsv("Lieu");
-                exportToCsv("Photographie");
-                exportToCsv("Plante");
-
             }
         });
 
@@ -223,6 +208,39 @@ public class MenuActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         updatepos();
+        System.out.println("***********DUMP**************");
+        dumpDatabase();
+        //
+        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
+        etatApp = sp.getInt("etatDel", 0);
+        System.out.println(etatApp);
+        if (etatApp == 1){
+            System.out.println("coché");
+            cleanApp();
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //lance la page de premiere utilisation si la base de données est vide
+        controle = Controle.getInstance(this);
+
+        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
+        etatApp = sp.getInt("etatDel", 0);
+        System.out.println(etatApp);
+        if (etatApp == 1){
+            System.out.println("coché");
+            cleanApp();
+        }
+
+        List<SpinnerData> users;
+        users = controle.spinnerDataDao().getAllUser();
+        if (!(users.size()>0)) {
+            startActivity(new Intent(this, InfoActivity.class));
+        }
+
+
     }
 
     /**
@@ -233,7 +251,7 @@ public class MenuActivity extends AppCompatActivity {
         controle.checkpointDB();
 
         File dbfile = getDatabasePath("PlanteInvasives.sqlite");
-        Toast.makeText(getApplicationContext(), "nom"+ dbfile.getName(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "nom"+ dbfile.getName(), Toast.LENGTH_SHORT).show();
         File sdir = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES),"DBsaves");
         String sfpath = sdir.getPath() + File.separator + dbfile.getName();
         //String sfpath = sdir.getPath() + File.separator + dbfile.getName() + String.valueOf(System.currentTimeMillis());
@@ -319,6 +337,38 @@ public class MenuActivity extends AppCompatActivity {
             }
         } finally {
 
+        }
+    }
+
+    /**
+     * vérifie si le fichier delete existe puis supprime les données de l'application
+     */
+    public void cleanApp(){
+        File file = new File(Environment.getExternalStorageDirectory() + File.separator +
+                "Android/data/com.example.planteinvasives/files/Pictures/delete.txt");
+        try {
+            System.out.println(file.getAbsolutePath());
+            if(file.exists()){
+                // code if file exist in external storage
+                System.out.println("supprime external");
+                //supprime la base
+                controle.clearAllTables();
+
+                //supprimer le ficheir xml sharepreferences
+                SharedPreferences settings = getSharedPreferences("your_prefs", Context.MODE_PRIVATE);
+                settings.edit().clear().commit();
+
+                //supprimer les fichiers
+                File dirName = new File(Environment.getExternalStorageDirectory() + File.separator +
+                        "Android/data/com.example.planteinvasives");
+                FileUtils.deleteDirectory(dirName);
+            }
+            else {
+                // file not found
+                System.out.println("fichier delete non existe, aucune modification");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

@@ -25,6 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.planteinvasives.R;
+import com.example.planteinvasives.map.MapActivity;
 import com.example.planteinvasives.map.MapBoxActivity;
 import com.example.planteinvasives.roomDataBase.Controle;
 import com.example.planteinvasives.roomDataBase.entity.Eleve;
@@ -318,7 +319,7 @@ public class FormActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.MenuMap:
-                        Intent intent4 = new Intent(FormActivity.this, MapBoxActivity.class);
+                        Intent intent4 = new Intent(FormActivity.this, MapActivity.class);
                         startActivity(intent4);
                         return true;
 

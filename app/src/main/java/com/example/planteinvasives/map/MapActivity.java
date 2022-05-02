@@ -1,9 +1,7 @@
 package com.example.planteinvasives.map;
-
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
@@ -41,8 +39,6 @@ public class MapActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //page en plein ecran
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         //instance opensstreetmap
         Configuration.getInstance().load(getApplicationContext(),
@@ -68,7 +64,7 @@ public class MapActivity extends AppCompatActivity {
             geoPoint = new GeoPoint(latitude,longitude);
             Log.d("GETLOCATION", "latitude: "+ latitude + "longitude"+longitude);
         }else{
-            gpsTracker.showSettingsAlert();
+
             geoPoint = new GeoPoint(-21.08,55.32);
         }
         GeoPoint startpoint = geoPoint;
@@ -84,7 +80,7 @@ public class MapActivity extends AppCompatActivity {
         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
             items.add(new OverlayItem(cursor.getString(6),
                     cursor.getString(9),
-                    new GeoPoint(cursor.getDouble(15), cursor.getDouble(15))));
+                    new GeoPoint(cursor.getDouble(14), cursor.getDouble(15))));
             Log.d("MAPPPP", "$$$$$$$$$$$$$$ NOM"+cursor.getString(6)+" LATITUDE:"+ cursor.getDouble(14)+" LONGITUDE: "+cursor.getDouble(15));
 
         }

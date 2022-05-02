@@ -50,6 +50,7 @@ public interface FicheDao {
 
     @Query(" select id_fiche from Fiche order by id_fiche DESC limit 1")
     Cursor getLastId();
+
 }
 
 
