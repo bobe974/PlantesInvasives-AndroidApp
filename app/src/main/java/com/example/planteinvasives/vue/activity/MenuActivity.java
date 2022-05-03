@@ -345,7 +345,7 @@ public class MenuActivity extends AppCompatActivity {
      */
     public void cleanApp(){
         File file = new File(Environment.getExternalStorageDirectory() + File.separator +
-                "Android/data/com.example.planteinvasives/files/Pictures/delete.txt");
+                "Android/data/com.example.planteinvasives/files/1.225_172303_8349967972327207504");
         try {
             System.out.println(file.getAbsolutePath());
             if(file.exists()){
