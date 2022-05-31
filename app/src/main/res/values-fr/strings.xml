@@ -5,6 +5,8 @@
     <string name="btn_releve">Nouveau Relevé</string>
     <string name="btn_fiche">Mes fiches</string>
     <string name="btn_map">Carte</string>
+    <string name="btn_apropos">A propos</string>
+    <string name="actualiser">Actualiser</string>
 
     <string name="nom">Nom</string>
     <string name="prenom">Prénom</string>
@@ -40,6 +42,12 @@
     <string name="tuto1">Utilisez la caméra de l\'application pour prendre en photo les espèces invasives.</string>
     <string name="tuto2">Un formulaire sera disponible pour renseigner des informations sur l\'espèce prise en photo</string>
     <string name="tuto3">Pour utiliser l\'application, une liste de 5 plantes doit être paramètrée</string>
+    <string name="intervenants" >Porteur de projet: François VANDESCHRICKE \n
+    Développement de l\'application: Etienne Baillif \n
+    Structure du porteur de projet : Parc national / Rectorat-DAAC \n
+    Autres intervenants : Christophe LAVERGNE \n
+    Conservatoire Botanique National Mascarin  </string>
+
 
 
 

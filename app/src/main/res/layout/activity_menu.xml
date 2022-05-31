@@ -37,6 +37,7 @@
             android:typeface="serif"
 
             />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <GridLayout
@@ -247,16 +248,37 @@
             android:textStyle="bold"
            />
 
-        <Button
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/btnactualiser"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:clickable="true"
+            android:focusable="true"
+
+            app:backgroundTint="@color/white"
+            app:icon="@drawable/ic_baseline_autorenew_24"
+            android:textAllCaps="false"
+            app:layout_constraintLeft_toRightOf="@id/labellattitude"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/labellattitude"
+
+           />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/btnAPropos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/btn_apropos"
+            app:backgroundTint="#8BC34A"
+            app:icon="@drawable/ic_baseline_info_24"
+            android:textAllCaps="false"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/labellongitude"
-            android:layout_marginTop="20dp"
-            android:text="actualiser"
-            android:theme="@style/roundImageView"/>
+            android:layout_marginTop="20dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

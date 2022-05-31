@@ -28,6 +28,8 @@ import com.example.planteinvasives.geolocalisation.GpsTracker;
 import com.example.planteinvasives.map.MapActivity;
 import com.example.planteinvasives.roomDataBase.Controle;
 import com.example.planteinvasives.roomDataBase.entity.SpinnerData;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.apache.commons.io.FileUtils;
 
@@ -49,7 +51,8 @@ import java.util.List;
 public class MenuActivity extends AppCompatActivity {
 
     private CardView btncreateFiche, btnFiche, btnMap, btnParam;
-    private Button btnUpdate, btndump;
+    private Button btndump;
+    private ExtendedFloatingActionButton btnInfo, btnUpdate;
     private TextView textlongitude, textlatitude, textAccueil;
     GpsTracker gpsTracker;
     Controle controle;
@@ -96,6 +99,7 @@ public class MenuActivity extends AppCompatActivity {
         btnMap =  findViewById(R.id.btnMap);
         btnParam = findViewById(R.id.btnparam);
         btnUpdate = findViewById(R.id.btnactualiser);
+        btnInfo = findViewById(R.id.btnAPropos);
         textlatitude = findViewById(R.id.labellattitude);
         textlongitude = findViewById(R.id.labellongitude);
         textAccueil= findViewById(R.id.msgAccueil);
@@ -194,6 +198,14 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        btnInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuActivity.this, AutorsActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 
@@ -217,6 +229,8 @@ public class MenuActivity extends AppCompatActivity {
         if (etatApp == 1){
             System.out.println("coché");
             cleanApp();
+        }else{
+            removeConfFile();
         }
     }
 
@@ -232,6 +246,8 @@ public class MenuActivity extends AppCompatActivity {
         if (etatApp == 1){
             System.out.println("coché");
             cleanApp();
+        }else{
+          removeConfFile();
         }
 
         List<SpinnerData> users;
@@ -348,13 +364,13 @@ public class MenuActivity extends AppCompatActivity {
                 "Android/data/com.example.planteinvasives/files/1.225_172303_8349967972327207504");
         try {
             System.out.println(file.getAbsolutePath());
-            if(file.exists()){
-                // code if file exist in external storage
+            //si le fichier existe et ck supression coché alors on reset l'application
+            if(file.exists()&& etatApp == 1){
                 System.out.println("supprime external");
                 //supprime la base
                 controle.clearAllTables();
 
-                //supprimer le ficheir xml sharepreferences
+                //supprimer le fichier xml sharepreferences
                 SharedPreferences settings = getSharedPreferences("your_prefs", Context.MODE_PRIVATE);
                 settings.edit().clear().commit();
 
@@ -364,11 +380,24 @@ public class MenuActivity extends AppCompatActivity {
                 FileUtils.deleteDirectory(dirName);
             }
             else {
-                // file not found
                 System.out.println("fichier delete non existe, aucune modification");
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * supprime le fichier qui permet de reset l'application
+     */
+    public void removeConfFile(){
+        //supprime le fichier del au démarrage si ckdel n'est pas coché
+        File file = new File(Environment.getExternalStorageDirectory() + File.separator +
+                "Android/data/com.example.planteinvasives/files/1.225_172303_8349967972327207504");
+        if(file.exists()){
+            System.out.println("suppression du fichier delete");
+            file.delete();
+            System.out.println("*****************SUPRESSION DE "+file.getName()+"************************");
         }
     }
 }

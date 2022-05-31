@@ -1,24 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.planteinvasives" >
-
-    <!-- lire ecrire sur le stockage-->
+    package="com.example.planteinvasives">
+    <!-- lire ecrire sur le stockage -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <!-- appareil photo-->
-    <!--<uses-permission android:name="android.permission.CAMERA" />-->
-
-    <!-- permission openstreetmap-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- appareil photo -->
+    <!-- <uses-permission android:name="android.permission.CAMERA" /> -->
+    <!-- permission openstreetmap -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-
-    <uses-feature
-        android:name="android.hardware.camera"
-       />
+    <uses-feature android:name="android.hardware.camera" />
 
     <queries>
 
@@ -42,14 +35,14 @@
 
     <application
         android:allowBackup="true"
-        android:largeHeap="true"
         android:icon="@drawable/launchicon"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@drawable/launchicon"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PlanteInvasives" >
-        <activity android:name=".vue.activity.MainActivity" >
-        </activity>
+        android:theme="@style/Theme.PlanteInvasives">
+
+        <activity android:name=".vue.activity.MainActivity"></activity>
         <activity
             android:name=".vue.activity.MenuActivity"
             android:exported="true"
@@ -68,73 +61,62 @@
             android:launchMode="singleTask"
             android:parentActivityName=".vue.activity.MenuActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.PlanteInvasives.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.PlanteInvasives.NoActionBar"></activity>
         <activity
             android:name=".vue.activity.PhotoActivity"
             android:parentActivityName=".vue.activity.MenuActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.PlanteInvasives.NoActionBar"
-            >
-        </activity>
+            android:theme="@style/Theme.PlanteInvasives.NoActionBar"></activity>
         <activity
             android:name=".vue.activity.FicheActivity"
             android:launchMode="singleTask"
-            android:parentActivityName=".vue.activity.MenuActivity"
-            >
-        </activity>
+            android:parentActivityName=".vue.activity.MenuActivity"></activity>
         <activity
             android:name=".vue.activity.FormActivity2"
-            android:parentActivityName=".vue.activity.MenuActivity"
             android:launchMode="singleTask"
+            android:parentActivityName=".vue.activity.MenuActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.PlanteInvasives.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.PlanteInvasives.NoActionBar"></activity>
         <activity
             android:name=".vue.activity.AdminActivity"
-            android:parentActivityName=".vue.activity.MenuActivity"
             android:launchMode="singleTask"
-            android:theme="@style/Theme.PlanteInvasives.NoActionBar">
-
-        </activity>
+            android:parentActivityName=".vue.activity.MenuActivity"
+            android:theme="@style/Theme.PlanteInvasives.NoActionBar"></activity>
         <activity
             android:name=".map.MapActivity"
-            android:parentActivityName=".vue.activity.MenuActivity"
-            android:launchMode="singleTask">
-        </activity>
+            android:launchMode="singleTask"
+            android:parentActivityName=".vue.activity.MenuActivity"></activity>
         <activity
             android:name=".vue.activity.InfoActivity"
-            android:parentActivityName=".vue.activity.MenuActivity"
             android:launchMode="singleTask"
-            android:theme="@style/Theme.PlanteInvasives.NoActionBar">
-        </activity>
+            android:parentActivityName=".vue.activity.MenuActivity"
+            android:theme="@style/Theme.PlanteInvasives.NoActionBar"></activity>
         <activity
             android:name=".vue.activity.FirstAdminActivity"
             android:launchMode="singleTask"
             android:parentActivityName=".vue.activity.MenuActivity"
-            android:theme="@style/Theme.PlanteInvasives.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.PlanteInvasives.NoActionBar"></activity>
         <activity
             android:name=".vue.activity.PreviewActivity"
             android:launchMode="singleTask"
             android:parentActivityName=".vue.activity.MenuActivity"
-            android:theme="@style/Theme.PlanteInvasives.NoActionBar">
-        </activity>
-
+            android:theme="@style/Theme.PlanteInvasives.NoActionBar"></activity>
         <activity
             android:name=".map.MapBoxActivity"
             android:launchMode="singleTask"
             android:parentActivityName=".vue.activity.MenuActivity"
-            android:theme="@style/Theme.PlanteInvasives.NoActionBar">
-        </activity>
-
-
+            android:theme="@style/Theme.PlanteInvasives.NoActionBar"></activity>
+        <activity
+            android:name=".vue.activity.AutorsActivity"
+            android:launchMode="singleTask"
+            android:parentActivityName=".vue.activity.MenuActivity"
+            android:theme="@style/Theme.PlanteInvasives.NoActionBar"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"
-            android:grantUriPermissions="true" >
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
@@ -142,9 +124,10 @@
 
         <service
             android:name=".vue.activity.MenuActivity"
-            android:foregroundServiceType="location"  >
-        <!-- Any inner elements would go here. -->
-    </service>
+            android:foregroundServiceType="location">
+
+            <!-- Any inner elements would go here. -->
+        </service>
     </application>
 
 </manifest>

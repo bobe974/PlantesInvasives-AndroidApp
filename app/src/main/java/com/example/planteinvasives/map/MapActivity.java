@@ -1,5 +1,6 @@
 package com.example.planteinvasives.map;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -17,7 +18,9 @@ import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.ItemizedOverlayWithFocus;
+import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.OverlayItem;
+import org.osmdroid.views.overlay.compass.CompassOverlay;
 
 import java.util.ArrayList;
 /**
@@ -49,10 +52,17 @@ public class MapActivity extends AppCompatActivity {
         controle = Controle.getInstance(this);
         cursor = controle.ficheDao().getAll();
 
+
         //parametrage map
         map = findViewById(R.id.map);
         map.setTileSource(TileSourceFactory.MAPNIK); //render
+        map.setMultiTouchControls(true);
         map.setBuiltInZoomControls(true); // active le zoom sur la map
+
+        //compas
+        CompassOverlay compassOverlay = new CompassOverlay(this, map);
+        compassOverlay.enableCompass();
+        map.getOverlays().add(compassOverlay);
 
         gpsTracker = new GpsTracker(MapActivity.this);
 
@@ -71,16 +81,33 @@ public class MapActivity extends AppCompatActivity {
 
         mapController = map.getController();
         mapController.setCenter(startpoint); //centre de la map
-        mapController.setZoom(20.0); //niveau de zoom par default
+        mapController.setZoom(18.0); //niveau de zoom par default
 
         //overlay items (point sur la map)
         ArrayList<OverlayItem> items = new ArrayList<>();
 
+//        Marker marker = new Marker(map);
+//        marker.setTitle("test");
+//        marker.setPosition(geoPoint);
+//        map.getOverlays().add(marker);
+
+        Marker marker;
         //parcour cursor
         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-            items.add(new OverlayItem(cursor.getString(6),
-                    cursor.getString(9),
-                    new GeoPoint(cursor.getDouble(14), cursor.getDouble(15))));
+//            OverlayItem overlayItem = new OverlayItem(cursor.getString(6),
+//                    cursor.getString(9),
+//                    new GeoPoint(cursor.getDouble(14), cursor.getDouble(15)));
+//
+//            items.add(overlayItem);
+
+                    marker = new Marker(map);
+                    marker.setTitle("Nom: "+cursor.getString(6));
+                    marker.setPosition(new GeoPoint(cursor.getDouble(14), cursor.getDouble(15)));
+                    marker.setSnippet("Description: "+cursor.getString(9));
+                    marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER);
+
+                    map.getOverlays().add(marker);
+
             Log.d("MAPPPP", "$$$$$$$$$$$$$$ NOM"+cursor.getString(6)+" LATITUDE:"+ cursor.getDouble(14)+" LONGITUDE: "+cursor.getDouble(15));
 
         }
@@ -94,22 +121,22 @@ public class MapActivity extends AppCompatActivity {
 
         //items.add(new OverlayItem("point2", "soustitre",new GeoPoint(-22.233,55.7373)));
 
-        //associer la map et les overlays
-        ItemizedOverlayWithFocus<OverlayItem> mOverlay = new ItemizedOverlayWithFocus<OverlayItem>(getApplicationContext(),
-                items, new ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
-            @Override
-            public boolean onItemSingleTapUp(int index, OverlayItem item) {
-                return true;
-            }
-
-            @Override
-            public boolean onItemLongPress(int index, OverlayItem item) {
-                return false;
-            }
-        });
-
-        mOverlay.setFocusItemsOnTap(true);
-        map.getOverlays().add(mOverlay);
+//        //associer la map et les overlays
+//        ItemizedOverlayWithFocus<OverlayItem> mOverlay = new ItemizedOverlayWithFocus<OverlayItem>(getApplicationContext(),
+//                items, new ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
+//            @Override
+//            public boolean onItemSingleTapUp(int index, OverlayItem item) {
+//                return true;
+//            }
+//
+//            @Override
+//            public boolean onItemLongPress(int index, OverlayItem item) {
+//                return false;
+//            }
+//        });
+//
+//        mOverlay.setFocusItemsOnTap(true);
+//        map.getOverlays().add(mOverlay);
     }
 
     @Override

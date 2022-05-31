@@ -7,6 +7,7 @@
         <entry key="app/src/main/res/drawable/arrondir.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/drawable/custom_imput.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/drawable/ic_baseline_create_new_folder_24.xml" value="0.4015625" />
+        <entry key="app/src/main/res/drawable/ic_baseline_info_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_baseline_text_fields_24.xml" value="0.14583333333333334" />
         <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.26197916666666665" />
@@ -22,12 +23,14 @@
         <entry key="app/src/main/res/layout/acitivity_admin.xml" value="0.2033514492753623" />
         <entry key="app/src/main/res/layout/acitivity_first_param.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_admin.xml" value="0.20912547528517111" />
+        <entry key="app/src/main/res/layout/activity_autors.xml" value="0.12552083333333333" />
         <entry key="app/src/main/res/layout/activity_cellule.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_fiche.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_form.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_form2.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_gridview.xml" value="0.223731884057971" />
         <entry key="app/src/main/res/layout/activity_help.xml" value="0.13489583333333333" />
+        <entry key="app/src/main/res/layout/activity_info_appli.xml" value="0.12447916666666667" />
         <entry key="app/src/main/res/layout/activity_launch.xml" value="0.213768115942029" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.125" />
@@ -38,6 +41,7 @@
         <entry key="app/src/main/res/layout/activity_photo.xml" value="0.11639492753623189" />
         <entry key="app/src/main/res/layout/activity_preview.xml" value="0.17798913043478262" />
         <entry key="app/src/main/res/layout/activity_recycler.xml" value="0.171875" />
+        <entry key="app/src/main/res/layout/custom_dialog.xml" value="0.24003623188405798" />
         <entry key="app/src/main/res/layout/custom_marker_display.xml" value="0.21603260869565216" />
         <entry key="app/src/main/res/layout/fragment_1.xml" value="0.11770833333333333" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.12760416666666666" />
