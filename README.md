@@ -19,5 +19,35 @@ Outils utilisés :
 
 Aperçu :
 
-![Test](/images/image-preview/firstPage.jpg)
+<div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 20px;">
+
+    
+  <img src="/images/image-preview/firstPage.jpg" alt="Image 1" style="width: 150px; height: auto; margin-right: 10px;">
+    <img src="/images/image-preview/firstPage2.jpg" style="width: 150px; height: auto; margin-right: 10px;">
+    <img src="/images/image-preview/firstPage4.jpg" style="width: 150px; height: auto; margin-right: 10px;">
+    <img src="/images/image-preview/admin.jpg" style="width: 150px; height: auto; margin-right: 10px;">
+
+   
+  <img src="/images/image-preview/menu.jpg" alt="Image 1" style="width: 150px; height: auto; margin-right: 10px;">
+    <img src="/images/image-preview/form1.jpg" style="width: 150px; height: auto; margin-right: 10px;">
+    <img src="/images/image-preview/form2.jpg" style="width: 150px; height: auto; margin-right: 10px;">
+    <img src="/images/image-preview/list.jpg" style="width: 150px; height: auto; margin-right: 10px;">
+    <img src="/images/image-preview/map.jpg" style="width: 150px; height: auto; margin-right: 10px;">
+    <img src="/images/image-preview/updateList.jpg" style="width: 150px; height: auto; margin-right: 10px;">
+
+</div>
+
+Conception: 
+
+Laurent Brillard
+Christophe Lavergne
+Olivier Sébastien
+Yann Thomas
+Philippe Vandescasteele
+François Vandeschricke
+
+Réalisation : Etienne Baillif
+
+
+
 
