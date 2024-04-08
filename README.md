@@ -39,11 +39,11 @@ Aperçu :
 
 Conception: 
 
-Laurent Brillard
-Christophe Lavergne
-Olivier Sébastien
-Yann Thomas
-Philippe Vandescasteele
+Laurent Brillard, 
+Christophe Lavergne,
+Olivier Sébastien,
+Yann Thomas,
+Philippe Vandescasteele,
 François Vandeschricke
 
 Réalisation : Etienne Baillif
