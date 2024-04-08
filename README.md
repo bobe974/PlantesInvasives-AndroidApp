@@ -15,6 +15,7 @@ de détecter et signaler ces espèces de manière précoce sur le terrain.
 
 - Langage de programmation : Java
 - Base de données : Room Database (utilisant SQLite)
+- Environnement de développement : Android Studio avec Gradle
 - API Android : Gestion de la caméra (prise de photos) et du GPS
 - Cartographie : Intégration d'OpenStreetMap pour la visualisation des observations sur la carte
 
