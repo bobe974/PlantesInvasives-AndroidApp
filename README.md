@@ -3,7 +3,7 @@
 
 Ce projet est une application mobile android de cartographie des espèces exotiques invasives
 permettant à des élèves munis de smartphones et/ou tablettes 
-de détecter et signaler ces espèces de manière précoce sur le terrain.
+de détecter et signaler ces espèces de manière précoce sur le terrain
 
 **Fonctionnalités :**
 - capture de photos de plantes et enregistrement de descriptions via des formulaires sur le terrain
