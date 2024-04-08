@@ -17,4 +17,3 @@ Outils utilisés :
 - API Android : Gestion de la caméra (prise de photos) et du GPS
 - Cartographie : Intégration d'OpenStreetMap pour la visualisation des observations sur la carte
 
-
